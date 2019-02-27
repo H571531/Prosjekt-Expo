@@ -10,58 +10,47 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.Expo.Interface.StandInterface;
 import no.hvl.dat109.Expo.Utils.ConstructionUtils;
-import no.hvl.dat109.Expo.entities.Stand;
 
 /**
- * Servlet implementation class StemmeServlet
+ * Servlet implementation class QRServlet
  */
-@WebServlet("/VoteServlet")
-public class VoteServlet extends HttpServlet {
+@WebServlet("/QRServlet")
+public class QRServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public QRServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String standId = request.getParameter("voteCastedFor");
+		String standId = request.getParameter("standId");
+		
 		if(standId != null) {
-			//StandInterface stand = standEAO.getStand(standId);
+			//Hente Stand fra database, sett request-parameter stand
 			StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
 			
 			request.setAttribute("stand", stand);
-			request.getRequestDispatcher("WEB-INF/JSP/VoteCasted.jsp").forward(request, response);
+			
+			request.getRequestDispatcher("WEB-INF/JSP/Vote.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("StartServlet?InvalidRequest");
+			response.sendRedirect("StartServlet?invalidStandId");
 		}
 		
-		
 	}
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String standId = request.getParameter("standId");
-		String voteValue = request.getParameter("voteValue");
-		
-		if(standId != null && voteValue != null) {
-			//Foreløpig ingen form for registrering av bruker
-			//Vote vote = new Vote(standId, voteValue);
-			
-			//VoteEAO.voteForStand(standId, voteValue);
-			
-			//TODO: Behandle gitt stemme
-			
-			
-			response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
-		} else {
-			response.sendRedirect("StartServlet?InvalidVote");
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

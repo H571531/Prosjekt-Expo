@@ -1,0 +1,107 @@
+@charset "ISO-8859-1";
+
+html{
+	
+	
+}
+
+body{
+	
+	margin:0;
+}
+
+
+#header{
+	background-color: #004357;
+	height:4em;
+	width:100%;
+	position:absolute;
+	top:0px;
+	
+}
+
+#mid {
+	width:80%;
+	margin:auto;
+	text-align:center;
+	position:relative;
+	top:4em
+}
+
+#expoLogo{
+	position:relative;
+	margin: auto;
+	top:1em;
+	display:block;
+	
+}
+
+#expoLogoImg{
+	display:block;
+	margin:auto;
+	width:10em;
+}
+
+#midText{
+	position:relative;
+	top:2em;
+}
+
+#posterImg{
+	width:17em;
+}
+
+#voteForm{
+	position:relative;
+	top:3em;
+}
+
+
+
+#voteForm{
+	position:relative;
+	top:2.5em;
+}
+
+#formStars{
+	width:16em;
+	margin:auto;
+}
+
+div.voteForm {
+  width: 270px;
+  display: inline-block;
+}
+
+input.stjerne { display: none; }
+
+label.stjerne {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.stjerne:checked ~ label.stjerne:before {
+  content: '\2605';
+  color: #FD4;
+  transition: all .25s;
+}
+
+/*
+input.stjerne-5:checked ~ label.stjerne:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+*/
+
+input.stjerne-1:checked ~ label.stjerne:before { color: #F62; }
+
+label.stjerne:hover { 
+	transform: scale(1.3); 
+}
+
+label.stjerne:before {
+  content: '\2605';
+}
