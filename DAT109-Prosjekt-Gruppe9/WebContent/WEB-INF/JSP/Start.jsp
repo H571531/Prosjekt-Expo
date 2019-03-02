@@ -27,8 +27,8 @@
 					
 					<hr>
 					<h2>TESTING</h2>
-					<a href="QRServlet?standId=1">Test-stand 1</a><br>
-					<a href="QRServlet?standId=2">Test-stand 2</a><br>
+					<a href="StandServlet?standId=1">Test-stand 1</a><br>
+					<a href="StandServlet?standId=2">Test-stand 2</a><br>
 					<hr>
 				
 			
