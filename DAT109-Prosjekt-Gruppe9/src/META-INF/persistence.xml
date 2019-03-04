@@ -7,7 +7,7 @@ version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="votePU" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>   
 		<jta-data-source>expoDS</jta-data-source>
-		<class>Vote</class>    
+		<class>no.hvl.dat109.Expo.entities.Vote</class>    
 		<properties>        
 			<property name="eclipselink.weaving" value="false"/>    
 		</properties>
@@ -16,7 +16,7 @@ version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="standPU" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>   
 		<jta-data-source>expoDS</jta-data-source>
-		<class>Stand</class>    
+		<class>no.hvl.dat109.Expo.entities.Stand</class>    
 		<properties>        
 			<property name="eclipselink.weaving" value="false"/>    
 		</properties>
