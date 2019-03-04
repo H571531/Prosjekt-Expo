@@ -6,40 +6,47 @@ import javax.persistence.Table;
 import no.hvl.dat109.Expo.Interface.StandInterface;
 
 @Entity
-@Table(schema="ExpoSystem",name="stand")
+@Table(schema="exposystem",name="stand")
 public class Stand implements StandInterface{
 	
 	@Id
-	int id;
+	int standId;
 	
-	String name;
+	String standName;
 
 	
 	
 	public Stand(String name, int id) {
-		this.name = name;
-		this.id = id;
+		this.standName = name;
+		this.standId = id;
 	}
 
 
-	public String getName() {
-		return name;
+
+	public int getStandId() {
+		return standId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setStandId(int standId) {
+		this.standId = standId;
 	}
 
 
-	public int getId() {
-		return id;
+
+	public String getStandName() {
+		return standName;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+
+	public void setStandName(String standName) {
+		this.standName = standName;
 	}
+
+
+	
 
 	
 }

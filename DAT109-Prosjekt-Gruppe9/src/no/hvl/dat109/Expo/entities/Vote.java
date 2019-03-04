@@ -14,33 +14,46 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(schema="ExpoSystem",name="vote")
+@Table(schema="exposystem",name="vote")
 public class Vote {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	int voteId;
 	
-	int value;
+	int voteValue;
 	int standId;
 	
 	public Vote(String value, Stand stand) {
-		standId=stand.getId();
-		this.value=Integer.parseInt(value);
+		standId=stand.getStandId();
+		this.voteValue=Integer.parseInt(value);
 	}
 
-	public int getId() {
-		return id;
-	}
 	
 
-	public int getValue() {
-		return value;
+	public int getVoteId() {
+		return voteId;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
+
+
+	public void setVoteId(int voteId) {
+		this.voteId = voteId;
 	}
+
+
+
+	public int getVoteValue() {
+		return voteValue;
+	}
+
+
+
+	public void setVoteValue(int voteValue) {
+		this.voteValue = voteValue;
+	}
+
+
 
 	public int getStandId() {
 		return standId;
