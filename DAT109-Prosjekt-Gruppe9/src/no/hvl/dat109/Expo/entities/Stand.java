@@ -1,11 +1,19 @@
 package no.hvl.dat109.Expo.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import no.hvl.dat109.Expo.Interface.StandInterface;
 
+@Entity
+@Table(schema="ExpoSystem",name="stand")
 public class Stand implements StandInterface{
 	
-	String name;
+	@Id
 	int id;
+	
+	String name;
+
 	
 	
 	public Stand(String name, int id) {
