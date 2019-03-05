@@ -3,7 +3,7 @@ package no.hvl.dat109.Expo.Utils;
 import javax.ejb.EJB;
 
 import no.hvl.dat109.Expo.entities.Stand;
-import no.hvl.dat109.expo.EAO.StandEAO;
+
 
 /**
  * Kun for bruk mens prosjektet er i tidlig fase - skal fjernes
@@ -12,7 +12,7 @@ import no.hvl.dat109.expo.EAO.StandEAO;
  *		-Adrian
  */
 public class ConstructionUtils {
-	 @EJB
+	/* @EJB
 	 StandEAO sEAO=new StandEAO();
 	 
 	public  Stand setupStand(int i) {
@@ -22,6 +22,6 @@ public class ConstructionUtils {
 		sEAO.addStand(stand);
 		}
 		return stand;
-	}
+	}*/
 
 }

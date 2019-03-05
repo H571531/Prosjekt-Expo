@@ -23,7 +23,7 @@
 			<div id="midText">
 				
 					<p>VELKOMMEN TIL EXPO ${expo.year}</p><br>
-					<a href="browse.html">Se gjennom stands!</a>
+					
 					
 					<hr>
 					<h2>TESTING</h2>
