@@ -2,14 +2,16 @@ package no.hvl.dat109.Expo.Servlet;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Expo.EAO.StandEAO;
 import no.hvl.dat109.Expo.Interface.StandInterface;
-import no.hvl.dat109.Expo.Utils.ConstructionUtils;
+import no.hvl.dat109.Expo.entities.Stand;
 
 /**
  * Servlet implementation class StandServlet
@@ -21,6 +23,9 @@ public class StandServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
+	@EJB
+	StandEAO sEAO;
     public StandServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -34,7 +39,10 @@ public class StandServlet extends HttpServlet {
 		
 		if(standId != null) {
 			//Hente Stand fra database, sett request-parameter stand
-			StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
+			
+			StandInterface stand = (Stand)sEAO.findStand(Integer.parseInt(standId));
+					//kon.setupStand(Integer.parseInt(standId));
+			
 			
 			request.setAttribute("stand", stand);
 			

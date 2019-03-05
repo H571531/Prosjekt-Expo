@@ -19,7 +19,7 @@
 				<img id="expoLogoImg" src="img/expo_logo.png">
 			</div>
 			<p>
-				Takk for din stemme på ${stand.name}!
+				Takk for din stemme på ${stand.standName}!
 			</p>
 		</div>
 	</body>

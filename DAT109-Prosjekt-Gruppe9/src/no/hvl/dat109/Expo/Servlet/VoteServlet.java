@@ -2,15 +2,18 @@ package no.hvl.dat109.Expo.Servlet;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Expo.EAO.StandEAO;
+import no.hvl.dat109.Expo.EAO.VoteEAO;
 import no.hvl.dat109.Expo.Interface.StandInterface;
-import no.hvl.dat109.Expo.Utils.ConstructionUtils;
 import no.hvl.dat109.Expo.entities.Stand;
+import no.hvl.dat109.Expo.entities.Vote;
 
 /**
  * Servlet implementation class StemmeServlet
@@ -18,7 +21,11 @@ import no.hvl.dat109.Expo.entities.Stand;
 @WebServlet("/VoteServlet")
 public class VoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	@EJB
+	VoteEAO vEAO;
+	@EJB
+	StandEAO sEAO;
     
 
 	/**
@@ -28,8 +35,8 @@ public class VoteServlet extends HttpServlet {
 
 		String standId = request.getParameter("voteCastedFor");
 		if(standId != null) {
-			//StandInterface stand = standEAO.getStand(standId);
-			StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
+			StandInterface stand = sEAO.findStand(Integer.parseInt(standId));
+			//StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
 			
 			request.setAttribute("stand", stand);
 			request.getRequestDispatcher("WEB-INF/JSP/VoteCasted.jsp").forward(request, response);
@@ -49,11 +56,14 @@ public class VoteServlet extends HttpServlet {
 		String standId = request.getParameter("standId");
 		String voteValue = request.getParameter("voteValue");
 		
+		
 		if(standId != null && voteValue != null) {
 			//Foreløpig ingen form for registrering av bruker
-			//Vote vote = new Vote(standId, voteValue);
+			Stand stand = sEAO.findStand(Integer.parseInt(standId));
+			Vote vote = new Vote(voteValue,stand);
 			
-			//VoteEAO.voteForStand(standId, voteValue);
+			
+			vEAO.voteForStand(vote);
 			
 			//TODO: Behandle gitt stemme
 			

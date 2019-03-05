@@ -22,10 +22,10 @@
 			</div>
 			<div id="midText">
 				
-					<h1>${stand.name}</h1>
+					<h1>${stand.standName}</h1>
 				
 				<p id="poster">
-					<img id="posterImg" src="img/standPosters/poster_${expo.year}_${stand.id}.png">
+					<img id="posterImg" src="img/standPosters/poster_${expo.year}_${stand.standId}.png">
 				</p>
 			</div>
 			
@@ -45,7 +45,7 @@
 						<input class="stjerne stjerne-1" id="stjerne-1" type="radio" name="voteValue" value="1"/>
 						<label class="stjerne stjerne-1" for="stjerne-1"></label>
 						<br>
-						<input type="hidden" name="standId" value="${stand.id}">
+						<input type="hidden" name="standId" value="${stand.standId}">
 						<button type="submit">Send inn!</button>
 					</fieldset>
 				</form>
