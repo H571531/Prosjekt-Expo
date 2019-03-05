@@ -7,8 +7,8 @@ version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="expoPU" transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>   
 		<jta-data-source>expoDS</jta-data-source>
-		<class>Vote</class>
-		<class>Stand</class>       
+		<class></class>
+   
 		<properties>        
 			<property name="eclipselink.weaving" value="false"/>    
 		</properties>

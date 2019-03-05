@@ -2,15 +2,16 @@ package no.hvl.dat109.Expo.Servlet;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Expo.EAO.StandEAO;
 import no.hvl.dat109.Expo.Interface.StandInterface;
 import no.hvl.dat109.Expo.entities.Stand;
-import no.hvl.dat109.expo.EAO.StandEAO;
 
 /**
  * Servlet implementation class StandServlet
@@ -22,7 +23,9 @@ public class StandServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	StandEAO sEAO=new StandEAO();
+	
+	@EJB
+	StandEAO sEAO;
     public StandServlet() {
         super();
         // TODO Auto-generated constructor stub

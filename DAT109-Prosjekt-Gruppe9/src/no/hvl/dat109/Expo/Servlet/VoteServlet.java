@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Expo.EAO.StandEAO;
+import no.hvl.dat109.Expo.EAO.VoteEAO;
 import no.hvl.dat109.Expo.Interface.StandInterface;
-import no.hvl.dat109.Expo.Utils.ConstructionUtils;
 import no.hvl.dat109.Expo.entities.Stand;
 import no.hvl.dat109.Expo.entities.Vote;
-import no.hvl.dat109.expo.EAO.StandEAO;
-import no.hvl.dat109.expo.EAO.VoteEAO;
 
 /**
  * Servlet implementation class StemmeServlet
@@ -24,10 +23,9 @@ public class VoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	VoteEAO vEAO=new VoteEAO();
-	
+	VoteEAO vEAO;
 	@EJB
-	StandEAO sEAO=new StandEAO();
+	StandEAO sEAO;
     
 
 	/**

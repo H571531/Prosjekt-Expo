@@ -14,7 +14,7 @@ public class Stand implements StandInterface{
 	
 	String standName;
 
-	
+	public Stand() {}
 	
 	public Stand(String name, int id) {
 		this.standName = name;

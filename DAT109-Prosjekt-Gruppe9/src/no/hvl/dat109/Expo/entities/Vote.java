@@ -28,7 +28,8 @@ public class Vote {
 		standId=stand.getStandId();
 		this.voteValue=Integer.parseInt(value);
 	}
-
+	public Vote() {}
+	
 	
 
 	public int getVoteId() {
