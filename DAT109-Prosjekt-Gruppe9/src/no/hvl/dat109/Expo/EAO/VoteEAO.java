@@ -12,10 +12,10 @@ import no.hvl.dat109.Expo.entities.Vote;
 @Stateless
 public class VoteEAO {
 
-	@PersistenceContext(name="votePU")
-	private static EntityManager em;
+	@PersistenceContext(name="expoPU")
+	private EntityManager em;
 	
-	public static void voteForStand(Vote vote) {
+	public void voteForStand(Vote vote) {
 		em.persist(vote);
 	}
 	

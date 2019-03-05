@@ -9,10 +9,10 @@ import no.hvl.dat109.Expo.entities.Stand;
 @Stateless
 public class StandEAO {
 
-	@PersistenceContext(name = "standPU")
-	private static EntityManager em;
+	@PersistenceContext(name = "expoPU")
+	private EntityManager em;
 
-	public static Stand findStand(int standId) {
+	public Stand findStand(int standId) {
 		return em.find(Stand.class, standId);
 	}
 

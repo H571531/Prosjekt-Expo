@@ -46,6 +46,13 @@ public class Stand implements StandInterface{
 	}
 
 
+
+	@Override
+	public String toString() {
+		return "Stand [standId=" + standId + ", standName=" + standName + "]";
+	}
+
+
 	
 
 	
