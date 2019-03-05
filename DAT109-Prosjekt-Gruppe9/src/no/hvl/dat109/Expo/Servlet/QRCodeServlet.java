@@ -18,6 +18,13 @@ import java.util.Optional;
 public class QRCodeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+    }
+
+    @Override
+    public void init() throws ServletException {
+        new File("/cache").mkdir();
+        ImageIO.setCacheDirectory(new File("/cache"));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,8 +36,6 @@ public class QRCodeServlet extends HttpServlet {
             Optional<BufferedImage> image = QRUtils.generateQR(hosturl + "/StandServlet?standId=" + stand,300,300);
             // Legg til kode som sjekker om bildet finnes
             response.setContentType("image/png");
-            new File("/cache").mkdir();
-            ImageIO.setCacheDirectory(new File("/cache"));
             ImageIO.write(image.get(),"png",response.getOutputStream());
         }
 
