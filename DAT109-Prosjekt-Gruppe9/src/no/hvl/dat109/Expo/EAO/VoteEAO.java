@@ -20,8 +20,9 @@ public class VoteEAO {
 	}
 	
 	public List<Vote> getVotesForStand(Stand stand){
-		List<Vote>standVotes =em.createQuery("SELECT v FROM Vote v",Vote.class).getResultList();
-		standVotes=(List<Vote>) standVotes.stream().filter(v->v.getStandId()==stand.getStandId());
+		List<Vote>standVotes=em.createQuery("SELECT v FROM Vote v",Vote.class).getResultList();
+		standVotes=(List<Vote>)standVotes.stream()
+				  						 .filter(v->v.getStandId()==stand.getStandId());
 		return standVotes;
 	}
 	

@@ -18,7 +18,7 @@
 	
 		<div id="mid">
 			<div id="expoLogo">
-				<img id="expoLogoImg" src="img/expo_logo.png">
+			<img id="expoLogoImg" src="img/expo_logo.png">
 			</div>
 			<div id="midText">
 				

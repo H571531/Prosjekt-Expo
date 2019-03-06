@@ -67,7 +67,6 @@ public class VoteServlet extends HttpServlet {
 			
 			//TODO: Behandle gitt stemme
 			
-			
 			response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
 		} else {
 			response.sendRedirect("StartServlet?InvalidVote");
