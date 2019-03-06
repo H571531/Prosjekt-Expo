@@ -1,6 +1,7 @@
 package no.hvl.dat109.expo.eao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,9 +21,11 @@ public class VoteEAO {
 	}
 	
 	public List<Vote> getVotesForStand(Stand stand){
-		List<Vote>standVotes=em.createQuery("SELECT v FROM Vote v",Vote.class).getResultList();
-		standVotes=(List<Vote>)standVotes.stream()
-				  						 .filter(v->v.getStandId()==stand.getStandId());
+		List<Vote>standVotes = em.createQuery("SELECT v FROM Vote v",Vote.class).getResultList();
+		standVotes = standVotes
+				.stream()
+				.filter(v->v.getStand().equals(stand))
+				.collect(Collectors.toList());
 		return standVotes;
 	}
 	

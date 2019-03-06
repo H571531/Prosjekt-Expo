@@ -3,11 +3,7 @@
  */
 package no.hvl.dat109.expo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author adria
@@ -21,12 +17,14 @@ public class Vote {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int voteId;
 	
-	int voteValue;
-	int standId;
+	private int voteValue;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="standid")
+	private Stand stand;
 	
 	public Vote(String value, Stand stand) {
-		standId=stand.getStandId();
-		this.voteValue=Integer.parseInt(value);
+		this.stand = stand;
+		this.voteValue = Integer.parseInt(value);
 	}
 	public Vote() {}
 	
@@ -54,15 +52,11 @@ public class Vote {
 		this.voteValue = voteValue;
 	}
 
-
-
-	public int getStandId() {
-		return standId;
+	public Stand getStand() {
+		return stand;
 	}
 
-	public void setStandId(int standId) {
-		this.standId = standId;
+	public void setStand(Stand stand) {
+		this.stand = stand;
 	}
-	
-	
 }
