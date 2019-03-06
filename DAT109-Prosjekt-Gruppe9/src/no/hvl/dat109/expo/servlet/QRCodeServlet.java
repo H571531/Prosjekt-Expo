@@ -1,10 +1,9 @@
-package no.hvl.dat109.Expo.Servlet;
+package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.Expo.Utils.QRUtils;
+import no.hvl.dat109.expo.utils.QRUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
