@@ -17,8 +17,7 @@ public class StandEAO {
 	private EntityManager em;
 	
 	public List<Stand> findAllStand(){
-		List<Stand> all =em.createQuery("SELECT s FROM Kill s",Stand.class).getResultList();
-		return all;
+		return em.createQuery("SELECT s from Stand s",Stand.class).getResultList();
 	}
 	
 	public Stand findStand(int standId) {

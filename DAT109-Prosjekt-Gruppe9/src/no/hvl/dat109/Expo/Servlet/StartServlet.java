@@ -1,12 +1,14 @@
 package no.hvl.dat109.Expo.Servlet;
 
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.Expo.EAO.StandEAO;
 import no.hvl.dat109.Expo.entities.Expo;
 
 /**
@@ -16,6 +18,8 @@ import no.hvl.dat109.Expo.entities.Expo;
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@EJB
+	StandEAO sEAO;
 	
 	@Override
 	public void init() throws ServletException {
@@ -34,8 +38,7 @@ public class StartServlet extends HttpServlet {
 		
 		//request.setAttribute("errorCode", errorCode);
 		
-		
-		
+		request.setAttribute("stands",sEAO.findAllStand());
 		request.getRequestDispatcher("WEB-INF/JSP/Start.jsp").forward(request, response);
 		
 	}
