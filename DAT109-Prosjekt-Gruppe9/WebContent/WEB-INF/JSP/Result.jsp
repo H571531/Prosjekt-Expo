@@ -13,16 +13,17 @@
 </head>
 <body>
 <div id="header">
-    <img src="img/logo-no.png">
+    <div id="headerLeft">
+        <a href="http://www.hvl.no"><img id="hvlLogo" src="img/hvl_logo_2.png"></a>
+    </div>
 </div>
 
 <div id="mid">
-    <div id="expoLogo">
-        <img id="expoLogoImg" src="img/expo_logo.png">
-    </div>
+
     <div id="midText">
 
-        <p>Top 5</p><br>
+
+    <p>Top 5</p><br>
         <hr>
         <%--@elvariable id="result" type="no.hvl.dat109.expo.statistics.StandResult"--%>
         <c:forEach items="${toplist}" var="result">
