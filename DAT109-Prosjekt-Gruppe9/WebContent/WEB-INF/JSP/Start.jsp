@@ -34,8 +34,8 @@
 					<a href="StandServlet?standId=${stand.standId}"><c:out value="${stand.standName}"/></a><br>
 				</c:forEach>
 				<hr>
-		
-		
+
+                <a href="ResultServlet">Resultat Liste</a>
 			</div>
 		</div>
 	
