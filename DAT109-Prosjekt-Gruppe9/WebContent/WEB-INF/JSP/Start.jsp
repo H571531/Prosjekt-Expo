@@ -32,6 +32,7 @@
 		</c:forEach>
 		<hr>
 
+		<a href="ResultServlet">Resultat Liste</a>
 
 	</div>
 </div>

@@ -28,5 +28,9 @@ public class VoteEAO {
 				.collect(Collectors.toList());
 		return standVotes;
 	}
+
+	public List<Vote> findAllVote(){
+		return em.createQuery("SELECT v from Vote v",Vote.class).getResultList();
+	}
 	
 }
