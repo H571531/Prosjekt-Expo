@@ -90,11 +90,13 @@ body{
 
 #formStars{
 	width:16em;
+	min-width:16em;
 	margin:auto;
 }
 
 div.voteForm {
   width: 270px;
+  min-width:270px;
   display: inline-block;
 }
 
