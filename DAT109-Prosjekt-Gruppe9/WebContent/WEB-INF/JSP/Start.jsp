@@ -36,6 +36,8 @@
 				<hr>
 
                 <a href="ResultServlet">Resultatliste</a>
+				<br/>
+				<a href="RegistrationServlet">Register brukere</a>
 			</div>
 		</div>
 	

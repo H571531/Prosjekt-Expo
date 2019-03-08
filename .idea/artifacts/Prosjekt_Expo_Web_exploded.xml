@@ -17,6 +17,7 @@
           <element id="library" level="project" name="Maven: com.google.zxing:javase:3.3.3" />
           <element id="library" level="application" name="org.eclipse.persistence:eclipselink:2.7.4" />
           <element id="library" level="application" name="postgresql:postgresql:9.1-901.jdbc4" />
+          <element id="library" level="application" name="org.apache.commons:commons-csv:1.6" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Prosjekt-Expo/javaeeApplication/javaEEApplication" />
