@@ -70,13 +70,13 @@ body{
 }
 
 #poster{
-	width:30%;
+	width:15em;
 	margin:auto;
 }
 
 #posterImg{
 	width:100%;
-	display:block;
+	
 }
 
 
