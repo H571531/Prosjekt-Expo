@@ -28,9 +28,16 @@
         <p>Registrer Stand</p><br>
         <form action = "RegistrationServlet" method = "post"
               enctype = "multipart/form-data">
-            <input type = "file" name = "file" size = "50" />
+            Stand id:
+            <input type="text" name="standid" />
+            <br/>
+            Navn:
+            <input type="text" name="name">
+            <br/>
+            Bilde av plakat:
+            <input type = "file" name = "image" size = "50" />
             <br />
-            <input type = "submit" value = "Last opp CSV" />
+            <input type = "submit" value = "Registrer" />
         </form>
         <a href="StartServlet">Startside</a>
     </div>
