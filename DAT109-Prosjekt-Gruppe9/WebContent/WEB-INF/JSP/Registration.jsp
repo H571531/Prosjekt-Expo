@@ -25,7 +25,7 @@
 
     <div id="midText">
 
-        <p>Registration</p><br>
+        <p>Registrer Stand</p><br>
         <form action = "RegistrationServlet" method = "post"
               enctype = "multipart/form-data">
             <input type = "file" name = "file" size = "50" />

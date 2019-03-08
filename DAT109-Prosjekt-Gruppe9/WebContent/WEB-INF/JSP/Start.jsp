@@ -37,7 +37,7 @@
 
                 <a href="ResultServlet">Resultatliste</a>
 				<br/>
-				<a href="RegistrationServlet">Register brukere</a>
+				<a href="RegistrationServlet">Register Stands</a>
 			</div>
 		</div>
 	
