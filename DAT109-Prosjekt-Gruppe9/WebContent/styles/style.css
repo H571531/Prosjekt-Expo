@@ -18,9 +18,12 @@ body{
 	width:100%;
 	position:absolute;
 	top:0px;
+	padding:0.25em;
+	/*
 	margin:0;
 	margin: 0 -9999em;
 	padding: 0.25rem 9999rem;
+	*/
 	
 }
 
@@ -90,13 +93,11 @@ body{
 
 #formStars{
 	width:16em;
-	min-width:16em;
 	margin:auto;
 }
 
 div.voteForm {
   width: 270px;
-  min-width:270px;
   display: inline-block;
 }
 
