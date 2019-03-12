@@ -10,12 +10,12 @@ public class Stand implements StandInterface{
 	
 	@Id
 	String standId;
-	String standName;
+	private String standName;
 
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="facultyid")
-    Faculty facultyid;
+    private Faculty faculty;
 
 
 
@@ -50,9 +50,15 @@ public class Stand implements StandInterface{
 		this.standName = standName;
 	}
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
 
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 
-	@Override
+    @Override
 	public String toString() {
 		return "Stand [standId=" + standId + ", standName=" + standName + "]";
 	}

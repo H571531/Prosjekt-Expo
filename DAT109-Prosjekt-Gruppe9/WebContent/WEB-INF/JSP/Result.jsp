@@ -35,6 +35,15 @@
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
 				</p>
 	        </c:forEach>
+			<%--@elvariable id="faculty" type="no.hvl.dat109.expo.statistics.FacultyResult"--%>
+			<c:forEach items="${faculties}" var="faculty">
+				<p><c:out value="${faculty.faculty.facultyName}" /></p>
+			<c:forEach items="${faculty.getTopStands(5)}" var="result">
+				<p><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+				</p>
+			</c:forEach>
+			</c:forEach>
 	        <hr>
 	
 	        <a href="StartServlet">Startside</a>

@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class Result {
     // Flytt denne.
-    private final Integer MINSTE_ANTALL_STEMMER = 5;
+    protected static final Integer MINSTE_ANTALL_STEMMER = 5;
     private List<Vote> votes;
     private List<StandResult> standResults;
     private List<FacultyResult> facultyResults;
@@ -32,7 +32,23 @@ public class Result {
                 .map(x -> new StandResult(x.getKey(),x.getValue()))
                 .collect(Collectors.toList());
 
+
+        this.facultyResults =  standResults.stream()
+                .collect(Collectors.groupingBy(StandResult::getFaculty))
+                .entrySet()
+                .stream()
+                .map(x -> new FacultyResult(x.getValue(),x.getKey()))
+                .collect(Collectors.toList());
+
         this.votes = votes;
+    }
+
+    public List<StandResult> getStandResults() {
+        return standResults;
+    }
+
+    public List<FacultyResult> getFacultyResults() {
+        return facultyResults;
     }
 
     // Baserer seg på gjennomsnitt
