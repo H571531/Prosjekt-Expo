@@ -31,6 +31,7 @@ CREATE TABLE admin(
 
 
 
+
 CREATE TABLE expo(
 	expoId SERIAL,
 	expoYear INT,
