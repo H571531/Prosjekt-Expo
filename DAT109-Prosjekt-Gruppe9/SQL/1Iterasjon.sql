@@ -7,7 +7,7 @@ CREATE TABLE vote(
 	voteValue int,
 	standId varchar(20),
     CONSTRAINT votePK PRIMARY KEY (voteId),
-    CONSTRAINT standFK FOREIGN KEY (standId)
+    CONSTRAINT standFK FOREIGN KEY (standId) REFERENCES stand(standId)
 );
 
 CREATE TABLE stand(
@@ -15,13 +15,13 @@ CREATE TABLE stand(
 	standName VARCHAR(20),
 	fakultetId VARCHAR(5),
     CONSTRAINT standPK PRIMARY KEY (standId),
-    CONSTRAINT facultyFK FOREIGN KEY (facultyId)
+    CONSTRAINT facultyFK FOREIGN KEY (facultyId) REFERENCES faculty(facultyId)
 );
 
 CREATE TABLE admin(
 	adminId SERIAL,
 	username VARCHAR(20),
-	hashedPassword(88)
+	hashedPassword VARCHAR(88)
 );
 
 CREATE TABLE faculty(
@@ -35,8 +35,6 @@ CREATE TABLE expo(
 	expoYear INT,
 	CONSTRAINT expoPK PRIMARY KEY (expoId)
 );
-
-
 
 CREATE TABLE visitor(
 	visitorId VARCHAR(10),
