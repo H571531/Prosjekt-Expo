@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 public class Result {
-
+    // Flytt denne.
+    private final Integer MINSTE_ANTALL_STEMMER = 5;
     private List<Vote> votes;
     private List<StandResult> results;
     public List<Vote> getVotes() {
@@ -32,9 +33,13 @@ public class Result {
         this.votes = votes;
     }
 
+    // Baserer seg på gjennomsnitt
     public List<StandResult> getTopStands(Integer limit){
+
+
         return results.stream()
-                .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
+                .filter(x -> x.getVotes().size() >= MINSTE_ANTALL_STEMMER)
+                .sorted(Comparator.comparing(x -> -x.getWeightedAverage()))
                 .limit(limit)
                 .collect(Collectors.toList());
     }

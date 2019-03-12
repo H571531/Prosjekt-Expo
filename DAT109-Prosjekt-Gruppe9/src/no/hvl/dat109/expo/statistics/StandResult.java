@@ -28,8 +28,8 @@ public class StandResult {
         return acc;
     }
 
-    public Integer getWeightedAverage(){
-        return getTotalPoints() / votes.size();
+    public Double getWeightedAverage(){
+        return getTotalPoints().doubleValue() / votes.size();
     }
 
     public List<Vote> getVotes() {
