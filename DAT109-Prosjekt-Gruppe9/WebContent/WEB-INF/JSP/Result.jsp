@@ -4,7 +4,7 @@
          pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:GenericPage>
+<t:GenericPage customTitle="Resultatliste">
 
 	<div id="mid">
 	

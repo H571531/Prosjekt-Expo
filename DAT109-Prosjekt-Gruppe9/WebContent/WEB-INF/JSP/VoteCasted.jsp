@@ -2,7 +2,7 @@
 		 pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:GenericPage>
+<t:GenericPage customTitle="EXPO ${expo.year}">
 
 		<div id="header">
 			<div id="headerLeft">
