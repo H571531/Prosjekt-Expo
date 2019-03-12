@@ -40,7 +40,7 @@ public class StandServlet extends HttpServlet {
 		if(standId != null) {
 			//Hente Stand fra database, sett request-parameter stand
 			
-			StandInterface stand = (Stand)sEAO.findStand(Integer.parseInt(standId));
+			StandInterface stand = (Stand)sEAO.findStand(standId);
 					//kon.setupStand(Integer.parseInt(standId));
 			
 			
