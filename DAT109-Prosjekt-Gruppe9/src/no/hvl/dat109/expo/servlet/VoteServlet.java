@@ -35,7 +35,7 @@ public class VoteServlet extends HttpServlet {
 
 		String standId = request.getParameter("voteCastedFor");
 		if(standId != null) {
-			StandInterface stand = sEAO.findStand(Integer.parseInt(standId));
+			StandInterface stand = sEAO.findStand(standId);
 			//StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
 			
 			request.setAttribute("stand", stand);
@@ -59,7 +59,7 @@ public class VoteServlet extends HttpServlet {
 		
 		if(standId != null && voteValue != null) {
 			//Foreløpig ingen form for registrering av bruker
-			Stand stand = sEAO.findStand(Integer.parseInt(standId));
+			Stand stand = sEAO.findStand(standId);
 			Vote vote = new Vote(voteValue,stand);
 			
 			
