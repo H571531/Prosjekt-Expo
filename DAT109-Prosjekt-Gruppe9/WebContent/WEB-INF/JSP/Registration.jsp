@@ -35,7 +35,7 @@
             <input type="text" name="name">
             <br/>
             Bilde av plakat:
-            <input type = "file" name = "image" size = "50" />
+            <input type = "file" name = "image" />
             <br />
             <input type = "submit" value = "Registrer" />
         </form>
