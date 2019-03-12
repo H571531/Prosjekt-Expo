@@ -28,9 +28,9 @@
 	
 	   		<p>Top 5</p><br>
 	        <hr>
+			<p>Total:</p>
 	        <%--@elvariable id="result" type="no.hvl.dat109.expo.statistics.StandResult"--%>
 	        <c:forEach items="${toplist}" var="result">
-
 	            <p><c:out value="${result.stand.standName}" /> :
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
 				</p>
