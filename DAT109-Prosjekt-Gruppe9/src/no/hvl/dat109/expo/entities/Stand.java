@@ -1,8 +1,7 @@
 package no.hvl.dat109.expo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import no.hvl.dat109.expo.interfaces.StandInterface;
 
 @Entity
@@ -10,26 +9,32 @@ import no.hvl.dat109.expo.interfaces.StandInterface;
 public class Stand implements StandInterface{
 	
 	@Id
-	int standId;
-	
-	String standName;
+	String standId;
+	private String standName;
+
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="facultyid")
+    private Faculty faculty;
+
+
 
 	public Stand() {}
 	
-	public Stand(String name, int id) {
+	public Stand(String name, String id) {
 		this.standName = name;
 		this.standId = id;
 	}
 
 
 
-	public int getStandId() {
+	public String getStandId() {
 		return standId;
 	}
 
 
 
-	public void setStandId(int standId) {
+	public void setStandId(String standId) {
 		this.standId = standId;
 	}
 
@@ -45,9 +50,15 @@ public class Stand implements StandInterface{
 		this.standName = standName;
 	}
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
 
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 
-	@Override
+    @Override
 	public String toString() {
 		return "Stand [standId=" + standId + ", standName=" + standName + "]";
 	}

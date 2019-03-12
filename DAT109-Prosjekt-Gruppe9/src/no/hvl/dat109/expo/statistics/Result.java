@@ -16,9 +16,11 @@ import static java.util.stream.Collectors.groupingBy;
 
 public class Result {
     // Flytt denne.
-    private final Integer MINSTE_ANTALL_STEMMER = 5;
+    protected static final Integer MINSTE_ANTALL_STEMMER = 5;
     private List<Vote> votes;
-    private List<StandResult> results;
+    private List<StandResult> standResults;
+    private List<FacultyResult> facultyResults;
+
     public List<Vote> getVotes() {
         return votes;
     }
@@ -26,18 +28,32 @@ public class Result {
     public Result(List<Vote> votes) {
         // Går igjenom alle stemmene og lager en liste over StandResult
         Map<Stand,List<Vote>> stands = votes.stream().collect(Collectors.groupingBy(Vote::getStand));
-        this.results = stands.entrySet().stream()
+        this.standResults = stands.entrySet().stream()
                 .map(x -> new StandResult(x.getKey(),x.getValue()))
+                .collect(Collectors.toList());
+
+
+        this.facultyResults =  standResults.stream()
+                .collect(Collectors.groupingBy(StandResult::getFaculty))
+                .entrySet()
+                .stream()
+                .map(x -> new FacultyResult(x.getValue(),x.getKey()))
                 .collect(Collectors.toList());
 
         this.votes = votes;
     }
 
+    public List<StandResult> getStandResults() {
+        return standResults;
+    }
+
+    public List<FacultyResult> getFacultyResults() {
+        return facultyResults;
+    }
+
     // Baserer seg på gjennomsnitt
     public List<StandResult> getTopStands(Integer limit){
-
-
-        return results.stream()
+        return standResults.stream()
                 .filter(x -> x.getVotes().size() >= MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getWeightedAverage()))
                 .limit(limit)

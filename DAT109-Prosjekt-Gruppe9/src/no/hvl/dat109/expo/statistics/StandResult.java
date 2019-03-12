@@ -1,5 +1,6 @@
 package no.hvl.dat109.expo.statistics;
 
+import no.hvl.dat109.expo.entities.Faculty;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
 
@@ -15,7 +16,7 @@ public class StandResult {
     private List<Integer> voteCounts;
     */
 
-    public StandResult(Stand stand, List<Vote> votes) {
+    protected StandResult(Stand stand, List<Vote> votes) {
         this.votes = votes;
         this.stand = stand;
     }
@@ -38,5 +39,9 @@ public class StandResult {
 
     public Stand getStand() {
         return stand;
+    }
+
+    public Faculty getFaculty(){
+        return stand.getFaculty();
     }
 }

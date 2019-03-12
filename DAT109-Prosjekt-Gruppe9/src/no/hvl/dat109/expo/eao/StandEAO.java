@@ -20,11 +20,11 @@ public class StandEAO {
 		return em.createQuery("SELECT s from Stand s",Stand.class).getResultList();
 	}
 	
-	public Stand findStand(int standId) {
+	public Stand findStand(String standId) {
 		return em.find(Stand.class, standId);
 	}
 
-	public boolean standExists(int standId) {
+	public boolean standExists(String standId) {
 		return (findStand(standId) != null);
 	}
 

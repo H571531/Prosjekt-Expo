@@ -23,7 +23,9 @@ public class ResultServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Result result = new Result(voteEAO.findAllVote());
+
         request.setAttribute("toplist",result.getTopStands(5));
+        request.setAttribute("faculties",result.getFacultyResults());
 
         request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
     }

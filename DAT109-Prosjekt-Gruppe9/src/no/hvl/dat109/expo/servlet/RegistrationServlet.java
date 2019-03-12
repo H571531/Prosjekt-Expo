@@ -30,18 +30,23 @@ public class RegistrationServlet extends HttpServlet {
         Part part = request.getPart("image");
         String id = request.getParameter("standid");
         String name = request.getParameter("name");
+
         if(part == null || id == null || name == null)
             return;
 
-        sEAO.addStand(new Stand(name,Integer.parseInt(id)));
+        registerStand(part, id, name);
+        response.sendRedirect("StartServlet");
+    }
+
+    // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
+    private void registerStand(Part part, String id, String name) throws IOException {
+        sEAO.addStand(new Stand(name,id));
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
         String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");
         File file = new File(path);
         FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 
-
-        response.sendRedirect("StartServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

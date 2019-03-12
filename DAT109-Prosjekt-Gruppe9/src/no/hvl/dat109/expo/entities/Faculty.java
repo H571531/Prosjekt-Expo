@@ -9,16 +9,24 @@ import java.util.List;
 public class Faculty {
 
     @Id
-    String facultyId;
-    String facultyName;
+    private String facultyId;
+    private String facultyName;
 
 
     @OneToMany(fetch= FetchType.LAZY)
     @JoinColumn(name="standid")
-    List<Stand> stands;
+    private List<Stand> stands;
 
 
+    public String getFacultyId() {
+        return facultyId;
+    }
 
+    public String getFacultyName() {
+        return facultyName;
+    }
 
-
+    public List<Stand> getStands() {
+        return stands;
+    }
 }
