@@ -4,7 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 		
-<t:GenericPage>
+<t:GenericPage customTitle="Stand: ${stand.standName}">
 		<div id="mid">
 			
 			<div id="midText">

@@ -3,7 +3,7 @@
 
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:GenericPage>
+<t:GenericPage customTitle="Registrer Stand">
 
 
 	<div id="mid">

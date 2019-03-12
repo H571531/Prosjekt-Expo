@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<t:GenericPage>
+<t:GenericPage customTitle="EXPO ${expo.year}">
 	
 		<div id="mid">
 			
