@@ -2,26 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	    <title>Resultatliste</title>
-	
-	    <link rel="stylesheet" type="text/css" href="styles/style.css">
-	</head>
-	<body>
-		<div id="header">
-			<div id="headerLeft">
-				<a href="http://www.hvl.no"><img id="hvlLogo" src="img/hvl_logo_2.png"></a>
-			</div>
-			<div id="headerRight">
-				<img id="expoLogoImg" src="img/expo_logo_2.png">
-			</div>
-		</div>
-	
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:GenericPage>
+
 	<div id="mid">
 	
 	    <div id="midText">
@@ -50,6 +34,5 @@
 	    </div>
 	</div>
 	
+</t:GenericPage>
 	
-	</body>
-</html>
