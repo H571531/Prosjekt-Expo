@@ -36,6 +36,7 @@ CREATE TABLE expo(
 	CONSTRAINT expoPK PRIMARY KEY (expoId)
 );
 
+
 CREATE TABLE visitor(
 	visitorId VARCHAR(10),
 	CONSTRAINT visitorPK PRIMARY KEY (visitorId)
