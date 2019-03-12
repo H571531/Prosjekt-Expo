@@ -40,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
     private void registerStand(Part part, String id, String name) throws IOException {
-        sEAO.addStand(new Stand(name,Integer.parseInt(id)));
+        sEAO.addStand(new Stand(name,id));
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
         String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");
