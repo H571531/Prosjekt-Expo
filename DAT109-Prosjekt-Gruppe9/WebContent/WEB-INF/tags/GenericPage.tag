@@ -2,6 +2,7 @@
 <%@ tag description="Template for design på alle sider" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+         
 <!DOCTYPE html>
 
 <html>
@@ -16,7 +17,6 @@
 	<body>
 		<t:Header />
 		<jsp:doBody />
-		
 	</body>
 
 
