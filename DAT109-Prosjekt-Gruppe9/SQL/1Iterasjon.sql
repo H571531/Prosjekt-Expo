@@ -2,18 +2,33 @@ DROP  SCHEMA IF EXISTS ExpoSystem CASCADE;
 CREATE SCHEMA ExpoSystem;
 SET search_path TO ExpoSystem;
 
-CREATE TABLE faculty(
-	facultyId VARCHAR(5),
-	facultyName VARCHAR(20),
-	CONSTRAINT facultyPK PRIMARY KEY (facultyId)
+CREATE TABLE institute(
+	instituteId VARCHAR(5),
+	instituteName VARCHAR(20),
+	CONSTRAINT institutePK PRIMARY KEY (instituteId)
 );
+
+--CREATE TABLE faculty(
+--	facultyId VARCHAR(5),
+--	facultyName VARCHAR(20),
+--	CONSTRAINT facultyPK PRIMARY KEY (facultyId)
+--);
+CREATE TABLE course(
+	courseId VARCHAR(5),
+	courseName VARCHAR(20),
+	CONSTRAINT coursePK PRIMARY KEY (courseId)
+);
+
 
 CREATE TABLE stand(
     standId VARCHAR(20),
 	standName VARCHAR(20),
-	facultyId VARCHAR(5),
+	instituteId VARCHAR(5),
+	courseId VARCHAR(5),
+	
     CONSTRAINT standPK PRIMARY KEY (standId),
-    CONSTRAINT facultyFK FOREIGN KEY (facultyId) REFERENCES faculty(facultyId)
+    CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId),
+    CONSTRAINT courseFK FOREIGN KEY (courseId) REFERENCES course(courseId)
 );
 CREATE TABLE vote(
     voteId SERIAL,
@@ -28,8 +43,6 @@ CREATE TABLE admin(
 	username VARCHAR(20),
 	hashedPassword VARCHAR(88)
 );
-
-
 
 
 CREATE TABLE expo(
