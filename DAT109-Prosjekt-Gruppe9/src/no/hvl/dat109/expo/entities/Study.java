@@ -12,6 +12,10 @@ public class Study {
     private String studyid;
     private String studyname;
 
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="instituteid")
+    private Institute institute;
+
 
     @OneToMany(fetch= FetchType.LAZY)
     @JoinColumn(name="standid")
@@ -28,5 +32,9 @@ public class Study {
 
     public List<Stand> getStands() {
         return stands;
+    }
+
+    public Institute getInstitute() {
+        return institute;
     }
 }

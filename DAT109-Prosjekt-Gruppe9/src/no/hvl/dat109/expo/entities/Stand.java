@@ -21,9 +21,10 @@ public class Stand implements StandInterface{
 
 	public Stand() {}
 	
-	public Stand(String name, String id) {
+	public Stand(String name, String id,Study study) {
 		this.standName = name;
 		this.standId = id;
+		this.study = study;
 	}
 
 
