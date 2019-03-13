@@ -11,7 +11,12 @@
 			<div id="midText">
 		
 				<p>VELKOMMEN TIL EXPO ${expo.year}</p><br>
-		
+				<hr>
+				<a href="ResultServlet">Resultatliste</a>
+				<br/>
+				<a href="RegistrationServlet">Register Stands</a>
+				<br />
+				<a href="BrowseServlet">Se alle Stands!</a>
 		
 				<hr>
 				<h2>TESTING</h2>
@@ -20,9 +25,7 @@
 				</c:forEach>
 				<hr>
 
-                <a href="ResultServlet">Resultatliste</a>
-				<br/>
-				<a href="RegistrationServlet">Register Stands</a>
+                
 			</div>
 		</div>
 	

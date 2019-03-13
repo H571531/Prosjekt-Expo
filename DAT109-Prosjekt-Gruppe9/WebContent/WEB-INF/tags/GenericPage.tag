@@ -14,7 +14,7 @@
 			${customTitle}
 		</title>
 		
-		<link rel="stylesheet" type="text/css" href="styles/style.css?v=1">
+		<link rel="stylesheet" type="text/css" href="styles/style.css?v=2">
 	</head>
 	<body>
 		<t:Header />

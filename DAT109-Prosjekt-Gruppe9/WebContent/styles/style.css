@@ -70,6 +70,8 @@ body{
 #midText{
 	position:relative;
 	top:1.5em;
+	width:50%;
+	margin:auto;
 }
 
 #poster{
@@ -142,4 +144,33 @@ label.stjerne:before {
 	text-align:center;
 	display:inline-block;
 	border-radius:5%;
+}
+
+
+
+
+#midUpper{
+	position:relative;
+	top:0.5em;
+	
+}
+
+#browseStandsTable{
+	display:block;
+}
+
+.browseStandsRow{
+	height:5em;
+	
+}
+
+.browseStandsColumn{
+	width:33%;
+	padding:1.3em;
+	border-bottom: 1px solid #004357;
+}
+
+.browseStandsStandImg{
+	width:100%;
+	display:block;
 }
