@@ -13,22 +13,24 @@ CREATE TABLE institute(
 --	facultyName VARCHAR(20),
 --	CONSTRAINT facultyPK PRIMARY KEY (facultyId)
 --);
-CREATE TABLE course(
-	courseId VARCHAR(5),
-	courseName VARCHAR(20),
-	CONSTRAINT coursePK PRIMARY KEY (courseId)
+
+CREATE TABLE study(
+	studyId VARCHAR(5),
+	studyName VARCHAR(20),
+	instituteId CARCHAR(5),
+	CONSTRAINT studyPK PRIMARY KEY (studyId),
+	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId) 
 );
 
 
 CREATE TABLE stand(
     standId VARCHAR(20),
 	standName VARCHAR(20),
-	instituteId VARCHAR(5),
-	courseId VARCHAR(5),
+	authors VARCHAR(100),
+	studyId VARCHAR(5),
 	
     CONSTRAINT standPK PRIMARY KEY (standId),
-    CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId),
-    CONSTRAINT courseFK FOREIGN KEY (courseId) REFERENCES course(courseId)
+    CONSTRAINT studyFK FOREIGN KEY (studyId) REFERENCES study(studyId)
 );
 CREATE TABLE vote(
     voteId SERIAL,
