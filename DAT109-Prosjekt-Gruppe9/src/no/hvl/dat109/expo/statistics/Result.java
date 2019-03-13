@@ -34,7 +34,7 @@ public class Result {
 
 
         this.studyResults =  standResults.stream()
-                .collect(Collectors.groupingBy(StandResult::getIntitute))
+                .collect(Collectors.groupingBy(StandResult::getStudy))
                 .entrySet()
                 .stream()
                 .map(x -> new StudyResult(x.getValue(),x.getKey()))
