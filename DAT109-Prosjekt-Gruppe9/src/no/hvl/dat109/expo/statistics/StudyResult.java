@@ -1,19 +1,19 @@
 package no.hvl.dat109.expo.statistics;
 
-import no.hvl.dat109.expo.entities.Institute;
+import no.hvl.dat109.expo.entities.Study;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InstituteResult {
+public class StudyResult {
 
     private List<StandResult> standResults;
-    private Institute institute;
+    private Study study;
 
-    protected InstituteResult(List<StandResult> standResults, Institute institute) {
+    protected StudyResult(List<StandResult> standResults, Study study) {
         this.standResults = standResults;
-        this.institute = institute;
+        this.study = study;
     }
 
     public List<StandResult> getTopStands(Integer limit){
@@ -24,8 +24,8 @@ public class InstituteResult {
                 .collect(Collectors.toList());
     }
 
-    public Institute getInstitute() {
-        return institute;
+    public Study getStudy() {
+        return study;
     }
 
     public List<StandResult> getStandResults() {

@@ -2,7 +2,7 @@ DROP  SCHEMA IF EXISTS ExpoSystem CASCADE;
 CREATE SCHEMA ExpoSystem;
 SET search_path TO ExpoSystem;
 
-CREATE TABLE institute(
+CREATE TABLE study(
 	instituteId VARCHAR(5),
 	instituteName VARCHAR(20),
 	CONSTRAINT institutePK PRIMARY KEY (instituteId)
@@ -14,7 +14,7 @@ CREATE TABLE study(
 	studyName VARCHAR(20),
 	instituteId VARCHAR(5),
 	CONSTRAINT studyPK PRIMARY KEY (studyId),
-	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId) 
+	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES study(instituteId)
 );
 
 

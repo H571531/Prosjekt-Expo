@@ -14,8 +14,8 @@ public class Stand implements StandInterface{
 
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="instituteid")
-    private Institute institute;
+    @JoinColumn(name="studyid")
+    private Study study;
 
 
 
@@ -50,12 +50,12 @@ public class Stand implements StandInterface{
 		this.standName = standName;
 	}
 
-    public Institute getInstitute() {
-        return institute;
+    public Study getStudy() {
+        return study;
     }
 
-    public void setInstitute(Institute institute) {
-        this.institute = institute;
+    public void setStudy(Study study) {
+        this.study = study;
     }
 
     @Override

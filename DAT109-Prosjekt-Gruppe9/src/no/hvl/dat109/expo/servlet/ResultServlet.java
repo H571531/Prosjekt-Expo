@@ -25,7 +25,7 @@ public class ResultServlet extends HttpServlet {
         Result result = new Result(voteEAO.findAllVote());
 
         request.setAttribute("toplist",result.getTopStands(5));
-        request.setAttribute("faculties",result.getInstituteResults());
+        request.setAttribute("studies",result.getStudyResults());
 
         request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
     }

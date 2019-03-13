@@ -19,10 +19,10 @@
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
 				</p>
 	        </c:forEach>
-				<%--@elvariable id="institute" type="no.hvl.dat109.expo.statistics.InstituteResult"--%>
-			<c:forEach items="${faculties}" var="institute">
-				<p><c:out value="${institute.institute.instituteName}" /></p>
-			<c:forEach items="${institute.getTopStands(5)}" var="result">
+				<%--@elvariable id="study" type="no.hvl.dat109.expo.statistics.StudyResult"--%>
+			<c:forEach items="${studies}" var="study">
+				<p><c:out value="${study.study.studyname}" /></p>
+			<c:forEach items="${study.getTopStands(5)}" var="result">
 				<p><c:out value="${result.stand.standName}" /> :
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
 				</p>
