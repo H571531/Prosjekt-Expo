@@ -5,12 +5,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(schema="exposystem",name="faculty")
-public class Faculty {
+@Table(schema="exposystem",name="institute")
+public class Institute {
 
     @Id
-    private String facultyId;
-    private String facultyName;
+    private String instituteId;
+    private String instituteName;
 
 
     @OneToMany(fetch= FetchType.LAZY)
@@ -18,12 +18,12 @@ public class Faculty {
     private List<Stand> stands;
 
 
-    public String getFacultyId() {
-        return facultyId;
+    public String getInstituteId() {
+        return instituteId;
     }
 
-    public String getFacultyName() {
-        return facultyName;
+    public String getInstituteName() {
+        return instituteName;
     }
 
     public List<Stand> getStands() {

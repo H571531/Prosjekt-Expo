@@ -8,16 +8,11 @@ CREATE TABLE institute(
 	CONSTRAINT institutePK PRIMARY KEY (instituteId)
 );
 
---CREATE TABLE faculty(
---	facultyId VARCHAR(5),
---	facultyName VARCHAR(20),
---	CONSTRAINT facultyPK PRIMARY KEY (facultyId)
---);
 
 CREATE TABLE study(
 	studyId VARCHAR(5),
 	studyName VARCHAR(20),
-	instituteId CARCHAR(5),
+	instituteId VARCHAR(5),
 	CONSTRAINT studyPK PRIMARY KEY (studyId),
 	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId) 
 );

@@ -1,6 +1,6 @@
 package no.hvl.dat109.expo.statistics;
 
-import no.hvl.dat109.expo.entities.Faculty;
+import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
 
@@ -41,7 +41,7 @@ public class StandResult {
         return stand;
     }
 
-    public Faculty getFaculty(){
-        return stand.getFaculty();
+    public Institute getIntitute(){
+        return stand.getInstitute();
     }
 }

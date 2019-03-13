@@ -19,7 +19,7 @@ public class Result {
     protected static final Integer MINSTE_ANTALL_STEMMER = 5;
     private List<Vote> votes;
     private List<StandResult> standResults;
-    private List<FacultyResult> facultyResults;
+    private List<InstituteResult> instituteResults;
 
     public List<Vote> getVotes() {
         return votes;
@@ -33,11 +33,11 @@ public class Result {
                 .collect(Collectors.toList());
 
 
-        this.facultyResults =  standResults.stream()
-                .collect(Collectors.groupingBy(StandResult::getFaculty))
+        this.instituteResults =  standResults.stream()
+                .collect(Collectors.groupingBy(StandResult::getIntitute))
                 .entrySet()
                 .stream()
-                .map(x -> new FacultyResult(x.getValue(),x.getKey()))
+                .map(x -> new InstituteResult(x.getValue(),x.getKey()))
                 .collect(Collectors.toList());
 
         this.votes = votes;
@@ -47,8 +47,8 @@ public class Result {
         return standResults;
     }
 
-    public List<FacultyResult> getFacultyResults() {
-        return facultyResults;
+    public List<InstituteResult> getInstituteResults() {
+        return instituteResults;
     }
 
     // Baserer seg på gjennomsnitt
