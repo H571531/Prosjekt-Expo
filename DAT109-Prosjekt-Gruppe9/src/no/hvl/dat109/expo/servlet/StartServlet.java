@@ -12,6 +12,7 @@ import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.entities.Expo;
 
 /**
+ * @author
  * Servlet implementation class StartServlet
  */
 @WebServlet("/StartServlet")

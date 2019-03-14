@@ -14,6 +14,7 @@ import no.hvl.dat109.expo.interfaces.StandInterface;
 import no.hvl.dat109.expo.entities.Stand;
 
 /**
+ * @author
  * Servlet implementation class StandServlet
  */
 @WebServlet("/StandServlet")

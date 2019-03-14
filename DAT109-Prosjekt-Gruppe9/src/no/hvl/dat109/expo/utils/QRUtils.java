@@ -8,9 +8,19 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-
+/**
+ * @author
+ *
+ */
 public class QRUtils {
 
+	/**
+	 * Lager en ny QR-kode
+	 * @param String link linken som skal bli QR-kode
+	 * @param Integer width bredde paa bildet til QR-koden
+	 * @param Integer height hoyde paa bildet til QR-koden
+	 * @return
+	 */
     public static Optional<BufferedImage> generateQR(String link, Integer width, Integer height){
         QRCodeWriter writer = new QRCodeWriter();
         try{
