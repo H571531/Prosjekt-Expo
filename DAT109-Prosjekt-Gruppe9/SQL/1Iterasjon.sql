@@ -4,14 +4,14 @@ SET search_path TO ExpoSystem;
 
 CREATE TABLE institute(
 	instituteId VARCHAR(5),
-	instituteName VARCHAR(20),
+	instituteName VARCHAR(50),
 	CONSTRAINT institutePK PRIMARY KEY (instituteId)
 );
 
 
 CREATE TABLE study(
 	studyId VARCHAR(5),
-	studyName VARCHAR(20),
+	studyName VARCHAR(50),
 	instituteId VARCHAR(5),
 	CONSTRAINT studyPK PRIMARY KEY (studyId),
 	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES study(instituteId)
@@ -20,7 +20,7 @@ CREATE TABLE study(
 
 CREATE TABLE stand(
     standId VARCHAR(20),
-	standName VARCHAR(20),
+	standName VARCHAR(50),
 	authors VARCHAR(100),
 	studyId VARCHAR(5),
 	
