@@ -21,13 +21,16 @@ import javax.persistence.Table;
 public class Admin {
 
 	@Id
-	String userName;
-	String hashedPassword;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int adminId;
+	
+	String userName;
+	String hashedPassword;
+
+	public Admin() {
+	}
 
 	public Admin(String userName, String hashedPassord) {
-		this.adminId = adminId;
 		this.userName = userName;
 		this.hashedPassword = hashedPassword;
 	}
