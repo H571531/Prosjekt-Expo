@@ -19,6 +19,7 @@ import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
 
 /**
+ * @author
  * Servlet implementation class BrowseServlet
  */
 @WebServlet("/BrowseServlet")

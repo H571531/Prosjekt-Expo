@@ -13,6 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * @author
+ *
+ */
 @WebServlet("/QRCodeServlet")
 public class QRCodeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

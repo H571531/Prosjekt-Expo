@@ -16,6 +16,7 @@ import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
 
 /**
+ * @author
  * Servlet implementation class StemmeServlet
  */
 @WebServlet("/VoteServlet")
@@ -26,7 +27,6 @@ public class VoteServlet extends HttpServlet {
 	VoteEAO vEAO;
 	@EJB
 	StandEAO sEAO;
-    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,9 +46,6 @@ public class VoteServlet extends HttpServlet {
 		
 		
 	}
-	
-	
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

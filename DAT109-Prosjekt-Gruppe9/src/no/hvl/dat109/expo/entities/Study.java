@@ -4,6 +4,10 @@ package no.hvl.dat109.expo.entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * @author
+ *
+ */
 @Entity
 @Table(schema="exposystem",name="study")
 public class Study {
@@ -20,23 +24,39 @@ public class Study {
 	@OneToMany(mappedBy="study", fetch=FetchType.EAGER)
     private List<Stand> stands;
 
-
+    /**
+     * Henter id'en til et studie
+     * @return String studyid id'en til et studie
+     */
     public String getStudyid() {
         return studyid;
     }
 
+    /**
+     * Henter navnet til et studie
+     * @return String studyname navnet til et studie
+     */
     public String getStudyname() {
         return studyname;
     }
 
+    /**
+     * Henter alle stands til et study og returnerer et List objekt over disse
+     * @return List<Stand> liste liste over alle stands til studiet
+     */
     public List<Stand> getStands() {
         return stands;
     }
 
+    /**
+     * Henter instituttet til studiet
+     * @return Institute institute instituttet til studiet
+     */
     public Institute getInstitute() {
         return institute;
     }
 
+    // Study sin egen hashCode metode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,6 +65,7 @@ public class Study {
 		return result;
 	}
 
+	// Study sin egen equals metode
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * @author
+ *
+ */
 @Entity
 @Table(schema="exposystem",name="institute")
 public class Institute {
@@ -19,19 +23,31 @@ public class Institute {
     @OneToMany(mappedBy="institute", fetch=FetchType.EAGER)
     private List<Study> studies;
     
-
+    /**
+     * Henter id'en til et institutt
+     * @return String instituteid id til instituttet
+     */
     public String getInstituteid() {
         return instituteid;
     }
 
+    /**
+     * Henter navnent til et institutt
+     * @return String institutename navnet til instituttet
+     */
     public String getInstitutename() {
         return institutename;
     }
     
+    /**
+     * Henter studiene til et institutt og returnerer en liste over disse
+     * @return List<Study> liste over studiene til et institutt
+     */
     public List<Study> getStudies(){
     	return studies;
     }
 
+    // Egen hashCode metode for institutt objekt
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,6 +56,7 @@ public class Institute {
 		return result;
 	}
 
+	// Egen equals metode for institutt objekt
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

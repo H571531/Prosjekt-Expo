@@ -15,6 +15,10 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
+/**
+ * @author
+ *
+ */
 public class Result {
     // Flytt denne.
     protected static final Integer MINSTE_ANTALL_STEMMER = 5;
@@ -23,10 +27,18 @@ public class Result {
     private List<StudyResult> studyResults;
     private List<InstituteResult> instituteResults;
 
+    /**
+     * Henter alle stemmer og returnerer en liste over disse
+     * @return List<Vote> liste over alle stemmer
+     */
     public List<Vote> getVotes() {
         return votes;
     }
 
+    /**
+     * Lager et nytt resultat for en expo
+     * @param List<Vote> votes alle stemmene for ett expo
+     */
     public Result(List<Vote> votes) {
         // Går igjenom alle stemmene og lager en liste over StandResult
         Map<Stand,List<Vote>> stands = votes.stream().collect(Collectors.groupingBy(Vote::getStand));
@@ -52,19 +64,35 @@ public class Result {
         this.votes = votes;
     }
 
+    /**
+     * Henter alle stand resultater og returnerer en liste over disse
+     * @return List<StandResult> liste over alle standresultater
+     */
     public List<StandResult> getStandResults() {
         return standResults;
     }
 
+    /**
+     * Henter alle studieresultater og returnerer en liste over disse
+     * @return List<StudyResult> liste over alle studieresultater
+     */
     public List<StudyResult> getStudyResults() {
         return studyResults;
     }
 
+    /**
+     * Henter alle instituttresultater og returnerer en liste over disse
+     * @return List<InstituteResult> liste over alle instituttresultater 
+     */
     public List<InstituteResult> getInstituteResults() {
         return instituteResults;
     }
 
-
+    /**
+     * Finner de beste standene for hele expoen og returnerer en liste over disse
+     * @param Integer limit angir hvor mange du vil ha med i toppresultatene
+     * @return
+     */
     // Baserer seg på gjennomsnitt
     public List<StandResult> getTopStands(Integer limit){
         return standResults.stream()
