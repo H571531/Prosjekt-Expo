@@ -13,7 +13,7 @@
 	
 	        <p>Registrer Stand</p><br>
 	        <form action = "RegistrationServlet" method = "post"
-	              enctype = "multipart/form-data">
+	              enctype = "multipart/form-data" accept-charset="UTF-8">
 	            Stand id:
 	            <input type="text" name="standid" />
 	            <br/>

@@ -36,6 +36,7 @@ public class RegistrationServlet extends HttpServlet {
     StudyEAO studyEAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Part part = request.getPart("image");
         String id = request.getParameter("standid");
         String name = request.getParameter("name");
