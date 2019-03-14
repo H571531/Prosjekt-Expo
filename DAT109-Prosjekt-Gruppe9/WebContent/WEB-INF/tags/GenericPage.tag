@@ -13,7 +13,7 @@
 		<title>
 			${customTitle}
 		</title>
-		
+		<link rel='shortcut icon' type='image/x-icon' href='favicon.png' />
 		<link rel="stylesheet" type="text/css" href="styles/style.css?v=2">
 	</head>
 	<body>
