@@ -38,8 +38,7 @@ public class BrowseServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		getServletContext().setAttribute("studies",studyEAO.findAllStudy());
-		getServletContext().setAttribute("institutes", instituteEAO.findAllInstitute());
+		
 	}
 	
 	/**
@@ -50,6 +49,9 @@ public class BrowseServlet extends HttpServlet {
 		String selectedStudy = request.getParameter("selectedStudy");
 		
 		List<Stand> currentStands = standEAO.findAllStand();
+		
+		request.setAttribute("studies",studyEAO.findAllStudy());
+		request.setAttribute("institutes", instituteEAO.findAllInstitute());
 
 		
 		if(selectedInstitute != null && !selectedInstitute.equals("all")) {
