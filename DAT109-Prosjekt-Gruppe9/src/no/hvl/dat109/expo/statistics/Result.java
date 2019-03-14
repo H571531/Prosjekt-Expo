@@ -4,6 +4,7 @@ package no.hvl.dat109.expo.statistics;
 // Jeg er usikker på om jeg vil putte denne klassen i entities pakken.
 // Hvis noen vil flytte den står dere fritt til å gjøre det
 
+import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
 
@@ -20,6 +21,7 @@ public class Result {
     private List<Vote> votes;
     private List<StandResult> standResults;
     private List<StudyResult> studyResults;
+    private List<InstituteResult> instituteResults;
 
     public List<Vote> getVotes() {
         return votes;
@@ -40,6 +42,13 @@ public class Result {
                 .map(x -> new StudyResult(x.getValue(),x.getKey()))
                 .collect(Collectors.toList());
 
+        this.instituteResults =  standResults.stream()
+                .collect(Collectors.groupingBy(StandResult::getInstitute))
+                .entrySet()
+                .stream()
+                .map(x -> new InstituteResult(x.getValue(),x.getKey()))
+                .collect(Collectors.toList());
+
         this.votes = votes;
     }
 
@@ -51,6 +60,11 @@ public class Result {
         return studyResults;
     }
 
+    public List<InstituteResult> getInstituteResults() {
+        return instituteResults;
+    }
+
+
     // Baserer seg på gjennomsnitt
     public List<StandResult> getTopStands(Integer limit){
         return standResults.stream()
@@ -59,6 +73,7 @@ public class Result {
                 .limit(limit)
                 .collect(Collectors.toList());
     }
+
 
 }
 

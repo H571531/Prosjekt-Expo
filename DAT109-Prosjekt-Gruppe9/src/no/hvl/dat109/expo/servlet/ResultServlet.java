@@ -26,7 +26,7 @@ public class ResultServlet extends HttpServlet {
 
         request.setAttribute("toplist",result.getTopStands(5));
         request.setAttribute("studies",result.getStudyResults());
-
+        request.setAttribute("institutes",result.getInstituteResults());
         request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
     }
 }

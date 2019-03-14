@@ -21,7 +21,7 @@ CREATE TABLE study(
 CREATE TABLE stand(
     standId VARCHAR(20),
 	standName VARCHAR(50),
-	authors VARCHAR(100),
+	authors VARCHAR(200),
 	studyId VARCHAR(5),
 	
     CONSTRAINT standPK PRIMARY KEY (standId),
