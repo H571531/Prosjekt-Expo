@@ -17,8 +17,7 @@ public class Study {
     private Institute institute;
 
 
-    @OneToMany(fetch= FetchType.EAGER)
-    @JoinColumn(name="standid")
+	@OneToMany(mappedBy="study", fetch=FetchType.EAGER)
     private List<Stand> stands;
 
 
