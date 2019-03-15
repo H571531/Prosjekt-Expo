@@ -26,8 +26,7 @@
 
 				<select name="study">
 
-                    <jsp:useBean id="institutes" scope="request" type="java.util.List<java.util.Map.Entry<no.hvl.dat109.expo.entities.Institute,java.util.List<no.hvl.dat109.expo.entities.Study>>>"/>
-					<c:forEach items="${institutes}" var="institute">
+<%--@elvariable id="institutes" type="java.util.List<java.util.Map.Entry<no.hvl.dat109.expo.entities.Institute,java.util.List<no.hvl.dat109.expo.entities.Study>>>"--%>					<c:forEach items="${institutes}" var="institute">
                         <optgroup label="<c:out value="${institute.key.institutename}"/>">
 					<c:forEach items="${institute.value}" var="study">
 						<option value="${study.studyid}"><c:out value="${study.studyname}"/></option>
