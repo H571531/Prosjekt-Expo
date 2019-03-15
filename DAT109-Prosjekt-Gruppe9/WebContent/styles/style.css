@@ -70,7 +70,7 @@ body{
 #midText{
 	position:relative;
 	top:1.5em;
-	width:50%;
+	width:90%;
 	margin:auto;
 }
 
@@ -168,6 +168,8 @@ label.stjerne:before {
 	width:33%;
 	padding:1.3em;
 	border-bottom: 1px solid #004357;
+	word-break:break-word;
+	font-size:0.7em;
 }
 
 .browseStandsStandImg{
