@@ -9,7 +9,7 @@ CREATE TABLE institute(
 	CONSTRAINT institutePK PRIMARY KEY (instituteId)
 );
 
-
+--
 CREATE TABLE study(
 	studyId VARCHAR(5),
 	studyName VARCHAR(50),
