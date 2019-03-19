@@ -22,13 +22,19 @@ public class Vote {
 	@JoinColumn(name="standid")
 	private Stand stand;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="visitorId")
+	private Visitor visitor;
+	
+	
 	/**
 	 * Oppretter en ny stemme
 	 * @param String value vekten paa stemmen
 	 * @param Stand stand hvilket stand stemmen er for
 	 */
-	public Vote(String value, Stand stand) {
+	public Vote(String value, Stand stand, Visitor visitor) {
 		this.stand = stand;
+		this.visitor=visitor;
 		this.voteValue = Integer.parseInt(value);
 	}
 	
