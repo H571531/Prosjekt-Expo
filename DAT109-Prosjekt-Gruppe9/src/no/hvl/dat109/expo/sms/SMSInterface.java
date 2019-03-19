@@ -1,4 +1,4 @@
-package no.hvl.dat109.expo.interfaces;
+package no.hvl.dat109.expo.sms;
 
 /**
  * Interface for å sende meldinger.
@@ -14,7 +14,7 @@ public interface SMSInterface {
      * @return returnerer true hvis meldingen er feilfri, false hvis det er feil med sendingen
      */
     // Tlf-nummer er String for å kunne håndtere land kode +.. etc.
-    Boolean sendSMS(String number, String message);
+    Boolean sendSMS(Integer number, String message);
 
 
 
