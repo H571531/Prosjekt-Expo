@@ -20,6 +20,9 @@
 	            Navn:
 	            <input type="text" name="name">
 	            <br/>
+	            Forfattere:
+	            <textarea rows="3" cols="30" name="authors"></textarea>
+	            <br/>
 	            Bilde av plakat:
 	            <input type = "file" name = "image" />
 	            <br />

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<t:GenericPage customTitle="EXPO ${expo.year}">
+<t:GenericPage customTitle="EXPO ${expo.expoid}">
 
 	<div id="mid">
 		<div id="midUpper">
@@ -39,7 +39,7 @@
 							<tr class="browseStandsRow">
 								<td class="browseStandsColumn columnLeft">
 									<a href="StandServlet?standId=${stand.standId}">
-										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.year}_${stand.standId}.png" />
+										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
 								</td>
@@ -47,7 +47,7 @@
 						<c:when test="${i.index % 3 == 1}">
 								<td class="browseStandsColumn columnMid">
 									<a href="StandServlet?standId=${stand.standId}">
-										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.year}_${stand.standId}.png" />
+										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
 								</td>
@@ -55,7 +55,7 @@
 						<c:otherwise>
 								<td class="browseStandsColumn columnRight">
 									<a href="StandServlet?standId=${stand.standId}">
-										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.year}_${stand.standId}.png" />
+										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
 								</td>

@@ -16,7 +16,7 @@ public class Study {
     private String studyid;
     private String studyname;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="instituteid")
     private Institute institute;
 

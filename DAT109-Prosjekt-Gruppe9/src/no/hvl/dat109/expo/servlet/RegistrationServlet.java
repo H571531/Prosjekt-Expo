@@ -1,11 +1,11 @@
 package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.expo.eao.StandEAO;
-import no.hvl.dat109.expo.eao.StudyEAO;
-import no.hvl.dat109.expo.entities.Institute;
-import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Study;
-import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,12 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
+import org.apache.commons.io.FileUtils;
+
+import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.StudyEAO;
+import no.hvl.dat109.expo.entities.Expo;
+import no.hvl.dat109.expo.entities.Institute;
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Study;
 
 /**
  * @author
@@ -41,18 +44,20 @@ public class RegistrationServlet extends HttpServlet {
         String id = request.getParameter("standid");
         String name = request.getParameter("name");
         String study = request.getParameter("study");
+        String authors = request.getParameter("authors");
 
-        if(part == null || id == null || name == null || study == null)
+        if(part == null || id == null || name == null || study == null || authors == null)
             return;
 
-        registerStand(part, id, name,study);
+        registerStand(part, id, name,study, authors);
 
         response.sendRedirect("StartServlet");
     }
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
-    private void registerStand(Part part, String id, String name,String study) throws IOException {
-        sEAO.addStand(new Stand(name,id,studyEAO.findStudy(study)));
+    private void registerStand(Part part, String id, String name,String study, String authors) throws IOException {
+        Expo expo = (Expo) getServletContext().getAttribute("expo");
+    	sEAO.addStand(new Stand(name,id,studyEAO.findStudy(study), expo, authors));
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
         String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");

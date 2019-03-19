@@ -1,7 +1,6 @@
 package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.expo.eao.StandEAO;
-import no.hvl.dat109.expo.entities.Expo;
+import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import no.hvl.dat109.expo.eao.ExpoEAO;
+import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.entities.Expo;
 
 /**
  * @author
@@ -22,12 +24,16 @@ public class StartServlet extends HttpServlet {
 	@EJB
 	StandEAO sEAO;
 	
+	@EJB
+	ExpoEAO expoEAO;
+	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
+		//TODO: Fjerne før avslutning
 		//For testing: Oppretter expo for 2019
-		getServletContext().setAttribute("expo", new Expo(2019));
+		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
 	}
 	
 	/**
