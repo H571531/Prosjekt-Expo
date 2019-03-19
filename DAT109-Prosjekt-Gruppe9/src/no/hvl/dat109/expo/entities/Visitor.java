@@ -29,7 +29,8 @@ public class Visitor {
 	}
 
 	public Visitor(String visitorId,String visitorToken) {
-		votedfor =new ArrayList<Vote>();
+		this.visitorId=visitorId;
+		this.visitorToken=visitorToken;
 	}
 	
 	public void addVote(Vote vote) {
