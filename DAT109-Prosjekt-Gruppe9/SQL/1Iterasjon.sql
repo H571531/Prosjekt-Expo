@@ -33,7 +33,7 @@ CREATE TABLE stand(
 
 CREATE TABLE visitor(
 	visitorId varchar(12),
-	visitorToken varchar(5),
+	visitorToken varchar(14),
 	CONSTRAINT visitorPK PRIMARY KEY (visitorId)
 );
 

@@ -40,7 +40,7 @@ public class NewVisitorServlet extends HttpServlet {
 			return;
 		}
 
-		VerificationUtils.createVisitor(id,visitorEAO);
+		VerificationUtils.createVisitor(id,visitorEAO,getServletContext().getInitParameter("SMS-API-KEY"));
 
 		Optional<String> lastStand = SessionUtils.getSessionParameter(request,"from");
 		if(lastStand.isPresent()){

@@ -14,7 +14,7 @@ public interface SMSInterface {
      * @return returnerer true hvis meldingen er feilfri, false hvis det er feil med sendingen
      */
     // Tlf-nummer er String for å kunne håndtere land kode +.. etc.
-    Boolean sendSMS(Integer number, String message);
+    Boolean sendSMS(Long number, String message);
 
 
 
