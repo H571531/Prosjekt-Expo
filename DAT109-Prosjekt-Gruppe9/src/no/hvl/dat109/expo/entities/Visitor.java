@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,13 +22,14 @@ import javax.persistence.Table;
 public class Visitor {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int visitorId;
+	String visitorId;
+	
+	String visitorToken;
 	
 	@OneToMany(mappedBy="visitor", fetch=FetchType.EAGER)
     private List<Vote> votedfor;
 
-	public  Visitor() {
+	public  Visitor(String visitorId,String visitorToken) {
 		votedfor =new ArrayList<Vote>();
 	}
 	
@@ -42,14 +41,23 @@ public class Visitor {
 	public boolean haveVoted(Vote vote) {
 		return votedfor.stream().anyMatch(v->v.getVoteId()==vote.getVoteId());
 	}
-	public int getVisitorId() {
+
+	public String getVisitorId() {
 		return visitorId;
 	}
 
-	public void setVisitorId(int visitorId) {
+	public void setVisitorId(String visitorId) {
 		this.visitorId = visitorId;
 	}
-	
+
+	public String getVisitorToken() {
+		return visitorToken;
+	}
+
+	public void setVisitorToken(String visitorToken) {
+		this.visitorToken = visitorToken;
+	}
+
 	public List<Vote> getVotedfor() {
 		return votedfor;
 	}
@@ -57,13 +65,6 @@ public class Visitor {
 	public void setVotedfor(List<Vote> votedfor) {
 		this.votedfor = votedfor;
 	}
-	
-	
-	
-
-	
-	
-	
 	
 	
 }

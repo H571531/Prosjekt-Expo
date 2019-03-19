@@ -1,6 +1,7 @@
-DROP  SCHEMA IF EXISTS ExpoSystem;
-CREATE SCHEMA ExpoSystem;
+--DROP  SCHEMA IF EXISTS ExpoSystem CASCADE;
+--CREATE SCHEMA ExpoSystem;
 SET search_path TO ExpoSystem;
+
 
 CREATE TABLE institute(
 	instituteId VARCHAR(5),
@@ -17,7 +18,6 @@ CREATE TABLE study(
 	CONSTRAINT instituteFK FOREIGN KEY (instituteId) REFERENCES institute(instituteId)
 );
 
-
 CREATE TABLE stand(
     standId VARCHAR(20),
     standYear VARCHAR(4),
@@ -29,11 +29,13 @@ CREATE TABLE stand(
     CONSTRAINT studyFK FOREIGN KEY (studyId) REFERENCES study(studyId)
 );
 
+
 CREATE TABLE visitor(
 	visitorId varchar(12),
 	visitorToken varchar(5),
 	CONSTRAINT visitorPK PRIMARY KEY (visitorId)
 );
+
 
 CREATE TABLE vote(
     voteId SERIAL,
@@ -44,6 +46,7 @@ CREATE TABLE vote(
     CONSTRAINT standFK FOREIGN KEY (standId) REFERENCES stand(standId),
     CONSTRAINT visitorFK FOREIGN KEY (visitorId) REFERENCES visitor(visitorId)
 );
+
 
 CREATE TABLE admin(
 	adminId SERIAL,
