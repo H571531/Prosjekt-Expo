@@ -18,11 +18,11 @@ public class Vote {
 	int voteId;
 	
 	private int voteValue;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="standid")
 	private Stand stand;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name="visitorId")
 	private Visitor visitor;
 	

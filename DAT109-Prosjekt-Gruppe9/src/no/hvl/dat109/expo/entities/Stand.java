@@ -15,9 +15,14 @@ public class Stand implements StandInterface{
 	@Id
 	String standId;
 	private String standName;
-
-
-    @ManyToOne(fetch= FetchType.LAZY)
+	
+	@ManyToOne
+	@JoinColumn(name="expoid")
+	private Expo expo;
+	
+	private String authors;
+	
+    @ManyToOne
     @JoinColumn(name="studyid")
     private Study study;
 
@@ -31,10 +36,12 @@ public class Stand implements StandInterface{
 	 * @param String id id'en til standen
 	 * @param Study study hvilken studie standen er fra
 	 */
-	public Stand(String name, String id,Study study) {
+	public Stand(String name, String id,Study study, Expo expo, String authors) {
 		this.standName = name;
 		this.standId = id;
 		this.study = study;
+		this.expo = expo;
+		this.authors = authors;
 	}
 
 	/**
@@ -90,6 +97,23 @@ public class Stand implements StandInterface{
 	public String toString() {
 		return "Stand [standId=" + standId + ", standName=" + standName + "]";
 	}
+
+	public Expo getExpo() {
+		return expo;
+	}
+
+	public void setExpo(Expo expo) {
+		this.expo = expo;
+	}
+
+	public String getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(String authors) {
+		this.authors = authors;
+	}
+    
 
 
 	

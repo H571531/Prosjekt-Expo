@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<t:GenericPage customTitle="EXPO ${expo.year}">
+<t:GenericPage customTitle="EXPO ${expo.expoid}">
 	
 		<div id="mid">
 			
 			<div id="midText">
 		
-				<p>VELKOMMEN TIL EXPO ${expo.year}</p><br>
+				<p>VELKOMMEN TIL EXPO ${expo.expoid}</p><br>
 				<hr>
 				<a href="ResultServlet">Resultatliste</a>
 				<br/>
