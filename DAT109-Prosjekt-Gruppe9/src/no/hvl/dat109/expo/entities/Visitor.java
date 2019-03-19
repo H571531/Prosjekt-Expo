@@ -24,7 +24,11 @@ public class Visitor {
 	@OneToMany(mappedBy="visitor", fetch=FetchType.EAGER)
     private List<Vote> votedfor;
 
-	public  Visitor(String visitorId,String visitorToken) {
+
+	public Visitor() {
+	}
+
+	public Visitor(String visitorId,String visitorToken) {
 		votedfor =new ArrayList<Vote>();
 	}
 	
