@@ -27,6 +27,7 @@ public class VerificationServlet extends HttpServlet {
         String token = request.getParameter("token");
 
         if(id == null || token == null){
+            return;
             // TODO: Fiks feilhåndtering
         }
 
