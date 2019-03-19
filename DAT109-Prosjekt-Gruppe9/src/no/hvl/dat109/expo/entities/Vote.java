@@ -22,7 +22,7 @@ public class Vote {
 	@JoinColumn(name="standid")
 	private Stand stand;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="visitorId")
 	private Visitor visitor;
 	
