@@ -17,6 +17,7 @@ import javax.persistence.Table;
 /**
  * @author 
  *
+ * Visitor class
  */
 @Entity
 @Table(schema="exposystem",name="visitor")
