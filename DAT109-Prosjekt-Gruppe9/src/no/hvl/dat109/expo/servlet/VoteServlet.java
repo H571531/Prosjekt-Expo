@@ -1,10 +1,14 @@
 package no.hvl.dat109.expo.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,11 +56,14 @@ public class VoteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String standId = request.getParameter("standId");
 		String voteValue = request.getParameter("voteValue");
+		List<Cookie> cookies =Arrays.asList(request.getCookies());
 		
 		
-		if(standId != null && voteValue != null) {
+		if(standId != null && voteValue != null&& !cookies.isEmpty()) {
 			//Foreløpig ingen form for registrering av bruker
 			Stand stand = sEAO.findStand(standId);
+			
+			
 			Vote vote = new Vote(voteValue,stand);
 			
 			
@@ -65,7 +72,9 @@ public class VoteServlet extends HttpServlet {
 			//TODO: Behandle gitt stemme
 			
 			response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
-		} else {
+		} else if(cookies.isEmpty()){
+			response.sendRedirect("NewVisitorServlet");
+		}else {
 			response.sendRedirect("StartServlet?InvalidVote");
 		}
 	}
