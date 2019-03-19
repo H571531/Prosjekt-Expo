@@ -1,6 +1,8 @@
 package no.hvl.dat109.expo.servlet;
 
 import no.hvl.dat109.expo.eao.VisitorEAO;
+import no.hvl.dat109.expo.entities.Visitor;
+import no.hvl.dat109.expo.utils.VerificationUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -25,10 +27,16 @@ public class VerificationServlet extends HttpServlet {
         String token = request.getParameter("token");
 
         if(id == null || token == null){
-            // Feil håndtering
+            // TODO: Fiks feilhåndtering
         }
 
-        visitorEAO.findVisitor(id).getVisitorToken().equals(token);
+        Visitor visitor = visitorEAO.findVisitor(id);
+        Boolean successfulLogin = VerificationUtils.login(visitor,token,request);
+        if(successfulLogin){
+            // TODO: Diriger til stand
+        }else{
+            // TODO: Send feilmelding
+        }
 
 
 
