@@ -20,13 +20,14 @@ CREATE TABLE study(
 
 CREATE TABLE stand(
     standId VARCHAR(20),
-    standYear VARCHAR(4),
+    expoId VARCHAR(4),
 	standName VARCHAR(200),
 	authors VARCHAR(200),
 	studyId VARCHAR(5),
 	
     CONSTRAINT standPK PRIMARY KEY (standId),
-    CONSTRAINT studyFK FOREIGN KEY (studyId) REFERENCES study(studyId)
+    CONSTRAINT studyFK FOREIGN KEY (studyId) REFERENCES study(studyId),
+    CONSTRAINT expoFK FOREIGN KEY (expoId) REFERENCES expo(expoId)
 );
 
 
@@ -56,7 +57,6 @@ CREATE TABLE admin(
 
 
 CREATE TABLE expo(
-	expoId SERIAL,
-	expoYear INT,
+	expoId varchar(4),
 	CONSTRAINT expoPK PRIMARY KEY (expoId)
 );
