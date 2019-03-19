@@ -2,7 +2,9 @@ package no.hvl.dat109.expo.servlet;
 
 import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.interfaces.StandInterface;
+import no.hvl.dat109.expo.utils.VerificationUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * @author
@@ -36,8 +39,9 @@ public class StandServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String standId = request.getParameter("standId");
+		Optional<Visitor> visitor=VerificationUtils.getVisitor(request);
 		
-		if(standId != null) {
+		if(standId != null &&visitor.isPresent()) {
 			//Hente Stand fra database, sett request-parameter stand
 			
 			StandInterface stand = (Stand)sEAO.findStand(standId);
@@ -47,7 +51,9 @@ public class StandServlet extends HttpServlet {
 			request.setAttribute("stand", stand);
 			
 			request.getRequestDispatcher("WEB-INF/JSP/Vote.jsp").forward(request, response);
-		} else {
+		}else if(!visitor.isPresent()) {
+			response.sendRedirect("NewVisitorServlet");
+		}	else {
 			response.sendRedirect("StartServlet?invalidStandId");
 		}
 		

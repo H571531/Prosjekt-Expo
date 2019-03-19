@@ -1,21 +1,22 @@
 package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.expo.eao.StandEAO;
-import no.hvl.dat109.expo.eao.VoteEAO;
-import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Vote;
-import no.hvl.dat109.expo.interfaces.StandInterface;
+import java.io.IOException;
+import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+
+import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.VoteEAO;
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Visitor;
+import no.hvl.dat109.expo.entities.Vote;
+import no.hvl.dat109.expo.interfaces.StandInterface;
+import no.hvl.dat109.expo.utils.VerificationUtils;
 
 /**
  * @author
@@ -54,15 +55,13 @@ public class VoteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String standId = request.getParameter("standId");
 		String voteValue = request.getParameter("voteValue");
-		List<Cookie> cookies =Arrays.asList(request.getCookies());
+		Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
 		
 		
-		if(standId != null && voteValue != null&& !cookies.isEmpty()) {
+		if(standId != null && voteValue != null&&visitor.isPresent()) {
 			//Foreløpig ingen form for registrering av bruker
 			Stand stand = sEAO.findStand(standId);
-			
-			
-			Vote vote = new Vote(voteValue,stand);
+			Vote vote = new Vote(voteValue,stand,visitor.get());
 			
 			
 			vEAO.voteForStand(vote);
@@ -70,7 +69,7 @@ public class VoteServlet extends HttpServlet {
 			//TODO: Behandle gitt stemme
 			
 			response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
-		} else if(cookies.isEmpty()){
+		} else if(!visitor.isPresent()){
 			response.sendRedirect("NewVisitorServlet");
 		}else {
 			response.sendRedirect("StartServlet?InvalidVote");
