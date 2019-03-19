@@ -13,24 +13,24 @@ import java.util.Optional;
 public class VerificationUtils {
 
 
-    public void login(Visitor visitor, String token, HttpServletRequest request){
+    public static void login(Visitor visitor, String token, HttpServletRequest request){
         HttpSession session = SessionUtils.getSession(request).get();
         if(visitor.getVisitorToken().equals(token)){
             session.setAttribute("visitor",visitor);
         }
     }
 
-    public Optional<Visitor> getVisitor(HttpServletRequest request){
+    public static Optional<Visitor> getVisitor(HttpServletRequest request){
         return SessionUtils.getSessionParameter(request,"visitor");
     }
 
-    public void createVisitor(String id, VisitorEAO visitorEAO){
+    public static void createVisitor(String id, VisitorEAO visitorEAO){
         String token = generateSafeToken();
         Visitor visitor = new Visitor(id,token);
         visitorEAO.addVisitor(visitor);
     }
 
-    private String generateSafeToken() {
+    private static String generateSafeToken() {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[10];
         random.nextBytes(bytes);
