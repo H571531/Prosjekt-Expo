@@ -13,11 +13,15 @@ import java.util.Optional;
 public class VerificationUtils {
 
 
-    public static void login(Visitor visitor, String token, HttpServletRequest request){
+    public static Boolean login(Visitor visitor, String token, HttpServletRequest request){
         HttpSession session = SessionUtils.getSession(request).get();
         if(visitor.getVisitorToken().equals(token)){
             session.setAttribute("visitor",visitor);
+            return true;
+        }else{
+            return false;
         }
+
     }
 
     public static Optional<Visitor> getVisitor(HttpServletRequest request){
