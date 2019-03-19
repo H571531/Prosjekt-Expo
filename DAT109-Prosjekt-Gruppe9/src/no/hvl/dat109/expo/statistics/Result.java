@@ -4,7 +4,6 @@ package no.hvl.dat109.expo.statistics;
 // Jeg er usikker på om jeg vil putte denne klassen i entities pakken.
 // Hvis noen vil flytte den står dere fritt til å gjøre det
 
-import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
 
@@ -12,8 +11,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.groupingBy;
 
 /**
  * @author

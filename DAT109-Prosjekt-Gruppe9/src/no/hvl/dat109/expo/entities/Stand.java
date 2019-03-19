@@ -1,8 +1,8 @@
 package no.hvl.dat109.expo.entities;
 
-import javax.persistence.*;
-
 import no.hvl.dat109.expo.interfaces.StandInterface;
+
+import javax.persistence.*;
 
 /**
  * @author

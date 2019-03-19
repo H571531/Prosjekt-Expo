@@ -3,7 +3,6 @@ package no.hvl.dat109.expo.eao;
 
 import no.hvl.dat109.expo.entities.Study;
 
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

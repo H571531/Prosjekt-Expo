@@ -1,9 +1,9 @@
 package no.hvl.dat109.expo.utils;
+
+import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Arrays;
-
-import javax.xml.bind.DatatypeConverter;
 
 public class PasswordUtil {
     

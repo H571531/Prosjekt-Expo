@@ -1,14 +1,13 @@
 package no.hvl.dat109.expo.eao;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Vote;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Vote;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * EAO for Vote

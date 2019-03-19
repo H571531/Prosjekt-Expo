@@ -3,14 +3,12 @@
  */
 package no.hvl.dat109.expo.eao;
 
-import java.util.List;
+import no.hvl.dat109.expo.entities.Visitor;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-
-import no.hvl.dat109.expo.entities.Visitor;
+import java.util.List;
 
 /**
  * @author 

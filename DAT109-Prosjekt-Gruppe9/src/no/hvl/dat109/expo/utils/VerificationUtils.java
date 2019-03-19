@@ -1,12 +1,11 @@
 package no.hvl.dat109.expo.utils;
 
-import com.sun.deploy.net.HttpRequest;
+
 import no.hvl.dat109.expo.eao.VisitorEAO;
 import no.hvl.dat109.expo.entities.Visitor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.Option;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Optional;

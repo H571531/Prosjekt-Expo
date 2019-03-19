@@ -1,7 +1,6 @@
 package no.hvl.dat109.expo.eao;
 
 import no.hvl.dat109.expo.entities.Institute;
-import no.hvl.dat109.expo.entities.Stand;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

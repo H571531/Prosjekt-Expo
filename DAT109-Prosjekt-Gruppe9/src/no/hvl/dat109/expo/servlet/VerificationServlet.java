@@ -1,8 +1,6 @@
 package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.eao.VisitorEAO;
-import no.hvl.dat109.expo.entities.Visitor;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

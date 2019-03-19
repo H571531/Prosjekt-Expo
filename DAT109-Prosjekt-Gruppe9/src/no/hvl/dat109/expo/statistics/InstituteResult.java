@@ -1,7 +1,6 @@
 package no.hvl.dat109.expo.statistics;
 
 import no.hvl.dat109.expo.entities.Institute;
-import no.hvl.dat109.expo.entities.Study;
 
 import java.util.Comparator;
 import java.util.List;

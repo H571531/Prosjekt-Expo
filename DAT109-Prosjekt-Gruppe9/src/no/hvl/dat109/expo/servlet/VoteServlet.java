@@ -1,9 +1,10 @@
 package no.hvl.dat109.expo.servlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.VoteEAO;
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Vote;
+import no.hvl.dat109.expo.interfaces.StandInterface;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,12 +13,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import no.hvl.dat109.expo.eao.StandEAO;
-import no.hvl.dat109.expo.eao.VoteEAO;
-import no.hvl.dat109.expo.interfaces.StandInterface;
-import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Vote;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author

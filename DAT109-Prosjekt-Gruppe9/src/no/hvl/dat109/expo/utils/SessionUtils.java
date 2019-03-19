@@ -1,7 +1,7 @@
 package no.hvl.dat109.expo.utils;
 
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 public class SessionUtils {
     /**
