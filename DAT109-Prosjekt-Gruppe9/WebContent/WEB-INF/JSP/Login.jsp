@@ -3,7 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:GenericPage customTitle="Stand: ${stand.standName}">
+<t:GenericPage customTitle="Logg inn">
 	<h1 class="login">Logg inn</h1>
 	<p>
 		<font color="red">${loginError}</font>
