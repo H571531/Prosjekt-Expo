@@ -27,6 +27,9 @@ public class Expo implements ExpoInterface {
 	@Transient
 	private boolean voteRegistrationOpen = true;
 	
+	@Transient
+	private boolean verificationRequired = false;
+	
 	/**
 	 * Oppretter et nytt expo
 	 * @param int year som expo avholdes
@@ -62,6 +65,14 @@ public class Expo implements ExpoInterface {
 
 	public void setVoteRegistrationOpen(boolean voteRegistrationOpen) {
 		this.voteRegistrationOpen = voteRegistrationOpen;
+	}
+
+	public boolean isVerificationRequired() {
+		return verificationRequired;
+	}
+
+	public void setVerificationRequired(boolean verificationRequired) {
+		this.verificationRequired = verificationRequired;
 	}
 	
 	

@@ -40,8 +40,10 @@ public class StandServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String standId = request.getParameter("standId");
 		Optional<Visitor> visitor=VerificationUtils.getVisitor(request);
-		String myUrl = request.getContextPath();
-		request.getSession().setAttribute("from",myUrl );
+		
+//		String myUrl = request.getContextPath();
+//		request.getSession().setAttribute("from",myUrl );
+		
 		
 		if(standId != null &&visitor.isPresent()) {
 			//Hente Stand fra database, sett request-parameter stand
@@ -55,7 +57,7 @@ public class StandServlet extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/JSP/Vote.jsp").forward(request, response);
 		}else if(!visitor.isPresent()) {
 			
-			
+			request.getSession().setAttribute("lastStandVisited", standId);
 			response.sendRedirect("NewVisitorServlet");
 		}	else {
 			response.sendRedirect("StartServlet?invalidStandId");

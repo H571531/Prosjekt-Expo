@@ -43,6 +43,13 @@
 	            		<td><button type="submit" name="voteRegistration" value="open">Åpne</button></td>
 	            		<td><button type="submit" name="voteRegistration" value="close">Lukk</button></td>
 	            	</tr>
+	            	<tr>
+	            		<td>Registrering via SMS</td>
+	            		<td>${(expo.verificationRequired ? "Slått på" : "Slått av")}
+	            		<td><button type="submit" name="visitorRegistration" value="turnOn">Slå på</button></td>
+	            		<td><button type="submit" name="visitorRegistration" value="turnOff">Slå av</button></td>
+            		</tr>
+	            		
 	            	
 	            </table>
             </form>

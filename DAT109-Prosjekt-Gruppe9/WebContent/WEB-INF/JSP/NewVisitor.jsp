@@ -8,6 +8,7 @@
     <div id="mid">
 
         <div id="midText">
+        	<p class="errorMessage">${errorMessage}</p>
             <form action="NewVisitorServlet" method="post">
                 Telefonnummer:
                 <input type="text" name="telephone" value="+47"/>

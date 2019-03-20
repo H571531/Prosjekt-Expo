@@ -108,20 +108,32 @@ public class AdminTasks {
 		return "";
 		
 	}
+	
+	private static final String openedStandRegistration = "openedStandRegistration";
+	private static final String closedStandRegistration = "closedStandRegistration";
+	private static final String openedVoteRegistration = "openedVoteRegistration";
+	private static final String closedVoteRegistration = "closedVoteRegistration";
+	private static final String addedAdmin = "addedAdmin";
+	private static final String turnedVisitorRegistrationOn = "turnedVisitorRegistrationOn";
+	private static final String turnedVisitorRegistrationOff = "turnedVisitorRegistrationOff";
 
 	public static String setupConfirmMessageForBaseAdminPage(HttpServletRequest request) {
 		String change = request.getParameter("change");
 		if(change != null) {
-			if(change.equals("openedStandRegistration")) {
+			if(change.equals(openedStandRegistration)) {
 				return "Åpnet for registrering av stands!";
-			} else if(change.equals("closedStandRegistration")) {
+			} else if(change.equals(closedStandRegistration)) {
 				return "Lukket for registrering av stands!";
-			} else if(change.equals("openedVoteRegistration")) {
+			} else if(change.equals(openedVoteRegistration)) {
 				return "Åpnet for registrering av stemmer!";
-			} else if(change.equals("closedVoteRegistration")) {
+			} else if(change.equals(closedVoteRegistration)) {
 				return "Lukket for registrering av stemmer!";
-			} else if(change.equals("addedAdmin")) {
+			} else if(change.equals(addedAdmin)) {
 				return "La til ny admin!";
+			} else if(change.equals(turnedVisitorRegistrationOn)) {
+				return "Besøkende må nå registrere seg!";
+			} else if(change.equals(turnedVisitorRegistrationOff)) {
+				return "Besøkende må nå IKKE registrere seg!";
 			}
 			
 		}
@@ -131,6 +143,7 @@ public class AdminTasks {
 	public static String performBaseAdminTask(HttpServletRequest request, Expo expo, AdminEAO adminEAO) {
 		String standChoice = request.getParameter("standRegistration");
 		String voteChoice = request.getParameter("voteRegistration");
+		String registrationChoice = request.getParameter("visitorRegistration");
 		
 		/*
 		 * Åpning og lukking foreløpig ikke implementert
@@ -139,28 +152,39 @@ public class AdminTasks {
 		if(standChoice != null) {
 			if(standChoice.equals("open")) {
 				expo.setStandRegistrationOpen(true);
-				return "openedStandRegistration";
+				return openedStandRegistration;
 			} else if (standChoice.equals("close")) {
 				expo.setStandRegistrationOpen(false);
-				return "closedStandRegistration";
+				return closedStandRegistration;
 			}
 		}
 		
 		if(voteChoice != null) {
 			if(voteChoice.equals("open")) {
 				expo.setVoteRegistrationOpen(true);
-				return "openedVoteRegistration";
+				return openedVoteRegistration;
 			} else if(voteChoice.equals("close")) {
 				expo.setVoteRegistrationOpen(false);
-				return "closedVoteRegistration";
+				return closedVoteRegistration;
 			}
+		}
+		
+		if(registrationChoice != null) {
+			if(registrationChoice.equals("turnOn")) {
+				expo.setVerificationRequired(true);
+				return turnedVisitorRegistrationOn;
+			} else if(registrationChoice.equals("turnOff")) {
+				expo.setVerificationRequired(false);
+				return turnedVisitorRegistrationOff;
+			}
+			
 		}
 		
 		String newAdmin = request.getParameter("newAdminName");
 		String newAdminPass = request.getParameter("newAdminPass");
 		if(newAdmin != null && newAdminPass != null) {
 			adminEAO.addAdmin(new Admin(newAdmin, PasswordUtil.krypterPassord(newAdminPass)));
-			return "addedAdmin";
+			return addedAdmin;
 		}
 		
 		return "";
