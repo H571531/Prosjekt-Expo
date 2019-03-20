@@ -12,7 +12,7 @@
 				<h1>${stand.standName}</h1>
 		
 				<div id="poster">
-					<img id="posterImg" src="img/standPosters/poster_${expo.year}_${stand.standId}.png">
+					<img id="posterImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png">
 				</div>
 			</div>
 		
