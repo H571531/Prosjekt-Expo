@@ -31,8 +31,8 @@ public class AdminEAO {
 	 * @param String adminId
 	 * @return Admin admin som matcher
 	 */
-	public Admin findAdmin(String adminId) {
-		return em.find(Admin.class, adminId);
+	public Admin findAdmin(String username) {
+		return em.find(Admin.class, username);
 	}
 
 	/**
@@ -40,8 +40,8 @@ public class AdminEAO {
 	 * @param String adminId
 	 * @return boolean true hvis finnes, false hvis ikke
 	 */
-	public boolean adminExists(String adminId) {
-		return (findAdmin(adminId) != null);
+	public boolean adminExists(String username) {
+		return (findAdmin(username) != null);
 	}
 
 	/**
@@ -51,4 +51,6 @@ public class AdminEAO {
 	public void addAdmin(Admin admin) {
 		em.persist(admin);
 	}
+
+	
 }

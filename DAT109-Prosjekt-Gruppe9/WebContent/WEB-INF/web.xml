@@ -13,4 +13,8 @@
     <param-name>SMS-API-KEY</param-name>
     <param-value></param-value>
   </context-param>
+    <context-param>
+    <param-name>TIMEOUT</param-name>
+    <param-value>86400</param-value>
+  </context-param>
 </web-app>

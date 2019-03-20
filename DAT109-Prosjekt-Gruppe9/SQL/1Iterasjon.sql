@@ -2,6 +2,10 @@
 --CREATE SCHEMA ExpoSystem;
 SET search_path TO ExpoSystem;
 
+CREATE TABLE expo(
+	expoId varchar(4),
+	CONSTRAINT expoPK PRIMARY KEY (expoId)
+);
 
 CREATE TABLE institute(
 	instituteId VARCHAR(5),
@@ -50,13 +54,9 @@ CREATE TABLE vote(
 
 
 CREATE TABLE admin(
-	adminId SERIAL,
 	username VARCHAR(20),
-	hashedPassword VARCHAR(88)
+	hashedPassword VARCHAR(88),
+	CONSTRAIN adminPK PRIMARY KEY (username)
 );
 
 
-CREATE TABLE expo(
-	expoId varchar(4),
-	CONSTRAINT expoPK PRIMARY KEY (expoId)
-);
