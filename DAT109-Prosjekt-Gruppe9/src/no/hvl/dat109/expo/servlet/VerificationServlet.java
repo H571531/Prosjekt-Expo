@@ -36,7 +36,7 @@ public class VerificationServlet extends HttpServlet {
             // TODO: Fiks feilhåndtering
             response.sendRedirect("NewVisitorServlet");
         }
-        id = "+" + id.substring(1, id.length());
+       
         Visitor visitor = visitorEAO.findVisitor(id);
         Boolean successfulLogin = VerificationUtils.login(visitor,token,request);
         if(successfulLogin){
