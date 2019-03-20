@@ -13,7 +13,6 @@ public class LoginUtils {
 	 * @param request fra servlet
 	 * @return feilmelding/overskrift i inloggingskjerm
 	 */
-	static PasswordUtil pwUtil=new PasswordUtil();
 	public static String loginHeader(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
@@ -53,7 +52,7 @@ public class LoginUtils {
 			return false;
 		}
 		
-		return pwUtil.sjekkPassord(givenPw, admin.getHashedPassword());
+		return PasswordUtil.sjekkPassord(givenPw, admin.getHashedPassword());
 		
 	}
 	/**
@@ -111,5 +110,13 @@ public class LoginUtils {
 		sesjon.setMaxInactiveInterval(timeout);
 		//Send videre mobilnummer
 		sesjon.setAttribute("Username", admin.getUsername());
+	}
+	
+	public static void logOut(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.removeAttribute("Username");
+			session.invalidate();
+		}
 	}
 }

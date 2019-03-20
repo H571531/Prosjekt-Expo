@@ -31,7 +31,7 @@ public class PasswordUtil {
      * @param passord Passord som skal krypteres
      * @return (salt + digest) kodet som en base64-streng. 
      */
-    public String krypterPassord(String passord) {
+    public static String krypterPassord(String passord) {
         byte[] salt = genererTilfeldigSalt();
         return krypterMedSalt(salt, passord);
     }
@@ -44,26 +44,26 @@ public class PasswordUtil {
      * @param kryptert (salt + digest) tidligere generert med {@link #krypterPassord(String)}
      * @return om passordet matcher det krypterte passordet
      */
-    public boolean sjekkPassord(String passord, String kryptert) {
+    public static boolean sjekkPassord(String passord, String kryptert) {
         byte[] salt = hentUtSaltFraKryptertStreng(kryptert);
         return krypterMedSalt(salt, passord).equals(kryptert);
     }
     
     /*--- Private hjelpemetoder ---*/
 
-    private byte[] genererTilfeldigSalt() {
+    private static byte[] genererTilfeldigSalt() {
         byte[] salt = new byte[SALTLENGDE];
         new SecureRandom().nextBytes(salt);
         return salt;
     }
 
-    private byte[] hentUtSaltFraKryptertStreng(String kryptert) {
+    private static byte[] hentUtSaltFraKryptertStreng(String kryptert) {
         byte[] saltPlusDigest = DatatypeConverter.parseBase64Binary(kryptert);
         byte[] salt = Arrays.copyOf(saltPlusDigest, SALTLENGDE);
         return salt;
     }
 
-    private String krypterMedSalt(byte[] salt, String passord) {
+    private static String krypterMedSalt(byte[] salt, String passord) {
 
         String kryptert = "";
 
@@ -104,7 +104,7 @@ public class PasswordUtil {
         return kryptert;
     }
 
-    private byte[] leggSammen(byte[] tabell1, byte[] tabell2) {
+    private static byte[] leggSammen(byte[] tabell1, byte[] tabell2) {
         
         byte[] enOgTo = new byte[tabell1.length + tabell2.length];
         System.arraycopy(tabell1, 0, enOgTo, 0, tabell1.length);

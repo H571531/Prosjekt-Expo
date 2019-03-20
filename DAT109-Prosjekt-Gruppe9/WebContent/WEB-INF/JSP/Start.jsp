@@ -17,6 +17,8 @@
 				<a href="RegistrationServlet">Register Stands</a>
 				<br />
 				<a href="BrowseServlet">Se alle Stands!</a>
+				<hr>
+				<a href="AdminServlet">Logg inn som admin</a>
 		
 				<hr>
 				<h2>TESTING</h2>

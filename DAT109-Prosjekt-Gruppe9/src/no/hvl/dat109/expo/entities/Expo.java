@@ -4,6 +4,7 @@ package no.hvl.dat109.expo.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import no.hvl.dat109.expo.interfaces.ExpoInterface;
 
@@ -18,12 +19,21 @@ public class Expo implements ExpoInterface {
 	@Id
 	String expoid;
 	
+	//TODO: Forandre til false før lansering, legge til database
+
+	@Transient
+	private boolean standRegistrationOpen = true;
+	
+	@Transient
+	private boolean voteRegistrationOpen = true;
+	
 	/**
 	 * Oppretter et nytt expo
 	 * @param int year som expo avholdes
 	 */
 	public Expo(String year) {
 		this.expoid = year;
+		
 	}
 	
 	public Expo() {
@@ -37,5 +47,23 @@ public class Expo implements ExpoInterface {
 	public String getExpoid() {
 		return expoid;
 	}
+
+	public boolean isStandRegistrationOpen() {
+		return standRegistrationOpen;
+	}
+
+	public void setStandRegistrationOpen(boolean standRegistrationOpen) {
+		this.standRegistrationOpen = standRegistrationOpen;
+	}
+
+	public boolean isVoteRegistrationOpen() {
+		return voteRegistrationOpen;
+	}
+
+	public void setVoteRegistrationOpen(boolean voteRegistrationOpen) {
+		this.voteRegistrationOpen = voteRegistrationOpen;
+	}
+	
+	
 
 }
