@@ -51,4 +51,17 @@ public class StandEAO {
 	public void addStand(Stand stand) {
 		em.persist(stand);
 	}
+	
+	public Stand updateStand(Stand stand) {
+		return em.merge(stand);
+	}
+
+	public void deleteStand(Stand stand) {
+		// TODO: Cascading for å fjerne tilhørende stemmer?
+		
+		stand = em.merge(stand);
+		stand.getStudy().getStands().remove(stand);
+		
+		em.remove(stand);
+	}
 }
