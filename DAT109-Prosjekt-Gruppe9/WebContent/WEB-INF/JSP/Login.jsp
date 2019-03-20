@@ -8,11 +8,11 @@
 	<p>
 		<font color="red">${loginError}</font>
 	</p>
-	<form method="post" class="loginForm">
+	<form method="post" action="LoginServlet" class="loginForm">
 		<fieldset class="loginFieldset">
-				<label for="Username">Brukernavn:</label> <input type="text" name="Username" />
+				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" />
 				<label for="password">Passord:</label> <input type="password"
-					name="password" />
+					name="password" id="password" />
 				<button type="submit">Logg inn!</button>
 		</fieldset>
 	</form>
