@@ -11,21 +11,21 @@
 	
 	    <div id="midText">
 	
-	        <p>Registrer Stand</p><br>
+	        <h1>Registrer Stand</h1><br>
 	        <form action = "RegistrationServlet" method = "post"
 	              enctype = "multipart/form-data" accept-charset="UTF-8">
 	            Stand id:
 	            <input type="text" name="standid" />
-	            <br/>
+	            <br>
 	            Navn:
 	            <input type="text" name="name">
-	            <br/>
+	            <br>
 	            Forfattere:
 	            <textarea rows="3" cols="30" name="authors"></textarea>
-	            <br/>
+	            <br>
 	            Bilde av plakat:
 	            <input type = "file" name = "image" />
-	            <br />
+	            <br>
 
 				<select name="study">
 
