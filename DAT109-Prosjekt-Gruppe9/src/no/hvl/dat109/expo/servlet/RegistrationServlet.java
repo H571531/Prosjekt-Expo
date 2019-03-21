@@ -41,19 +41,25 @@ public class RegistrationServlet extends HttpServlet {
     Expo expo;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	if(expo.isStandRegistrationOpen()) {
+
         request.setCharacterEncoding("UTF-8");
-        Part part = request.getPart("image");
-        String id = request.getParameter("standid");
-        String name = request.getParameter("name");
-        String study = request.getParameter("study");
-        String authors = request.getParameter("authors");
+	        Part part = request.getPart("image");
+	        String id = request.getParameter("standid");
+	        String name = request.getParameter("name");
+	        String study = request.getParameter("study");
+	        String authors = request.getParameter("authors");
+	
+	        if(part == null || id == null || name == null || study == null || authors == null)
+	            return;
+	
+	        registerStand(part, id, name,study, authors);
 
-        if(part == null || id == null || name == null || study == null || authors == null)
-            return;
-
-        registerStand(part, id, name,study, authors);
-
-        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
+	        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
+    	} else {
+    		response.sendRedirect("RegistrationClosedServlet?registration=stand");
+    	}
     }
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
@@ -72,17 +78,14 @@ public class RegistrationServlet extends HttpServlet {
     	
     	expo = (Expo) request.getServletContext().getAttribute("expo");
     	
-    	if(expo.isStandRegistrationOpen()) {
-    		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
-                    .stream()
-                    .collect(Collectors.groupingBy(Study::getInstitute));
+		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
+                .stream()
+                .collect(Collectors.groupingBy(Study::getInstitute));
 
-            List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
-            request.setAttribute("institutes", list);
-            request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
-    	} else {
-    		response.sendRedirect("RegistrationClosedServlet?registration=stand");
-    	}
+        List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
+        request.setAttribute("institutes", list);
+        request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
+    	
     	
         
     }
