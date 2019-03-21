@@ -10,6 +10,7 @@ import no.hvl.dat109.expo.sms.SMSMock;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Optional;
@@ -40,11 +41,12 @@ public class VerificationUtils {
         
         SMSInterface sms;
         String URL = getValidationLink(visitor, request);
+        String message = URL;
+		message = "Hei! Vennligst klikk linken: " + URL;
         
         if(expo.isVerificationRequired()) {
-        	System.out.println("SENDER SMS");
-        	//sms = new MessageBird(API_KEY);
-            //sms.sendSMS(Long.parseLong(id),URL);
+        	sms = new MessageBird(API_KEY);
+            sms.sendSMS(Long.parseLong(id),message);
         } else {
         	sms = new SMSMock();
         	sms.sendSMS(Long.parseLong(id), URL);

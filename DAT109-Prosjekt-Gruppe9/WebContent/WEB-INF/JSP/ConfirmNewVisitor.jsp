@@ -9,6 +9,7 @@
 
         <div id="midText">
         	<p>Takk! Du vil straks motta en SMS med en lenke. Vennligst åpne denne lenken for å stemme!</p> <br />
+        	<c:if test="${alreadyRegistered}"><h2 class="errorMessage">Du er allerede registrert! Vennligst klikk lenken du har fått på SMS.</h2></c:if>
         	<p><a href="${verificationURL}">${verificationURL}</a></p>
         </div>
     </div>

@@ -12,7 +12,7 @@
         	<p>For å unngå juks må vi be deg registrere ditt telefonnummer! Telefonnummeret vil ikke bli brukt til noen markedsføring, og det vil bli slettet fra våre maskiner med en gang Expo ${expo.expoid} er ferdig!</p>
             <form action="NewVisitorServlet" method="post">
                 Telefonnummer: +
-                <input type="text" name="telephone" value="47"/>
+                <input type="number" name="telephone" value="47"/>
                 <input type = "submit" value = "Registrer" />
             </form>
         </div>

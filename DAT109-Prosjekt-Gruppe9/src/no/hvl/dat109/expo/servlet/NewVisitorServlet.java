@@ -1,7 +1,6 @@
 package no.hvl.dat109.expo.servlet;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import no.hvl.dat109.expo.eao.ExpoEAO;
 import no.hvl.dat109.expo.eao.VisitorEAO;
 import no.hvl.dat109.expo.entities.Expo;
-import no.hvl.dat109.expo.utils.SessionUtils;
+import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.utils.VerificationUtils;
 
 /**
@@ -55,27 +54,26 @@ public class NewVisitorServlet extends HttpServlet {
 
 		Expo expo = (Expo) getServletContext().getAttribute("expo");
 		
-		String verificationURL = VerificationUtils.createVisitor(id,visitorEAO,getServletContext().getInitParameter("SMS-API-KEY"), expo, request);
+		String verificationURL = "";
+		String alreadyRegistered = "";
+		
+		Visitor visitor = visitorEAO.findVisitor(id);
+		if(visitor == null) {
+			verificationURL = VerificationUtils.createVisitor(id,visitorEAO,getServletContext().getInitParameter("SMS-API-KEY"), expo, request);
+		} else {
+			verificationURL = VerificationUtils.getValidationLink(visitor, request);
+			alreadyRegistered = "?alreadyRegistered";
+		}
+		
+		
 		
 		
 		if(!expo.isVerificationRequired()) {
 			request.getSession().setAttribute("verificationURL", verificationURL);
 		}
-		response.sendRedirect("ConfirmNewVisitorServlet");
 		
-//		if(expo.isVerificationRequired()) {
-//			
-//		} else {
-//			
-//		}
-//		
-//		
-//		Optional<String> lastStand = SessionUtils.getSessionParameter(request,"from");
-//		if(lastStand.isPresent()){
-//		    response.sendRedirect("/StandServlet?standid=" + lastStand.get());
-//        }else{
-//		    response.sendRedirect("/StartServlet");
-//        }
+		response.sendRedirect("ConfirmNewVisitorServlet" + alreadyRegistered);
+		
 
 
 	}//

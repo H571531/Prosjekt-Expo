@@ -24,7 +24,7 @@ public class MessageBird implements SMSInterface{
     @Override
     public Boolean sendSMS(Long number, String message) {
         try{
-            messageBirdClient.sendMessage("tlf",message, Arrays.asList(BigInteger.valueOf(number)));
+            messageBirdClient.sendMessage("EXPO",message, Arrays.asList(BigInteger.valueOf(number)));
             return true;
         }catch (Exception exception){
             exception.printStackTrace();
