@@ -10,24 +10,25 @@
 	<div id="mid">
 	
 	    <div id="midText">
-	
-	        <h1>Registrer Stand</h1><br>
-	        <form action = "RegistrationServlet" method = "post"
-	              enctype = "multipart/form-data" accept-charset="UTF-8">
-	            Stand id:
-	            <input type="text" name="standid" />
-	            <br>
-	            Navn:
-	            <input type="text" name="name">
-	            <br>
-	            Forfattere:
-	            <textarea rows="3" cols="30" name="authors"></textarea>
-	            <br>
-	            Bilde av plakat:
-	            <input type = "file" name = "image" />
-	            <br>
+	        <form action = "RegistrationServlet" method = "post" enctype = "multipart/form-data" accept-charset="UTF-8">
+	        	<div class="registrationContainer">
+	        		<h1>Registrer Stand</h1>
+	        		<p>Vennligst fyll inn dette skjemaet for å registrere en stand til expo.</p>
+	        		<hr>
+	        		<label for="registerstandid"><b>Standid:</b></label>
+	            	<input type="text" placeholder="Angi standid" name="registerstandid" required/>
+	            	
+	            	<label for="registername"><b>Navn:</b></label>
+	            	<input type="text" placeholder="Angi standnavn" name="registerstandname" required>
 
-				<select name="study">
+	            	<label for="registerauthors"><b>Forfattere:</b></label>
+	            	<textarea rows="3" cols="30" placeholder="Angi forfattere" name="registerauthors" required></textarea>
+	            	
+	            	<label for="registerimage"><b>Bilde av plakat: </b></label>
+	            	<input type = "file" name = "registerimage" required/>
+	            	
+	            	<label for="registerstudy"><b>Velg studie: </b></label>
+					<select name="registerstudy">
 
 <%--@elvariable id="institutes" type="java.util.List<java.util.Map.Entry<no.hvl.dat109.expo.entities.Institute,java.util.List<no.hvl.dat109.expo.entities.Study>>>"--%>					<c:forEach items="${institutes}" var="institute">
                         <optgroup label="<c:out value="${institute.key.institutename}"/>">
@@ -37,7 +38,9 @@
 					</optgroup>
 					</c:forEach>
 				</select>
-	            <input type = "submit" value = "Registrer" />
+				<hr>
+	            <input type = "submit" value = "Registrer" name="registerbtn"/>
+	            </div>
 	        </form>
 	        <a href="StartServlet">Startside</a>
 	    </div>

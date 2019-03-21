@@ -251,3 +251,57 @@ label.stjerne:before {
 	width:100%;
 	display:block;
 }
+
+div.gold {
+	display: block;
+	background-color: #FFD700;
+	border-radius: 5px;
+	font-size: 25px;
+}
+
+div.silver {
+	display: block;
+	background-color: #C0C0C0;
+	border-radius: 5px;
+	font-size: 25px;
+}
+
+div.bronze {
+	display: block;
+	background-color: #CD7F32;
+	border-radius: 5px;
+	font-size: 25px;
+}
+
+/* Add padding to containers */
+.registrationContainer {
+  	align: center;
+}
+
+/* Full-width input fields */
+input[name=registerstandid], input[name=registerstandname], textarea[name=registerauthors] {
+  	width: 100%;
+  	padding: 15px;
+  	margin: 5px 0 22px 0;
+  	display: inline-block;
+  	border: none;
+  	background: #ffffff;
+  	font-family: Arial;
+}
+
+input[name=registerbtn] {
+	background-color: #E2674D;
+  	color: white;
+  	padding: 16px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+  	width: 25%;
+  	opacity: 0.9;
+  	font-size: 25px;
+  	border-radius: 10px;
+}
+
+input[name=registerbtn]:hover {
+	opacity:1;
+}
