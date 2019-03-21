@@ -32,7 +32,6 @@ public class StartServlet extends HttpServlet {
 		super.init();
 		
 		//TODO: Fjerne før avslutning
-		//For testing: Oppretter expo for 2019
 		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
 	}
 	

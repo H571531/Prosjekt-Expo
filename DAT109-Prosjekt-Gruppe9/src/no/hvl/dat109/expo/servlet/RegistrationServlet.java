@@ -37,6 +37,8 @@ public class RegistrationServlet extends HttpServlet {
     StandEAO sEAO;
     @EJB
     StudyEAO studyEAO;
+    
+    Expo expo;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -51,12 +53,12 @@ public class RegistrationServlet extends HttpServlet {
 
         registerStand(part, id, name,study, authors);
 
-        response.sendRedirect("StartServlet");
+        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
     }
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
     private void registerStand(Part part, String id, String name,String study, String authors) throws IOException {
-        Expo expo = (Expo) getServletContext().getAttribute("expo");
+        expo = (Expo) getServletContext().getAttribute("expo");
     	sEAO.addStand(new Stand(name,id,studyEAO.findStudy(study), expo, authors));
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
@@ -67,12 +69,21 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
-                .stream()
-                .collect(Collectors.groupingBy(Study::getInstitute));
+    	
+    	expo = (Expo) request.getServletContext().getAttribute("expo");
+    	
+    	if(expo.isStandRegistrationOpen()) {
+    		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
+                    .stream()
+                    .collect(Collectors.groupingBy(Study::getInstitute));
 
-        List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
-        request.setAttribute("institutes", list);
-        request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
+            List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
+            request.setAttribute("institutes", list);
+            request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
+    	} else {
+    		response.sendRedirect("RegistrationClosedServlet?registration=stand");
+    	}
+    	
+        
     }
 }

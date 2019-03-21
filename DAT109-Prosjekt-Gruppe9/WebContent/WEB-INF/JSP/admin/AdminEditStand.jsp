@@ -23,14 +23,32 @@
 					<!--  Last opp ny poster: <input type="file" name="standPoster" /><br /> -->
 					
 					Endre forfattere: <textarea rows="3" cols="30" name="standAuthors">${stand.authors}</textarea><br />
+
+					Institutt: <!-- Hent alle institutter -->
+						<select name="selectedInstitute">
+						<c:forEach var="inst" items="${institutes}">
+							<option value="${inst.instituteid}" ${((inst == stand.study.institute) ? 'selected="selected"' : '') }>${inst.institutename}</option>
+						</c:forEach>
+						</select> 
+						<br />
+					Studie:
+						<select name="selectedStudy">
+							<option value="all"> -- Alle --</option>
+							<c:forEach var="study" items="${ ((empty selectedInst) ? studies : selectedInst.studies)}">
+								<option value="${study.studyid}" ${((study == stand.study) ? 'selected="selected"' : '')}>${study.studyname}</option>
+							</c:forEach>
+					 	</select>
+					 	<br />
+							
 					<input type="hidden" name="standId" value="${stand.standId}">
 					<button type="submit" name="editStand" value="edit">Lagre endringer</button> <button type="submit" name="editStand" value="delete">Slett stand</button> 
 				
 				
 				</form>
-				<br>
-				<p><a href="AdminBrowseServlet">Tilbake til oversikt over stands</a></p>
-				<p><a href="AdminServlet">Tilbake til side for administrasjon</a></p>
+				<hr>				
+				<p><a href="QRCodeServlet?stand=${stand.standId}">Hent QR-Kode</a></p><br>
+				<p><a href="AdminBrowseServlet">Tilbake til oversikt over stands</a></p><br>
+				<p><a href="AdminServlet">Tilbake til side for administrasjon</a></p><br>
         
         </div>
     </div>

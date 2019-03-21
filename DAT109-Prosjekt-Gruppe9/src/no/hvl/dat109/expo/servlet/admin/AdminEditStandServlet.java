@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.expo.eao.InstituteEAO;
 import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.StudyEAO;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.utils.AdminTasks;
 import no.hvl.dat109.expo.utils.LoginUtils;
@@ -21,7 +23,10 @@ import no.hvl.dat109.expo.utils.LoginUtils;
 public class AdminEditStandServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
+	@EJB
+	InstituteEAO instituteEAO;
+	@EJB
+	StudyEAO studyEAO;
 	@EJB
 	StandEAO standEAO;
 	/**
@@ -29,6 +34,9 @@ public class AdminEditStandServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(LoginUtils.isLoggedIn(request)) {
+			
+			request.setAttribute("studies",studyEAO.findAllStudy());
+			request.setAttribute("institutes", instituteEAO.findAllInstitute());
 			
 			String standId = request.getParameter("standId");
 			if(standId != null) {

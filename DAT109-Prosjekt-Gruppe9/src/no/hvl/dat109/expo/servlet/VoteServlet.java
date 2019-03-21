@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.eao.VoteEAO;
+import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.entities.Vote;
@@ -30,6 +31,8 @@ public class VoteServlet extends HttpServlet {
 	VoteEAO vEAO;
 	@EJB
 	StandEAO sEAO;
+	
+	Expo expo;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -53,27 +56,32 @@ public class VoteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String standId = request.getParameter("standId");
-		String voteValue = request.getParameter("voteValue");
-		Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
+		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
 		
-		
-		if(standId != null && voteValue != null&&visitor.isPresent()) {
-			//Foreløpig ingen form for registrering av bruker
-			Stand stand = sEAO.findStand(standId);
-			Vote vote = new Vote(voteValue,stand,visitor.get());
+		if(expo.isVoteRegistrationOpen()) {
+			String standId = request.getParameter("standId");
+			String voteValue = request.getParameter("voteValue");
+			Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
 			
 			
-			vEAO.voteForStand(vote);
-			
-			//TODO: Behandle gitt stemme
-			
-			response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
-		} else if(!visitor.isPresent()){
-			response.sendRedirect("NewVisitorServlet");
-		}else {
-			response.sendRedirect("StartServlet?InvalidVote");
+			if(standId != null && voteValue != null&&visitor.isPresent()) {
+				Stand stand = sEAO.findStand(standId);
+				Vote vote = new Vote(voteValue,stand,visitor.get());
+				
+				
+				vEAO.voteForStand(vote);
+				
+				
+				response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
+			} else if(!visitor.isPresent()){
+				response.sendRedirect("NewVisitorServlet");
+			}else {
+				response.sendRedirect("StartServlet?InvalidVote");
+			}
+		} else {
+			response.sendRedirect("RegistrationClosedServlet?registration=vote");
 		}
+		
 	}
 
 }
