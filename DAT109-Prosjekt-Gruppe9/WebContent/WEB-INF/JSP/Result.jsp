@@ -10,18 +10,57 @@
 	
 	    <div id="midText">
 	
-	   		<p>Top 5</p><br>
+	   		<h1>Topp 5</h1><br>
 	        <hr>
-			<p>Total:</p>
+			<p><strong>Total:</strong></p>
 	        <%--@elvariable id="result" type="no.hvl.dat109.expo.statistics.StandResult"--%>
-	        <c:forEach items="${toplist}" var="result">
-	            <p><c:out value="${result.stand.standName}" /> :
+	        <c:forEach items="${toplist}" var="result" varStatus="vinnerListCount">
+	        	<c:choose>
+	        		<c:when test="${vinnerListCount.count == 1}">
+	        		<div class="gold">
+	        		<h3>Førsteplass:</h3>
+	        		<p><c:out value="${result.stand.standName}" /> :
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
-				</p>
+					</div>
+	        		</c:when>
+	        		<c:when test="${vinnerListCount.count == 2}">
+	        		<div class="silver">
+	        		<h3>Andreplass:</h3>
+	        		<p class="silver"><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+					</div>
+	        		</c:when>
+	        		<c:when test="${vinnerListCount.count == 3}">
+	        		<div class="bronze">
+	        		<h3>Tredjeplass:</h3>
+	        		<p><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+					</div>
+	        		</c:when>
+	        		<c:when test="${vinnerListCount.count == 4}">
+	        		<div>
+	        		<h3>Fjerdeplass:</h3>
+	        		<p><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+					</div>
+	        		</c:when>
+	        		<c:when test="${vinnerListCount.count == 5}">
+	        		<div>
+	        		<h3>Femteplass:</h3>
+	        		<p><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+					</div>
+	        		</c:when>
+	        		<c:otherwise>
+	        		<p><c:out value="${result.stand.standName}" /> :
+					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
+					</p>
+	        		</c:otherwise>
+	        	</c:choose>
 	        </c:forEach>
 				<%--@elvariable id="institute" type="no.hvl.dat109.expo.statistics.InstituteResult"--%>
 			<c:forEach items="${institutes}" var="institute">
-				<p><c:out value="${institute.institute.institutename}" /></p>
+				<p><strong><c:out value="${institute.institute.institutename}" /></strong></p>
 			<c:forEach items="${institute.getTopStands(5)}" var="result">
 				<p><c:out value="${result.stand.standName}" /> :
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.weightedAverage}"/>
