@@ -9,7 +9,6 @@ body{
 	margin:0;
 	font-family:sans-serif;
 	color:#004357;
-	background-color: #E7F5F7;
 }
 
 #header{
@@ -285,12 +284,12 @@ input[name=registerstandid], input[name=registerstandname], textarea[name=regist
   	margin: 5px 0 22px 0;
   	display: inline-block;
   	border: none;
-  	background: #ffffff;
+  	background: #f1f1f1;
   	font-family: Arial;
 }
 
 input[name=registerbtn] {
-	background-color: #E2674D;
+	background-color: #004357;
   	color: white;
   	padding: 16px 20px;
   	margin: 8px 0;
