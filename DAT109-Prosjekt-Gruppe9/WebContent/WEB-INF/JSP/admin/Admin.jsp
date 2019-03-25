@@ -55,6 +55,7 @@
             </form>
             <hr />
             
+            <p><a href="RegistrationServlet">Registrer stands</a>
             <p><a href="AdminBrowseServlet">Se/endre alle stands</a></p>
             <p><a href="ResultServlet">Se foreløpig statistikk</a></p>
             <p><a href="LogoutServlet">Logg ut</a></p>
