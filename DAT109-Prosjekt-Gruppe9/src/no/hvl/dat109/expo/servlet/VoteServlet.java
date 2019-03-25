@@ -60,11 +60,12 @@ public class VoteServlet extends HttpServlet {
 		
 		if(expo.isVoteRegistrationOpen()) {
 			String standId = request.getParameter("standId");
-			String voteValue = request.getParameter("voteValue");
+			// Midlertidig løsning
+			String voteValue = "1";
 			Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
 			
 			
-			if(standId != null && voteValue != null&&visitor.isPresent()) {
+			if(standId != null && voteValue != null && visitor.isPresent()) {
 				Stand stand = sEAO.findStand(standId);
 				Vote vote = new Vote(voteValue,stand,visitor.get());
 				

@@ -30,21 +30,9 @@
 				<form method="post" action="VoteServlet">
 					<fieldset id="formStars">
 						<legend><b>Stem på standen til publikumsprisen!</b></legend>
-						<div class="ratingStars">
-							<input class="stjerne stjerne-5" id="stjerne-5" type="radio" name="voteValue" value="5"/>
-							<label class="stjerne stjerne-5" for="stjerne-5"></label>
-							<input class="stjerne stjerne-4" id="stjerne-4" type="radio" name="voteValue" value="4"/>
-							<label class="stjerne stjerne-4" for="stjerne-4"></label>
-							<input class="stjerne stjerne-3" id="stjerne-3" type="radio" name="voteValue" value="3"/>
-							<label class="stjerne stjerne-3" for="stjerne-3"></label>
-							<input class="stjerne stjerne-2" id="stjerne-2" type="radio" name="voteValue" value="2"/>
-							<label class="stjerne stjerne-2" for="stjerne-2"></label>
-							<input class="stjerne stjerne-1" id="stjerne-1" type="radio" name="voteValue" value="1"/>
-							<label class="stjerne stjerne-1" for="stjerne-1"></label>
-						</div>
 						<br>
 						<input type="hidden" name="standId" value="${stand.standId}">
-						<button id="sendVoteButton" type="submit">Send inn</button>
+						<button id="sendVoteButton" type="submit">Stem</button>
 					</fieldset>
 				</form>
 			</div>
