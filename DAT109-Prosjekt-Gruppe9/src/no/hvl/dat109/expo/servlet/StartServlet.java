@@ -22,6 +22,15 @@ import no.hvl.dat109.expo.utils.LoginUtils;
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	int timeout;
+	
+	@EJB
+	private AdminEAO adminEAO;
+
+	@EJB
+	StandEAO sEAO;
+
+	@EJB
+	ExpoEAO expoEAO;
 
 	@Override
 	public void init() throws ServletException {
@@ -31,14 +40,7 @@ public class StartServlet extends HttpServlet {
 		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
 	}
 
-	@EJB
-	private AdminEAO adminEAO;
-
-	@EJB
-	StandEAO sEAO;
-
-	@EJB
-	ExpoEAO expoEAO;
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
