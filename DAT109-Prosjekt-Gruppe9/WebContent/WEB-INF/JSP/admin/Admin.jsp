@@ -13,13 +13,12 @@
 			<hr />
 		</div>
 		
-		
         <div id="midText">
         	<p><strong>Legg til ny admin:</strong></p>
 			<form method="post" action="AdminServlet">
-			<input type="text" name="newAdminName" />
-			<input type="text" name="newAdminPass" />
-			<button type="submit">Legg til ny admin</button>
+			<input type="text" name="newAdminName" placeholder="Angi brukernavn" required/>
+			<input type="text" name="newAdminPass" placeholder="Angi passord" required/>
+			<button type="submit" class="adminButtons">Legg til ny admin</button>
 			</form>
 			
             <p>AKTIV EXPO: ${expo.expoid}</p>
@@ -49,16 +48,17 @@
 	            		<td><button type="submit" name="visitorRegistration" value="turnOn">Slå på</button></td>
 	            		<td><button type="submit" name="visitorRegistration" value="turnOff">Slå av</button></td>
             		</tr>
-	            		
-	            	
 	            </table>
             </form>
-            <hr />
-            
-            <p><a href="RegistrationServlet">Registrer stands</a>
-            <p><a href="AdminBrowseServlet">Se/endre alle stands</a></p>
-            <p><a href="ResultServlet">Se foreløpig statistikk</a></p>
-            <p><a href="LogoutServlet">Logg ut</a></p>
+            <hr/>
+            <br>
+            <p><a href="RegistrationServlet" class="adminButtons">Registrer stands</a></p>
+            <br>
+            <p><a href="AdminBrowseServlet" class="adminButtons">Se/endre alle stands</a></p>
+            <br>
+           	<p><a href="ResultServlet" class="adminButtons">Se foreløpig statistikk</a></p>
+           	<br>
+            <p><a href="LogoutServlet" class="adminButtons">Logg ut</a></p>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
 <t:GenericPage customTitle="EXPO ${expo.expoid}">
     <div id="mid">
 		<div id="midUpper">
-			<p><a href="AdminBrowseServlet?posters=true">Browse med posters</a></p>
+			<p><a href="AdminBrowseServlet?posters=true" class="adminButtons">Browse med posters</a></p>
 			<form method="get" action="AdminBrowseServlet">
 				Velg institutt: <select name="selectedInstitute">
 									
@@ -27,7 +27,7 @@
 									<option value="${study.studyid}" ${((study == selectedStud) ? 'selected="selected"' : '')}>${study.studyname}</option>
 								</c:forEach>
 							 </select>
-				<button type="submit" id="submitButton">Oppdater</button>
+				<button type="submit" id="submitButton" name="adminUpdate">Oppdater</button>
 			</form>
 			<hr>
 		</div>

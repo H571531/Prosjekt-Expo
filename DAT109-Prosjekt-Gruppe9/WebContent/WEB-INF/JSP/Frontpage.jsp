@@ -11,17 +11,17 @@
 	</p>
 	<form method="post" action="StartServlet" class="loginForm">
 		<fieldset class="loginFieldset">
-				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" />
+				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" required/>
 				<label for="password">Passord:</label> <input type="password"
-					name="password" id="password" />
-				<button type="submit">Logg inn!</button>
+					name="password" id="password" required/>
+				<button type="submit" name="frontLogin">Logg inn!</button>
 		</fieldset>
 	</form>
 	
 	<form method="get" action="StartServlet" class="">
 		<fieldset class="">
-			<label for="StandId">Stand:</label><input type="text" id="standid" name="standid"/>
-			<button type="submit">HentQR!</button>
+			<label for="StandId">Stand:</label><input type="text" id="standid" name="standid" required/>
+			<button type="submit" name="frontQR">HentQR!</button>
 		</fieldset>
 	</form>
 	<p>

@@ -10,9 +10,9 @@
 	</p>
 	<form method="post" action="LoginServlet" class="loginForm">
 		<fieldset class="loginFieldset">
-				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" />
+				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" required/>
 				<label for="password">Passord:</label> <input type="password"
-					name="password" id="password" />
+					name="password" id="password" required/>
 				<button type="submit">Logg inn!</button>
 		</fieldset>
 	</form>

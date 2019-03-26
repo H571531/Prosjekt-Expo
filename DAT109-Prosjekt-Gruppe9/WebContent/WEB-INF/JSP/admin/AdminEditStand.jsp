@@ -18,14 +18,14 @@
 				
 				<form action="AdminEditStandServlet" method="post" enctype = "multipart/form-data" accept-charset="UTF-8">
 					<label for="standName"><b>Endre stand navn</b></label>
-					<input type="text" name="standName" value="<c:out value="${stand.standName}" />"/><br/>
+					<input type="text" name="standName" placeholder="Angi standnavn" value="<c:out value="${stand.standName}" />"/><br/>
 					
 					<!--  Last opp ny poster: <input type="file" name="standPoster" /><br /> -->
-					<label for="standAuthors"><b>Endre stand forfattere</b></label>
-					<textarea rows="3" cols="30" name="standAuthors"><c:out value="${stand.authors}"/></textarea><br/>
+					<label for="standAuthors"><b>Endre stand forfattere: </b></label>
+					<textarea rows="3" cols="30" name="standAuthors" placeholder="Angi forfattere"><c:out value="${stand.authors}"/></textarea><br/>
 
 						<!-- Hent alle institutter -->
-						<label for="selectedInstitute"><b>Endre institutt</b></label>
+						<label for="selectedInstitute"><b>Endre institutt: </b></label>
 						<select name="selectedInstitute">
 						<c:forEach var="inst" items="${institutes}">
 							<option value="${inst.instituteid}" ${((inst == stand.study.institute) ? 'selected="selected"' : '') }>${inst.institutename}</option>
@@ -33,7 +33,7 @@
 						</select> 
 						<br>
 						<br>
-						<label for="selectedStudy"><b>Endre studie</b></label>
+						<label for="selectedStudy"><b>Endre studie: </b></label>
 						<select name="selectedStudy">
 							<option value="all"> -- Alle --</option>
 							<c:forEach var="study" items="${ ((empty selectedInst) ? studies : selectedInst.studies)}">
@@ -52,12 +52,12 @@
 				
 				</form>
 				<hr>
-				<div class="adminBottomButtons">
 				<br>
-				<a href="QRCodeServlet?stand=${stand.standId}" class="adminButtons">Hent QR-Kode</a>
-				<a href="AdminBrowseServlet" class="adminButtons">Tilbake til oversikt over stands</a>
-				<a href="AdminServlet" class="adminButtons">Tilbake til side for administrasjon</a>
-				</div>		
+				<p><a href="QRCodeServlet?stand=${stand.standId}" class="adminButtons">Hent QR-Kode</a></p>
+				<br>
+				<p><a href="AdminBrowseServlet" class="adminButtons">Tilbake til oversikt</a></p>
+				<br>
+				<p><a href="AdminServlet" class="adminButtons">Tilbake til administrasjon</a></p>	
         </div>
     </div>
 

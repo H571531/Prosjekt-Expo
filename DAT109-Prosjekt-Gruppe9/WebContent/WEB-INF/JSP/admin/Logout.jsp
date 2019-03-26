@@ -9,9 +9,9 @@
 		
 		
         <div id="midText">
-        	<p>Takk! Du er nå logget ut.</p>
+        	<p>Du er nå logget ut.</p>
         	<br>
-        	<p><a href="LoginServlet">Logg inn igjen</a></p>
+        	<p><a href="LoginServlet" class="adminButtons">Logg inn igjen</a></p>
         </div>
     </div>
 

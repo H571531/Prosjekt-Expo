@@ -39,10 +39,12 @@
 					</c:forEach>
 				</select>
 				<hr>
+				<div class="adminBottomButtons">
 	            <input type = "submit" value = "Registrer" name="registerbtn"/>
+	            <a href="StartServlet" class="adminButtons">Startside</a>
+	            </div>
 	            </div>
 	        </form>
-	        <a href="StartServlet">Startside</a>
 	    </div>
 	</div>
 	

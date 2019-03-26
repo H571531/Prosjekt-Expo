@@ -252,14 +252,14 @@ input[name=registerstandid], input[name=registerstandname], textarea[name=regist
 input[name=registerbtn] {
 	background-color: #004357;
   	color: white;
-  	padding: 16px 20px;
-  	margin: 8px 0;
-  	border: none;
+  	padding: 8px 12px;
+  	margin: 3px;
   	cursor: pointer;
   	width: auto;
   	opacity: 0.9;
-  	font-size: 25px;
-  	border-radius: 10px;
+  	border-radius: 4px;
+  	font-size: 16px;
+  	border: none;
 }
 
 input[name=registerbtn]:hover {
@@ -268,10 +268,6 @@ input[name=registerbtn]:hover {
 
 .errorMessage{
 	color:red;
-}
-
-div.adminBottomButtons {
-	align: left;
 }
 
 .adminButtons  {
@@ -283,24 +279,25 @@ div.adminBottomButtons {
   	text-decoration: none;
   	cursor: pointer;
   	opacity: 0.9;
+  	border: none;
 }
 
 .adminButtons:hover {
 	opacity: 1;
 }
 
-button[name=editStand] {
+button[name=editStand], button[name=adminUpdate], button[name=standRegistration], button[name=voteRegistration], button[name=visitorRegistration], button[name=frontLogin], button[name=frontQR] {
 	background-color: #004357;
   	color: white;
-  	padding: 16px 20px;
-  	margin: 8px 0;
-  	border: none;
+  	padding: 8px 12px;
+  	margin: 3px;
+  	border-radius: 4px;
   	cursor: pointer;
   	width: auto;
   	opacity: 0.9;
-  	border-radius: 10px;
+  	border: none;
 }
 
-button[name=editStand]:hover {
+button[name=editStand]:hover, button[name=adminUpdate]:hover, button[name=standRegistration]:hover, button[name=voteRegistration]:hover, button[name=visitorRegistration]:hover, button[name=frontLogin]:hover, button[name=frontQR]:hover {
 	opacity:1;
 }
