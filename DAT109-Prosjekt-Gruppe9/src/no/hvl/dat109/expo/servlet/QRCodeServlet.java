@@ -36,7 +36,7 @@ public class QRCodeServlet extends HttpServlet {
             // Rediriger til feilmelding
         }else{
             String protocol = (request.isSecure()) ? "https" : "http";
-            Optional<BufferedImage> image = QRUtils.generateQR(protocol + "://" + hosturl + request.getContextPath() + "/StandServlet?standId=" + stand,300,300);
+            Optional<BufferedImage> image = QRUtils.generateQR(protocol + "://" + hosturl + request.getContextPath() + "/StandServlet?standId=" + stand,600,600);
             // Legg til kode som sjekker om bildet finnes
             response.setContentType("image/png");
             ImageIO.write(image.get(),"png",response.getOutputStream());

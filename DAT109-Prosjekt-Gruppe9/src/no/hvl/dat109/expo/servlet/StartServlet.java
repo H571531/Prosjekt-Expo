@@ -44,6 +44,7 @@ public class StartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String loginMessage = LoginUtils.loginHeader(request);
@@ -57,6 +58,7 @@ public class StartServlet extends HttpServlet {
 		} else if (!(null == standid) && sEAO.standExists(standid)) {
 			response.sendRedirect("QRCodeServlet?stand=" + standid);
 		}
+
 	}
 
 	/**

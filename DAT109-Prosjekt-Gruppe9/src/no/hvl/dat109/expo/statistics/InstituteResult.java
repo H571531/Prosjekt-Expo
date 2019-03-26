@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class InstituteResult {
 
     private List<StandResult> standResults;
-    private List<StudyResult> studyResults;
 
     private Institute institute;
 
@@ -28,14 +27,26 @@ public class InstituteResult {
     }
 
     /**
-     * Henter ut de beste standene i en liste av standresultater
+     * Henter ut de beste standene i en liste av standresultater basert på snittet.
      * @param Integer limit angir hvor mange du vil ha med i toppresultatene
      * @return
      */
-    public List<StandResult> getTopStands(Integer limit){
+    public List<StandResult> getTopStandsMean(Integer limit){
         return standResults.stream()
                 .filter(x -> x.getVotes().size() >= Result.MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getWeightedAverage()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+    /**
+     * Henter ut de beste standene i en liste av standresultater basert på total antall poeng.
+     * @param Integer limit angir hvor mange du vil ha med i toppresultatene
+     * @return
+     */
+    public List<StandResult> getTopStandsTotal(Integer limit){
+        return standResults.stream()
+                .filter(x -> x.getVotes().size() >= Result.MINSTE_ANTALL_STEMMER)
+                .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
                 .limit(limit)
                 .collect(Collectors.toList());
     }

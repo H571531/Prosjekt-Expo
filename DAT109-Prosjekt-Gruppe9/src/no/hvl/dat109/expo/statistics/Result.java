@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class Result {
     // Flytt denne.
-    protected static final Integer MINSTE_ANTALL_STEMMER = 5;
+    protected static final Integer MINSTE_ANTALL_STEMMER = 1;
     private List<Vote> votes;
     private List<StandResult> standResults;
     private List<StudyResult> studyResults;
@@ -91,10 +91,18 @@ public class Result {
      * @return
      */
     // Baserer seg på gjennomsnitt
-    public List<StandResult> getTopStands(Integer limit){
+    public List<StandResult> getTopStandsMean(Integer limit){
         return standResults.stream()
                 .filter(x -> x.getVotes().size() >= MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getWeightedAverage()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
+    public List<StandResult> getTopStandsTotal(Integer limit){
+        return standResults.stream()
+                .filter(x -> x.getVotes().size() >= MINSTE_ANTALL_STEMMER)
+                .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
                 .limit(limit)
                 .collect(Collectors.toList());
     }

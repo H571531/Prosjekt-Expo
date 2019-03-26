@@ -8,12 +8,11 @@
 
 
 	<div id="mid">
-	
 	    <div id="midText">
 	        <form action = "RegistrationServlet" method = "post" enctype = "multipart/form-data" accept-charset="UTF-8">
 	        	<div class="registrationContainer">
 	        		<h1>Registrer Stand</h1>
-	        		<p>Vennligst fyll inn dette skjemaet for å registrere en stand til expo.</p>
+	        		<p>Vennligst fyll inn dette skjemaet for å registrere en stand til expo</p>
 	        		<hr>
 	        		<label for="registerstandid"><b>Standid:</b></label>
 	            	<input type="text" placeholder="Angi standid" name="registerstandid" required/>
@@ -26,7 +25,8 @@
 	            	
 	            	<label for="registerimage"><b>Bilde av plakat: </b></label>
 	            	<input type = "file" name = "registerimage" required/>
-	            	
+	            	<br>
+	            	<br>
 	            	<label for="registerstudy"><b>Velg studie: </b></label>
 					<select name="registerstudy">
 
