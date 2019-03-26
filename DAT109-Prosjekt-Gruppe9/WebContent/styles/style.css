@@ -265,3 +265,7 @@ input[name=registerbtn] {
 input[name=registerbtn]:hover {
 	opacity:1;
 }
+
+.errorMessage{
+	color:red;
+}
