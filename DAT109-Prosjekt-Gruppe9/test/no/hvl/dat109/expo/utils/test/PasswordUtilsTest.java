@@ -1,77 +1,78 @@
 package no.hvl.dat109.expo.utils.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import no.hvl.dat109.expo.utils.PasswordUtil;
 
 public class PasswordUtilsTest {
-	
+
+	private String unSaltedPassword;
+	private String unSaltedPassword2;
+	private String saltedPassword;
+	private String saltedPassword2;
+
 	@Test
 	public void krypterPassordTest() {
-		String unSaltedPassword = "Password123";
-		String saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
-		
+		unSaltedPassword = "Password123";
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+
 		assertFalse(unSaltedPassword.equals(saltedPassword));
 	}
-	
+
 	@Test
 	public void krypterPassordNullTest() {
-		String unSaltedPassword = "";
-		String saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
-		
+		unSaltedPassword = "";
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+
 		assertNotNull(saltedPassword);
 		assertFalse(unSaltedPassword.equals(saltedPassword));
 	}
-	
-	
+
 	@Test
 	public void saltingTest() {
-		String unSalted1 = "Unsalted";
-		String unSalted2 = unSalted1;
-		
-		unSalted1 = PasswordUtil.krypterPassord(unSalted1);
-		unSalted2 = PasswordUtil.krypterPassord(unSalted2);
-		
-		assertFalse(unSalted1.equals(unSalted2));
-		
+		unSaltedPassword = "Unsalted";
+		unSaltedPassword2 = unSaltedPassword;
+
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+		saltedPassword2 = PasswordUtil.krypterPassord(unSaltedPassword2);
+
+		assertFalse(saltedPassword.equals(saltedPassword2));
+
 	}
-	
+
 	@Test
 	public void saltingNullTest() {
-		String unSalted1 = "";
-		String unSalted2 = unSalted1;
-		
-		unSalted1 = PasswordUtil.krypterPassord(unSalted1);
-		unSalted2 = PasswordUtil.krypterPassord(unSalted2);
-		
-		assertFalse(unSalted1.equals(unSalted2));
-		
+		unSaltedPassword = "";
+		unSaltedPassword2 = unSaltedPassword;
+
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+		saltedPassword2 = PasswordUtil.krypterPassord(unSaltedPassword2);
+
+		assertFalse(saltedPassword.equals(saltedPassword2));
+
 	}
-	
+
 	@Test
 	public void sjekkPassordTest() {
-		String unSalted = "unsalted";
-		String salted = PasswordUtil.krypterPassord(unSalted);
-		
-		assertTrue(PasswordUtil.sjekkPassord(unSalted, salted));
-		
+		unSaltedPassword = "unsalted";
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+
+		assertTrue(PasswordUtil.sjekkPassord(unSaltedPassword, saltedPassword));
+
 	}
-	
+
 	@Test
 	public void sjekkPassordNullTest() {
-		String unSalted = "";
-		String salted = PasswordUtil.krypterPassord(unSalted);
-		
-		assertNotNull(salted);
-		assertTrue(PasswordUtil.sjekkPassord(unSalted, salted));
-		
-	}
-	
-	@Test
-	public void test() {
-		
+		unSaltedPassword = "";
+		saltedPassword = PasswordUtil.krypterPassord(unSaltedPassword);
+
+		assertNotNull(saltedPassword);
+		assertTrue(PasswordUtil.sjekkPassord(unSaltedPassword, saltedPassword));
+
 	}
 
 }

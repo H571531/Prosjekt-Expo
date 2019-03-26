@@ -24,6 +24,7 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
+import no.hvl.dat109.expo.utils.LoginUtils;
 
 /**
  * @author
@@ -75,7 +76,9 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	if(!LoginUtils.isLoggedIn(request)) {
+			response.sendRedirect("LoginServlet?loginRequired");
+		} else {
     	expo = (Expo) request.getServletContext().getAttribute("expo");
     	
 		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
@@ -85,8 +88,6 @@ public class RegistrationServlet extends HttpServlet {
         List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
         request.setAttribute("institutes", list);
         request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
-    	
-    	
-        
+		}
     }
 }

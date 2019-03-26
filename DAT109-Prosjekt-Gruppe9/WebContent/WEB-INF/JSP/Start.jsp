@@ -15,7 +15,7 @@
 				<a href="ResultServlet">Resultatliste</a>
 				<br/>
 				<a href="RegistrationServlet">Register Stands</a>
-				<br />
+				<br/>
 				<a href="BrowseServlet">Se alle Stands!</a>
 				<hr>
 				<a href="AdminServlet">Logg inn som admin</a>
