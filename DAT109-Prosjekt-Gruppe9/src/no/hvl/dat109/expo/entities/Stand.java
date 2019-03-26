@@ -3,6 +3,7 @@ package no.hvl.dat109.expo.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,7 +34,7 @@ public class Stand implements StandInterface{
     @JoinColumn(name="studyid")
     private Study study;
 
-    @OneToMany
+    @OneToMany(mappedBy="stand", fetch=FetchType.EAGER)
     @JoinColumn(name="standid")
     private List<Vote> votes;
     
