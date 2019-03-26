@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import no.hvl.dat109.expo.eao.ExpoEAO;
 import org.apache.commons.io.FileUtils;
 
 import no.hvl.dat109.expo.eao.StandEAO;
@@ -38,11 +39,11 @@ public class RegistrationServlet extends HttpServlet {
     StandEAO sEAO;
     @EJB
     StudyEAO studyEAO;
-    
-    Expo expo;
+    @EJB
+    ExpoEAO expoEAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	Expo expo = (Expo) request.getServletContext().getAttribute("expo");
     	if(expo.isStandRegistrationOpen()) {
 
         request.setCharacterEncoding("UTF-8");
@@ -51,11 +52,11 @@ public class RegistrationServlet extends HttpServlet {
 	        String name = request.getParameter("name");
 	        String study = request.getParameter("study");
 	        String authors = request.getParameter("authors");
-	
+	        String year = expo.getExpoid();
 	        if(part == null || id == null || name == null || study == null || authors == null)
 	            return;
 	
-	        registerStand(part, id, name,study, authors);
+	        registerStand(part, id, name,study, authors,year);
 
 	        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
     	} else {
@@ -64,8 +65,8 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
-    private void registerStand(Part part, String id, String name,String study, String authors) throws IOException {
-        expo = (Expo) getServletContext().getAttribute("expo");
+    private void registerStand(Part part, String id, String name,String study, String authors,String year) throws IOException {
+        Expo expo = expoEAO.findExpo(year);
     	sEAO.addStand(new Stand(name,id,studyEAO.findStudy(study), expo, authors));
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
@@ -79,7 +80,7 @@ public class RegistrationServlet extends HttpServlet {
     	if(!LoginUtils.isLoggedIn(request)) {
 			response.sendRedirect("LoginServlet?loginRequired");
 		} else {
-    	expo = (Expo) request.getServletContext().getAttribute("expo");
+    	Expo expo = (Expo) request.getServletContext().getAttribute("expo");
     	
 		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
                 .stream()

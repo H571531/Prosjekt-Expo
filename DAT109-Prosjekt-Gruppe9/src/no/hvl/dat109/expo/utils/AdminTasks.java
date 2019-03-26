@@ -1,9 +1,11 @@
 package no.hvl.dat109.expo.utils;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import no.hvl.dat109.expo.eao.AdminEAO;
 import no.hvl.dat109.expo.eao.InstituteEAO;
@@ -14,6 +16,7 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
+import org.apache.commons.io.FileUtils;
 
 public class AdminTasks {
 
@@ -83,12 +86,18 @@ public class AdminTasks {
 						stand.setAuthors(standAuthors);
 					}
 
-//					Part part = request.getPart("standPoster");
-//					if(part != null) {
-//						String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + stand.getStandId() + ".png");
-//				        File file = new File(path);
-//				        FileUtils.copyInputStreamToFile(part.getInputStream(),file);
-//					}
+					try{
+						Part part = request.getPart("standPoster");
+						String year = standEAO.findStand(standId).getExpo().getExpoid();
+						if(part != null) {
+							String path = request.getServletContext().getRealPath("img/standPosters/poster_" + year + "_" + stand.getStandId() + ".png");
+							File file = new File(path);
+							FileUtils.copyInputStreamToFile(part.getInputStream(),file);
+						}
+					}catch (Exception e){
+						e.printStackTrace();
+					}
+
 
 					standEAO.updateStand(stand);
 					return "edited";

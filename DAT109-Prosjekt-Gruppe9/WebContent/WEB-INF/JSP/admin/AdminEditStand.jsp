@@ -17,7 +17,7 @@
 				
 				<p>Forfattere: <c:out value="${stand.authors}" /></p>
 				
-				<form action="AdminEditStandServlet" method="post">
+				<form action="AdminEditStandServlet" method="post" enctype = "multipart/form-data" accept-charset="UTF-8">
 					Endre Stand-navn: <input type="text" name="standName" value="${stand.standName}" /><br />
 					
 					<!--  Last opp ny poster: <input type="file" name="standPoster" /><br /> -->
@@ -39,7 +39,9 @@
 							</c:forEach>
 					 	</select>
 					 	<br />
-							
+					<label for="registerimage"><b>Bilde av plakat: </b></label>
+					<input type = "file" id="registerimage" name = "standPoster" required/>
+					<br>
 					<input type="hidden" name="standId" value="${stand.standId}">
 					<button type="submit" name="editStand" value="edit">Lagre endringer</button> <button type="submit" name="editStand" value="delete">Slett stand</button> 
 				
