@@ -125,6 +125,12 @@ public class Stand implements StandInterface{
 	public void setAuthors(String authors) {
 		this.authors = authors;
 	}
+	
+	
+
+	public List<Vote> getVotes() {
+		return votes;
+	}
 
 	@Override
 	public int hashCode() {

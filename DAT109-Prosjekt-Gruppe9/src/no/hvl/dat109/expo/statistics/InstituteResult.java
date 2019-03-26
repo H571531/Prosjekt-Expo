@@ -1,10 +1,12 @@
 package no.hvl.dat109.expo.statistics;
 
-import no.hvl.dat109.expo.entities.Institute;
-
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import no.hvl.dat109.expo.entities.Institute;
 
 /**
  * @author
@@ -49,6 +51,23 @@ public class InstituteResult {
                 .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
                 .limit(limit)
                 .collect(Collectors.toList());
+    }
+    
+    public static Map<String, Long> getTotalInstituteResult(List<Institute> institutes) {
+    	HashMap<String, Long> results = new HashMap<String, Long>();
+    	
+    	for(int i = 0; i < institutes.size(); i++) {
+    		results.put(institutes.get(i).getInstitutename(), institutes.get(i).getStudies().stream()
+    												.flatMap(x -> x.getStands().stream())
+    												.flatMap(x -> x.getVotes().stream())
+    												.mapToLong(x -> x.getVoteValue())
+    												.sum()
+    												
+    				);
+    		
+    	}
+    	
+    	return results;
     }
 
     /**

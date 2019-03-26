@@ -4,12 +4,82 @@
          pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
+
+
 <t:GenericPage customTitle="Resultatliste">
 
 	<div id="mid">
-	
+ 			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 			<script type="text/javascript">
+			
+ 			// Load the Visualization API and the corechart package.
+ 			  google.charts.load('current', {'packages':['corechart', 'bar']});
+
+ 			  // Set a callback to run when the Google Visualization API is loaded.
+ 			  google.charts.setOnLoadCallback(drawTopStandsChart);
+ 			  google.charts.setOnLoadCallback(drawInstitutesChart);
+
+ 			  // Callback that creates and populates a data table,
+ 			  // instantiates the pie chart, passes in the data and
+ 			  // draws it.
+ 			  function drawTopStandsChart() {
+
+ 			    // Create the data table.
+  			    var data = new google.visualization.DataTable();
+			   
+ 			    data.addColumn('string','Stand');
+ 			    data.addColumn('number','Stemmer');
+			   
+ 			    data.addRows([
+   			    	<c:forEach items="${toplist}" var="result">
+  			    		['${result.stand.standName}', ${result.totalPoints}],
+ 			    		
+  			    	</c:forEach>
+  			    ]);	
+				
+			    
+			    
+ 			    // Set chart options
+ 			    var options = {
+ 			    		title:'Top 5 Stands',
+ 			    		colors: ['#004357'],
+ 						width:400
+                    };
+
+			    // Instantiate and draw our chart, passing in some options.
+ 			    var chart = new google.visualization.ColumnChart(document.getElementById('top5StandsChartDiv'));
+ 			    chart.draw(data, options);
+ 			  }
+ 			  
+ 			  function drawInstitutesChart(){
+ 				  var data = new google.visualization.DataTable();
+ 				  
+ 				  data.addColumn('string', 'Institutt');
+ 				  data.addColumn('number', 'Stemmer');
+ 				  
+ 				  data.addRows([
+ 					  <c:forEach items="${institutesPointTotal}" var="result">
+ 					  	['${result.key}', ${result.value}],
+ 					  </c:forEach>
+ 				  ]);
+ 				  
+ 				  var options = {
+ 						  title:'Stemmer per institutt',
+ 						  colors: ['#004357'],
+ 						  width:600
+ 				  };
+ 				  var chart = new google.visualization.ColumnChart(document.getElementById('instituteChartDiv'));
+ 				  chart.draw(data, options);
+ 			  }
+ 			  </script>
+			  
+ 		<div id="midUpper">
+	 		<div id="top5StandsChartDiv"></div>
+	 		<div id="instituteChartDiv"></div>
+ 		</div>
+		
 	    <div id="midText">
-	
+		
 	   		<h1>Topp 5</h1><br>
 	        <hr>
 			<p><strong>Total:</strong></p>
