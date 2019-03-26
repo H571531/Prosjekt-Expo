@@ -9,7 +9,7 @@
 
         <div id="midText">
         	<p class="errorMessage">${errorMessage}</p>
-        	<p>Som en del av vår løsning for å unngå flere stemmer av samme person på en stand ber vi om at du registrerer telefonnummeret ditt.</p>
+        	<p>For at vi skal registrere stemmer trenger vi at du oppgir telefonnummeret ditt.</p>
             <form action="NewVisitorServlet" method="post">
                 <span>Telefonnummer: +</span><input type="number" name="telephone" value="47"/>
                 <input type = "submit" value = "Registrer" />
