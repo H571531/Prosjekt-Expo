@@ -17,10 +17,14 @@
 				<button type="submit">Logg inn!</button>
 		</fieldset>
 	</form>
+	
 	<form method="get" action="StartServlet" class="">
 		<fieldset class="">
 			<label for="StandId">Stand:</label><input type="text" id="standid" name="standid"/>
 			<button type="submit">HentQR!</button>
 		</fieldset>
 	</form>
+	<p>
+		<font color="red">${standError}</font>
+	</p>
 </t:GenericPage>
