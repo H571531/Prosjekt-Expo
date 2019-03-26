@@ -4,6 +4,7 @@ SET search_path TO ExpoSystem;
 
 CREATE TABLE expo(
 	expoId varchar(4),
+	voteregistrationopen boolean,
 	CONSTRAINT expoPK PRIMARY KEY (expoId)
 );
 
