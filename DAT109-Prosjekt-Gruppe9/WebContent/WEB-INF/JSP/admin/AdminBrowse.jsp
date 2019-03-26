@@ -7,6 +7,7 @@
 <t:GenericPage customTitle="EXPO ${expo.expoid}">
     <div id="mid">
 		<div id="midUpper">
+			<p><a href="AdminBrowseServlet?posters=true">Browse med posters</a></p>
 			<form method="get" action="AdminBrowseServlet">
 				Velg institutt: <select name="selectedInstitute">
 									
