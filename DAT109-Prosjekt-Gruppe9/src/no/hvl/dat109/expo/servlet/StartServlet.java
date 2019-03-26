@@ -53,11 +53,12 @@ public class StartServlet extends HttpServlet {
 		// request.setAttribute("stands",sEAO.findAllStand());
 
 		String standid = request.getParameter("standid");
-		if (null == standid) {
-			request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
-		} else if (!(null == standid) && sEAO.standExists(standid)) {
+		if (!(null == standid) && sEAO.standExists(standid)) {
 			response.sendRedirect("QRCodeServlet?stand=" + standid);
 		}
+		
+			request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
+		
 
 	}
 
