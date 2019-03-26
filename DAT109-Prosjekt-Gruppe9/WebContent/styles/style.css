@@ -239,7 +239,7 @@ div.bronze {
 }
 
 /* Full-width input fields */
-input[name=registerstandid], input[name=registerstandname], textarea[name=registerauthors] {
+input[name=registerstandid], input[name=registerstandname], textarea[name=registerauthors], input[name=standName], textarea[name=standAuthors] {
   	width: 100%;
   	padding: 15px;
   	margin: 5px 0 22px 0;
@@ -268,4 +268,39 @@ input[name=registerbtn]:hover {
 
 .errorMessage{
 	color:red;
+}
+
+div.adminBottomButtons {
+	align: left;
+}
+
+.adminButtons  {
+	color: white;
+  	background-color: #004357;
+  	padding: 8px 12px;
+  	margin: 3px;
+  	border-radius: 4px;
+  	text-decoration: none;
+  	cursor: pointer;
+  	opacity: 0.9;
+}
+
+.adminButtons:hover {
+	opacity: 1;
+}
+
+button[name=editStand] {
+	background-color: #004357;
+  	color: white;
+  	padding: 16px 20px;
+  	margin: 8px 0;
+  	border: none;
+  	cursor: pointer;
+  	width: auto;
+  	opacity: 0.9;
+  	border-radius: 10px;
+}
+
+button[name=editStand]:hover {
+	opacity:1;
 }
