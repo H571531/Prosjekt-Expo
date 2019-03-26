@@ -1,8 +1,15 @@
 package no.hvl.dat109.expo.entities;
 
-import no.hvl.dat109.expo.interfaces.StandInterface;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import no.hvl.dat109.expo.interfaces.StandInterface;
 
 /**
  * @author
@@ -26,6 +33,10 @@ public class Stand implements StandInterface{
     @JoinColumn(name="studyid")
     private Study study;
 
+    @OneToMany
+    @JoinColumn(name="standid")
+    private List<Vote> votes;
+    
 	public Stand() {
 		
 	}
