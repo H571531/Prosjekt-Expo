@@ -16,59 +16,58 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.utils.LoginUtils;
 
 /**
- * @author
- * Servlet implementation class StartServlet
+ * @author Servlet implementation class StartServlet
  */
 @WebServlet("/StartServlet")
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 	int timeout;
-	
-	@EJB
-	private AdminEAO adminEAO;
-	
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		timeout = Integer.parseInt(getServletContext().getInitParameter("TIMEOUT"));
-		//TODO: Fjerne før avslutning
+		// TODO: Fjerne før avslutning
 		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
 	}
 
 	@EJB
+	private AdminEAO adminEAO;
+
+	@EJB
 	StandEAO sEAO;
-	
+
 	@EJB
 	ExpoEAO expoEAO;
-	
-	
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String loginMessage = LoginUtils.loginHeader(request);
 		request.setAttribute("loginError", loginMessage);
-		
-		
-		
-		//request.setAttribute("stands",sEAO.findAllStand());
-		
-		String standid=request.getParameter("standid");
-			if(standid==null) {
-				request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
-		}else if(!(standid==null) && sEAO.standExists(standid)) {
-			response.sendRedirect("QRCodeServlet?stand="+standid);
+
+		// request.setAttribute("stands",sEAO.findAllStand());
+
+		String standid = request.getParameter("standid");
+		if (null == standid) {
+			request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
+		} else if (!(null == standid) && sEAO.standExists(standid)) {
+			response.sendRedirect("QRCodeServlet?stand=" + standid);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(LoginUtils.login(request,timeout, adminEAO)) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (LoginUtils.login(request, timeout, adminEAO)) {
 			response.sendRedirect("AdminServlet");
-		}else {
+		} else {
 			response.sendRedirect("StartServlet?wrongPassword");
 		}
 	}
