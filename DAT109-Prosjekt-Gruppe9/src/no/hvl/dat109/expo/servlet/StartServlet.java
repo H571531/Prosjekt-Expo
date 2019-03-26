@@ -64,6 +64,7 @@ public class StartServlet extends HttpServlet {
 		}else {
 			request.setAttribute("standError", standError);
 			request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
+			
 		}
 
 	}
