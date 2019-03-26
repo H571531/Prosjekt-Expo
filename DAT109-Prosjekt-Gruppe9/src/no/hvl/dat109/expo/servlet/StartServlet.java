@@ -29,6 +29,7 @@ public class StartServlet extends HttpServlet {
 	@EJB
 	StandEAO sEAO;
 
+	
 	@EJB
 	ExpoEAO expoEAO;
 
