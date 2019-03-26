@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.expo.eao.AdminEAO;
 import no.hvl.dat109.expo.eao.ExpoEAO;
 import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.entities.Expo;
+import no.hvl.dat109.expo.utils.LoginUtils;
 
 /**
  * @author
@@ -20,6 +22,19 @@ import no.hvl.dat109.expo.entities.Expo;
 @WebServlet("/StartServlet")
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    
+	int timeout;
+	
+	@EJB
+	private AdminEAO adminEAO;
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		timeout = Integer.parseInt(getServletContext().getInitParameter("TIMEOUT"));
+		//TODO: Fjerne før avslutning
+		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
+	}
 
 	@EJB
 	StandEAO sEAO;
@@ -27,34 +42,36 @@ public class StartServlet extends HttpServlet {
 	@EJB
 	ExpoEAO expoEAO;
 	
-	@Override
-	public void init() throws ServletException {
-		super.init();
-		
-		//TODO: Fjerne før avslutning
-		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
-	}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//String errorCode = ServletUtils.createErrorMessage(request);
+		String loginMessage = LoginUtils.loginHeader(request);
+		request.setAttribute("loginError", loginMessage);
 		
-		//request.setAttribute("errorCode", errorCode);
 		
-		request.setAttribute("stands",sEAO.findAllStand());
-		request.getRequestDispatcher("WEB-INF/JSP/Start.jsp").forward(request, response);
 		
+		//request.setAttribute("stands",sEAO.findAllStand());
+		
+		String standid=request.getParameter("standid");
+			System.out.println(standid);
+			if(standid==null) {
+				request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
+		}else if(!(standid==null) && sEAO.standExists(standid)) {
+			response.sendRedirect("QRCodeServlet?stand="+standid);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		if(LoginUtils.login(request,timeout, adminEAO)) {
+			response.sendRedirect("AdminServlet");
+		}else {
+			response.sendRedirect("StartServlet?wrongPassword");
+		}
 	}
 
 }
