@@ -6,6 +6,7 @@ import no.hvl.dat109.expo.eao.StudyEAO;
 import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
+import no.hvl.dat109.expo.utils.AdminTasks;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -44,33 +45,7 @@ public class BrowseServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String selectedInstitute = request.getParameter("selectedInstitute");
-		String selectedStudy = request.getParameter("selectedStudy");
-		
-		List<Stand> currentStands = standEAO.findAllStand();
-		
-		request.setAttribute("studies",studyEAO.findAllStudy());
-		request.setAttribute("institutes", instituteEAO.findAllInstitute());
-
-		
-		if(selectedInstitute != null && !selectedInstitute.equals("all")) {
-			Institute selectedInst = instituteEAO.findInstitute(selectedInstitute);
-			
-			request.setAttribute("selectedInst", selectedInst);
-			
-			currentStands = selectedInst.getStudies().stream().
-							flatMap(s -> s.getStands().stream()).collect(Collectors.toList());
-			
-		}
-		if(selectedStudy != null && !selectedStudy.equals("all")) {
-			Study selectedStud = studyEAO.findStudy(selectedStudy);
-			request.setAttribute("selectedStud", selectedStud);
-			
-			currentStands = selectedStud.getStands();
-		}
-		
-		request.setAttribute("currentStands", currentStands);
-		
+		AdminTasks.makeBrowseSelection(request, standEAO, instituteEAO, studyEAO);
 		request.getRequestDispatcher("WEB-INF/JSP/Browse.jsp").forward(request, response);
 		
 	}
