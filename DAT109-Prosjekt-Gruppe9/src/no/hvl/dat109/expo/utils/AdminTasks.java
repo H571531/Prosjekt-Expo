@@ -64,35 +64,32 @@ public class AdminTasks {
 
 	public static String editStandFromDoPost(HttpServletRequest request, StandEAO standEAO) {
 		String standId = request.getParameter("standId");
+		String newStandName = request.getParameter("standName");
+		String standAuthors = request.getParameter("standAuthors");
+		String choice = request.getParameter("editStand");
+
 		if(standId != null) {
 			
 			Stand stand = standEAO.findStand(standId);
-			
-			String choice = request.getParameter("editStand");
-			
-			
+
 			if(choice != null) {
-				
-				
+
 				if(choice.equals("edit")) {
-					String newStandName = request.getParameter("standName");
-					
-					String standAuthors = request.getParameter("standAuthors");
-					
+
 					if(newStandName != null) {
 						stand.setStandName(newStandName);
 					}
 					if(standAuthors != null) {
 						stand.setAuthors(standAuthors);
 					}
-					
+
 //					Part part = request.getPart("standPoster");
 //					if(part != null) {
 //						String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + stand.getStandId() + ".png");
 //				        File file = new File(path);
 //				        FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 //					}
-					
+
 					standEAO.updateStand(stand);
 					return "edited";
 				} else {

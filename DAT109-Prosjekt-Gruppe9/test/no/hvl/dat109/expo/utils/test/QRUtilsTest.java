@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import static no.hvl.dat109.expo.utils.QRUtils.generateQR;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -20,8 +21,8 @@ public class QRUtilsTest {
 	public void generateQRTest() {
 		link = "https://hvl.no/";
 		Optional<BufferedImage> qr = generateQR(link, width, heigth);
-		
-		qr.isPresent();
+
+		assertTrue(qr.isPresent());
 	}
 
 }
