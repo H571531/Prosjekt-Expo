@@ -23,6 +23,4 @@
 			<button type="submit">HentQR!</button>
 		</fieldset>
 	</form>
-	
-	
 </t:GenericPage>
