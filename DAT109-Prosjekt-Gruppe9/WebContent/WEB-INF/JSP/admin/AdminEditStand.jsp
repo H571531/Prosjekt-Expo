@@ -9,20 +9,19 @@
 		
         <div id="midText">
         
-        	<h1>${stand.standName}</h1>
+        	<h1><c:out value="${stand.standName}" /></h1>
 		
 				<div id="poster">
-					<img id="posterImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png">
+					<img id="posterImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png?v=${time}">
 				</div>
-				
 				<p>Forfattere: <c:out value="${stand.authors}" /></p>
 				
 				<form action="AdminEditStandServlet" method="post" enctype = "multipart/form-data" accept-charset="UTF-8">
-					Endre Stand-navn: <input type="text" name="standName" value="${stand.standName}" /><br />
+					Endre Stand-navn: <input type="text" name="standName" value="<c:out value="${stand.standName}" />" /><br />
 					
 					<!--  Last opp ny poster: <input type="file" name="standPoster" /><br /> -->
 					
-					Endre forfattere: <textarea rows="3" cols="30" name="standAuthors">${stand.authors}</textarea><br />
+					Endre forfattere: <textarea rows="3" cols="30" name="standAuthors"><c:out value="${stand.authors}"/></textarea><br />
 
 					Institutt: <!-- Hent alle institutter -->
 						<select name="selectedInstitute">

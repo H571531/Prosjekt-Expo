@@ -41,12 +41,9 @@ public class AdminBrowseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(LoginUtils.isLoggedIn(request)) {
-			
-			
+
 			String confirmEdit = AdminTasks.setupMessageConfirmingStandEdit(request);
-			
 			request.setAttribute("confirmEdit", confirmEdit);
-			
 			AdminTasks.makeBrowseSelection(request, standEAO, instituteEAO, studyEAO);
 			
 			request.getRequestDispatcher("WEB-INF/JSP/admin/AdminBrowse.jsp").forward(request, response);

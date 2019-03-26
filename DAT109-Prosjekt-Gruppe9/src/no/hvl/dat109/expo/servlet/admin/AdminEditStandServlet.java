@@ -36,7 +36,8 @@ public class AdminEditStandServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(LoginUtils.isLoggedIn(request)) {
-			
+
+			request.setAttribute("time",System.currentTimeMillis());
 			request.setAttribute("studies",studyEAO.findAllStudy());
 			request.setAttribute("institutes", instituteEAO.findAllInstitute());
 			
