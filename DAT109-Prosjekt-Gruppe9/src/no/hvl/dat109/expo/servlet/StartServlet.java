@@ -47,24 +47,24 @@ public class StartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String loginMessage = LoginUtils.loginHeader(request);
 		String standError="";
 		request.setAttribute("loginError", loginMessage);
 		String standid = request.getParameter("standid");
-		if(!(null==standid)) {
+		
+		if((null != standid)) {
 			if(sEAO.standExists(standid)) {
 				response.sendRedirect("QRCodeServlet?stand=" + standid);
 			}else {
 				standError="Finner ikke stand med id:"+standid;
+				request.setAttribute("standError", standError);
+				request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
 			}
+		}else {
 			request.setAttribute("standError", standError);
-		}
-
-
-
-		
 			request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
-		
+		}
 
 	}
 
