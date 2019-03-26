@@ -45,7 +45,7 @@ public class StartServlet extends HttpServlet {
 		//request.setAttribute("errorCode", errorCode);
 		
 		request.setAttribute("stands",sEAO.findAllStand());
-		request.getRequestDispatcher("WEB-INF/JSP/Start.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
 		
 	}
 

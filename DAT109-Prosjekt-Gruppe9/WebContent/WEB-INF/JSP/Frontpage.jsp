@@ -17,7 +17,7 @@
 				<button type="submit">Logg inn!</button>
 		</fieldset>
 	</form>
-	<form method="get" action="HentQR" class="">
+	<form method="get" action="GetQRCodeServlet" class="">
 		<fieldset class="">
 			<label for="StandId">Stand:</label><input type="text" id="standId" name="standId"/>
 			<button type="submit">HentQR!</button>
