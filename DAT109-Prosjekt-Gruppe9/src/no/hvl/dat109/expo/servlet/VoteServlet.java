@@ -60,12 +60,23 @@ public class VoteServlet extends HttpServlet {
 		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
 		String standId = request.getParameter("standId");
 		
+		
 		if(standId != null) {
-			String redirect = VoteUtils.handleVote(standId, request, sEAO, vEAO, expo);
-			response.sendRedirect(redirect);
+			
+			Stand stand = sEAO.findStand(standId);
+			if(stand != null) {
+				String redirect = VoteUtils.handleVote(standId, request, stand, vEAO, expo);
+				response.sendRedirect(redirect);
+			} else {
+				//Forsøkt å stemme på stand som ikke finnes
+				request.setAttribute("errorMessage", "Denne standen finnes ikke!");
+				request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp").forward(request, response);
+
+			}
+			
 		} else {
 			request.setAttribute("errorMessage", "Ugyldig stand-id!");
-			request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp");
+			request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp").forward(request, response);
 		}
 		
 		

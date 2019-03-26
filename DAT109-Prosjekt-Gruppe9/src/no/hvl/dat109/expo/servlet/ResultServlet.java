@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.expo.eao.InstituteEAO;
 import no.hvl.dat109.expo.eao.VoteEAO;
+import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.statistics.InstituteResult;
 import no.hvl.dat109.expo.statistics.Result;
+import no.hvl.dat109.expo.utils.LoginUtils;
 
 /**
  * @author
@@ -27,22 +29,28 @@ public class ResultServlet extends HttpServlet {
     @EJB
     InstituteEAO instituteEAO;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+    Expo expo;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Result result = new Result(voteEAO.findAllVote());
-        //Gson gson = new Gson();
-        
-       // request.setAttribute("gsonToplist", gson.toJson(result.getTopStandsTotalPoints(5)));
-        //request.setAttribute("gToplist", result.getTopStandsTotalPoints(5));
+    	
+    	expo = (Expo) request.getServletContext().getAttribute("expo");
+    	
+    	
+    	if(expo.isStatisticsOpenToPublic() || LoginUtils.isLoggedIn(request)) {
+    		 Result result = new Result(voteEAO.findAllVote());
 
-        request.setAttribute("toplist",result.getTopStandsTotalPoints(5));
-        request.setAttribute("studies",result.getStudyResults());
-        request.setAttribute("institutes",result.getInstituteResults());
-        
-        request.setAttribute("institutesPointTotal", InstituteResult.getTotalInstituteResult(instituteEAO.findAllInstitute()));
-        request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
+	        request.setAttribute("toplist",result.getTopStandsTotalPoints(5));
+	        request.setAttribute("studies",result.getStudyResults());
+	        request.setAttribute("institutes",result.getInstituteResults());
+	        
+	        request.setAttribute("institutesPointTotal", InstituteResult.getTotalInstituteResult(instituteEAO.findAllInstitute()));
+	        request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
+    	} else {
+    		request.setAttribute("errorMessage", "Dessverre er ikke vinneren klar enda! Vennligst kom tilbake på et senere tidspunkt!");
+    		request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp").forward(request, response);
+    	}
+    	
+    	
+       
     }
 }

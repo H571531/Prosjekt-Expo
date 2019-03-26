@@ -9,8 +9,8 @@
 		
 			<p>Dessverre er registrering av nye 
 			<c:choose>
-				<c:when test="${attemptedRegistration == stand}">stands</c:when>
-				<c:when test="${attemptedRegistration == vote}">stemmer</c:when>
+				<c:when test="${attemptedRegistration == 'stand'}">stands</c:when>
+				<c:when test="${attemptedRegistration == 'vote'}">stemmer</c:when>
 			</c:choose>		
 			stengt! Vennligst ta kontakt med en administrator hvis du mener dette er feil!
 		</div>

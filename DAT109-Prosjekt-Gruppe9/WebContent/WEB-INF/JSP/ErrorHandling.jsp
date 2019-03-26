@@ -4,6 +4,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:GenericPage customTitle="EXPO ${expo.expoid}">
-	<h2 class="errorMessage">${errorMessage}</h2>
-
+	<div id="mid">
+	
+		<div id="midText">
+			<h2 class="errorMessage">${errorMessage}</h2>
+		</div>
+	</div>
 </t:GenericPage>

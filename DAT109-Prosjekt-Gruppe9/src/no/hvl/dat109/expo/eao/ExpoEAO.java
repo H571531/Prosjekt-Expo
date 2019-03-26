@@ -16,4 +16,9 @@ public class ExpoEAO {
 		return em.find(Expo.class, expoid);
 	}
 
+	public Expo updateExpo(Expo expo) {
+		return em.merge(expo);
+		
+	}
+
 }

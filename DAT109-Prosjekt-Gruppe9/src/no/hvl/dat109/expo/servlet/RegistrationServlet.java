@@ -43,25 +43,28 @@ public class RegistrationServlet extends HttpServlet {
     ExpoEAO expoEAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Expo expo = (Expo) request.getServletContext().getAttribute("expo");
-    	if(expo.isStandRegistrationOpen()) {
+    	if(!LoginUtils.isLoggedIn(request)) {
+    		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
+        	
 
-        request.setCharacterEncoding("UTF-8");
-	        Part part = request.getPart("image");
-	        String id = request.getParameter("standid");
-	        String name = request.getParameter("name");
-	        String study = request.getParameter("study");
-	        String authors = request.getParameter("authors");
-	        String year = expo.getExpoid();
-	        if(part == null || id == null || name == null || study == null || authors == null)
-	            return;
-	
-	        registerStand(part, id, name,study, authors,year);
+            request.setCharacterEncoding("UTF-8");
+    	        Part part = request.getPart("image");
+    	        String id = request.getParameter("standid");
+    	        String name = request.getParameter("name");
+    	        String study = request.getParameter("study");
+    	        String authors = request.getParameter("authors");
+    	        String year = expo.getExpoid();
+    	        if(part == null || id == null || name == null || study == null || authors == null)
+    	            return;
+    	
+    	        registerStand(part, id, name,study, authors,year);
 
-	        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
+    	        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
     	} else {
-    		response.sendRedirect("RegistrationClosedServlet?registration=stand");
+    		response.sendRedirect("StartServlet");
     	}
+    	
+    	
     }
 
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?

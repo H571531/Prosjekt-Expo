@@ -19,24 +19,27 @@ public class Expo implements ExpoInterface {
 	@Id
 	String expoid;
 	
-	//TODO: Forandre til false før lansering, legge til database
-
+	private boolean voteRegistrationOpen;
+	
+	@Transient
+	private boolean statisticsOpenToPublic = false;
+	
+	
+	//Ikke i bruk i nåværende implementasjon
 	@Transient
 	private boolean standRegistrationOpen = true;
-	
-	@Transient
-	private boolean voteRegistrationOpen = true;
-	
 	@Transient
 	private boolean verificationRequired = false;
+	
+	
 	
 	/**
 	 * Oppretter et nytt expo
 	 * @param int year som expo avholdes
 	 */
-	public Expo(String year) {
+	public Expo(String year, boolean voteRegistrationOpen) {
 		this.expoid = year;
-		
+		this.voteRegistrationOpen = voteRegistrationOpen;
 	}
 	
 	public Expo() {
@@ -74,6 +77,15 @@ public class Expo implements ExpoInterface {
 	public void setVerificationRequired(boolean verificationRequired) {
 		this.verificationRequired = verificationRequired;
 	}
+	
+	public boolean isStatisticsOpenToPublic() {
+		return statisticsOpenToPublic;
+	}
+
+	public void setStatisticsOpenToPublic(boolean statisticsOpenToPublic) {
+		this.statisticsOpenToPublic = statisticsOpenToPublic;
+	}
+
 
 	@Override
 	public int hashCode() {

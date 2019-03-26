@@ -15,15 +15,14 @@ import no.hvl.dat109.expo.interfaces.StandInterface;
 
 public class VoteUtils {
 
-	public static String handleVote(String standId, HttpServletRequest request, StandEAO sEAO, VoteEAO vEAO, Expo expo) {
+	public static String handleVote(String standId, HttpServletRequest request, Stand stand, VoteEAO vEAO, Expo expo) {
 		String redirect = "";
-		// Midlertidig l�sning
+		// Kunde vil ikke ha stemmeverdi - men samtidig ha muligheten for å utvide til verdier ved senere Expoer
 		String voteValue = "1";
 		Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
 		
 		if(expo.isVoteRegistrationOpen()){
 			if(visitor.isPresent()) {
-				Stand stand = sEAO.findStand(standId);
 				
 				if(!visitorHasAlreadyVotedForStand(visitor, stand, vEAO)) {
 					Vote vote = new Vote(voteValue,stand,visitor.get());

@@ -7,7 +7,10 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FileUtils;
+
 import no.hvl.dat109.expo.eao.AdminEAO;
+import no.hvl.dat109.expo.eao.ExpoEAO;
 import no.hvl.dat109.expo.eao.InstituteEAO;
 import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.eao.StudyEAO;
@@ -16,7 +19,6 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
-import org.apache.commons.io.FileUtils;
 
 public class AdminTasks {
 
@@ -146,10 +148,12 @@ public class AdminTasks {
 		return "";
 	}
 
-	public static String performBaseAdminTask(HttpServletRequest request, Expo expo, AdminEAO adminEAO) {
+	public static String performBaseAdminTask(HttpServletRequest request, Expo expo, AdminEAO adminEAO, ExpoEAO expoEAO) {
 		String standChoice = request.getParameter("standRegistration");
 		String voteChoice = request.getParameter("voteRegistration");
 		String registrationChoice = request.getParameter("visitorRegistration");
+		
+		String returnString = "";
 		
 		/*
 		 * Åpning og lukking foreløpig ikke implementert
@@ -158,30 +162,30 @@ public class AdminTasks {
 		if(standChoice != null) {
 			if(standChoice.equals("open")) {
 				expo.setStandRegistrationOpen(true);
-				return openedStandRegistration;
+				returnString = openedStandRegistration;
 			} else if (standChoice.equals("close")) {
 				expo.setStandRegistrationOpen(false);
-				return closedStandRegistration;
+				returnString = closedStandRegistration;
 			}
 		}
 		
 		if(voteChoice != null) {
 			if(voteChoice.equals("open")) {
 				expo.setVoteRegistrationOpen(true);
-				return openedVoteRegistration;
+				returnString = openedVoteRegistration;
 			} else if(voteChoice.equals("close")) {
 				expo.setVoteRegistrationOpen(false);
-				return closedVoteRegistration;
+				returnString = closedVoteRegistration;
 			}
 		}
 		
 		if(registrationChoice != null) {
 			if(registrationChoice.equals("turnOn")) {
 				expo.setVerificationRequired(true);
-				return turnedVisitorRegistrationOn;
+				returnString = turnedVisitorRegistrationOn;
 			} else if(registrationChoice.equals("turnOff")) {
 				expo.setVerificationRequired(false);
-				return turnedVisitorRegistrationOff;
+				returnString = turnedVisitorRegistrationOff;
 			}
 			
 		}
@@ -190,10 +194,11 @@ public class AdminTasks {
 		String newAdminPass = request.getParameter("newAdminPass");
 		if(newAdmin != null && newAdminPass != null) {
 			adminEAO.addAdmin(new Admin(newAdmin, PasswordUtil.krypterPassord(newAdminPass)));
-			return addedAdmin;
+			returnString = addedAdmin;
 		}
+		expo = expoEAO.updateExpo(expo);
 		
-		return "";
+		return returnString;
 	}
 
 }
