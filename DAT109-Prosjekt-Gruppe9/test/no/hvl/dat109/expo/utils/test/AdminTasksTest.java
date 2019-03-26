@@ -11,6 +11,7 @@ import org.mockito.junit.MockitoRule;
 import no.hvl.dat109.expo.eao.InstituteEAO;
 import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.eao.StudyEAO;
+import no.hvl.dat109.expo.entities.Stand;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -88,8 +89,30 @@ public class AdminTasksTest {
 		InstituteEAO InstituteEAOMock = mock(InstituteEAO.class);
 		StudyEAO StudyEAOMock = mock(StudyEAO.class);
 
-//		when(mockRequest.getParameter("edit")).thenReturn(null);
-//		String returnValue = setupMessageConfirmingStandEdit(mockRequest);
+		when(requestMock.getParameter("selectedInstitute")).thenReturn(null);
+		when(requestMock.getParameter("selectedStudy")).thenReturn(null);
+		
+		
+//
+//		assertEquals(returnValue, "");
+//		assertNotNull(returnValue);
+//		
+//		verify(mockRequest).getParameter("edit");
+	}
+	
+	@Test
+	public void editStandFromDoPostTest() {
+
+		HttpServletRequest requestMock = mock(HttpServletRequest.class);
+		StandEAO StandEAOMock = mock(StandEAO.class);
+		Stand StandMock = mock(Stand.class);
+
+		when(requestMock.getParameter("standId")).thenReturn("1");
+		when(StandEAOMock.findStand("")).thenReturn(StandMock);
+		when(requestMock.getParameter("editStand")).thenReturn("edit");
+		when(requestMock.getParameter("standName")).thenReturn("Stand1");
+		when(requestMock.getParameter("standAuthors")).thenReturn("Name1");
+		
 //
 //		assertEquals(returnValue, "");
 //		assertNotNull(returnValue);
