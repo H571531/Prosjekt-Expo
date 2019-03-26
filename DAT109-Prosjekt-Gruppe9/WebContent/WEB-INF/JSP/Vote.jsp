@@ -27,6 +27,7 @@
 				</div>
 			</div>
 			<div id="voteForm">
+				<p class="errorMessage">${alreadyVotedMessage}</p>
 				<form method="post" action="VoteServlet">
 					<fieldset id="formStars">
 						<legend><b>Stem på standen til publikumsprisen!</b></legend>

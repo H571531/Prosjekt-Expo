@@ -87,4 +87,10 @@ public class Vote {
 	public void setStand(Stand stand) {
 		this.stand = stand;
 	}
+
+	public Visitor getVisitor() {
+		return visitor;
+	}
+	
+	
 }

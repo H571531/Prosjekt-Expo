@@ -1,10 +1,7 @@
 package no.hvl.dat109.expo.servlet;
 
-import no.hvl.dat109.expo.eao.StandEAO;
-import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Visitor;
-import no.hvl.dat109.expo.interfaces.StandInterface;
-import no.hvl.dat109.expo.utils.VerificationUtils;
+import java.io.IOException;
+import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,8 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Optional;
+
+import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.VoteEAO;
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Visitor;
+import no.hvl.dat109.expo.interfaces.StandInterface;
+import no.hvl.dat109.expo.utils.VerificationUtils;
+import no.hvl.dat109.expo.utils.VoteUtils;
 
 /**
  * @author
@@ -29,6 +32,10 @@ public class StandServlet extends HttpServlet {
 	
 	@EJB
 	StandEAO sEAO;
+	
+	@EJB
+	VoteEAO voteEAO;
+	
     public StandServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -41,16 +48,17 @@ public class StandServlet extends HttpServlet {
 		String standId = request.getParameter("standId");
 		Optional<Visitor> visitor=VerificationUtils.getVisitor(request);
 		
-//		String myUrl = request.getContextPath();
-//		request.getSession().setAttribute("from",myUrl );
-		
-		
 		if(standId != null &&visitor.isPresent()) {
 			//Hente Stand fra database, sett request-parameter stand
 			
-			StandInterface stand = (Stand)sEAO.findStand(standId);
-					//kon.setupStand(Integer.parseInt(standId));
 			
+			Stand stand = (Stand)sEAO.findStand(standId);
+			
+			boolean alreadyVoted = VoteUtils.visitorHasAlreadyVotedForStand(visitor, stand, voteEAO);
+			
+			if(alreadyVoted) {
+				request.setAttribute("alreadyVotedMessage", "Du har allerede stemt på standen!");
+			}
 			
 			request.setAttribute("stand", stand);
 			

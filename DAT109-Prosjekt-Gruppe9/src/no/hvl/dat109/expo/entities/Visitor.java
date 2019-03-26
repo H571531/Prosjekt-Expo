@@ -37,10 +37,6 @@ public class Visitor {
 		votedfor.add(vote);
 	}
 	
-	
-	public boolean haveVoted(Vote vote) {
-		return votedfor.stream().anyMatch(v->v.getVoteId()==vote.getVoteId());
-	}
 
 	public String getVisitorId() {
 		return visitorId;

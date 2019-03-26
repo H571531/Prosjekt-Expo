@@ -125,8 +125,59 @@ public class Stand implements StandInterface{
 	public void setAuthors(String authors) {
 		this.authors = authors;
 	}
-    
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((authors == null) ? 0 : authors.hashCode());
+		result = prime * result + ((expo == null) ? 0 : expo.hashCode());
+		result = prime * result + ((standId == null) ? 0 : standId.hashCode());
+		result = prime * result + ((standName == null) ? 0 : standName.hashCode());
+		result = prime * result + ((study == null) ? 0 : study.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Stand other = (Stand) obj;
+		if (authors == null) {
+			if (other.authors != null)
+				return false;
+		} else if (!authors.equals(other.authors))
+			return false;
+		if (expo == null) {
+			if (other.expo != null)
+				return false;
+		} else if (!expo.equals(other.expo))
+			return false;
+		if (standId == null) {
+			if (other.standId != null)
+				return false;
+		} else if (!standId.equals(other.standId))
+			return false;
+		if (standName == null) {
+			if (other.standName != null)
+				return false;
+		} else if (!standName.equals(other.standName))
+			return false;
+		if (study == null) {
+			if (other.study != null)
+				return false;
+		} else if (!study.equals(other.study))
+			return false;
+		return true;
+	}
+	
+	
+    
+	
 
 	
 

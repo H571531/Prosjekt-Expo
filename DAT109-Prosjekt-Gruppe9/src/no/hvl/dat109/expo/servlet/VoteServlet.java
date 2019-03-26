@@ -18,6 +18,7 @@ import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.entities.Vote;
 import no.hvl.dat109.expo.interfaces.StandInterface;
 import no.hvl.dat109.expo.utils.VerificationUtils;
+import no.hvl.dat109.expo.utils.VoteUtils;
 
 /**
  * @author
@@ -57,32 +58,19 @@ public class VoteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
+		String standId = request.getParameter("standId");
 		
-		if(expo.isVoteRegistrationOpen()) {
-			String standId = request.getParameter("standId");
-			// Midlertidig løsning
-			String voteValue = "1";
-			Optional <Visitor> visitor=VerificationUtils.getVisitor(request);
-			
-			
-			if(standId != null && voteValue != null && visitor.isPresent()) {
-				Stand stand = sEAO.findStand(standId);
-				Vote vote = new Vote(voteValue,stand,visitor.get());
-				
-				
-				vEAO.voteForStand(vote);
-				
-				
-				response.sendRedirect("VoteServlet?voteCastedFor=" + standId);
-			} else if(!visitor.isPresent()){
-				response.sendRedirect("NewVisitorServlet");
-			}else {
-				response.sendRedirect("StartServlet?InvalidVote");
-			}
+		if(standId != null) {
+			String redirect = VoteUtils.handleVote(standId, request, sEAO, vEAO, expo);
+			response.sendRedirect(redirect);
 		} else {
-			response.sendRedirect("RegistrationClosedServlet?registration=vote");
+			request.setAttribute("errorMessage", "Ugyldig stand-id!");
+			request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp");
 		}
 		
+		
+		
 	}
+	
 
 }
