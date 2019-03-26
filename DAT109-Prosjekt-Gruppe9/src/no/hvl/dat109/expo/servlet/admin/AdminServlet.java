@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.expo.eao.AdminEAO;
-import no.hvl.dat109.expo.entities.Admin;
+import no.hvl.dat109.expo.eao.ExpoEAO;
 import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.utils.AdminTasks;
 import no.hvl.dat109.expo.utils.LoginUtils;
-import no.hvl.dat109.expo.utils.PasswordUtil;
 
 /**
  * Servlet implementation class AdminServlet
@@ -25,6 +24,9 @@ public class AdminServlet extends HttpServlet {
 	
 	@EJB
 	AdminEAO adminEAO;
+	
+	@EJB
+	ExpoEAO expoEAO;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,7 +56,7 @@ public class AdminServlet extends HttpServlet {
 			
 			Expo expo = (Expo) getServletContext().getAttribute("expo");
 			
-			String change = AdminTasks.performBaseAdminTask(request, expo, adminEAO);
+			String change = AdminTasks.performBaseAdminTask(request, expo, adminEAO, expoEAO);
 			
 			
 			
