@@ -55,7 +55,6 @@ public class StartServlet extends HttpServlet {
 		//request.setAttribute("stands",sEAO.findAllStand());
 		
 		String standid=request.getParameter("standid");
-			System.out.println(standid);
 			if(standid==null) {
 				request.getRequestDispatcher("WEB-INF/JSP/Frontpage.jsp").forward(request, response);
 		}else if(!(standid==null) && sEAO.standExists(standid)) {
