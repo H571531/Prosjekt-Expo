@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.openejb.server.httpd.HttpRequest;
-
 import java.io.IOException;
 import java.util.Optional;
 
@@ -23,16 +21,11 @@ public class VerificationServlet extends HttpServlet {
     @EJB
     VisitorEAO visitorEAO;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         String token = request.getParameter("token");
 
         if(id == null || token == null){
-           
             // TODO: Fiks feilhåndtering
             response.sendRedirect("NewVisitorServlet");
         }
@@ -40,11 +33,6 @@ public class VerificationServlet extends HttpServlet {
         Visitor visitor = visitorEAO.findVisitor(id);
         Boolean successfulLogin = VerificationUtils.login(visitor,token,request);
         if(successfulLogin){
-           
-        	
-        	
-        	
-        	
         	Optional<String> lastStand = SessionUtils.getSessionParameter(request,"lastStandVisited");
     		if(lastStand.isPresent()){
     		    response.sendRedirect("StandServlet?standId=" + lastStand.get());
@@ -56,8 +44,6 @@ public class VerificationServlet extends HttpServlet {
         	response.sendRedirect("NewVisitorServlet?error=loginFailed");
             // TODO: Send feilmelding
         }
-
-
 
     }
 }
