@@ -7,7 +7,7 @@
 <t:GenericPage customTitle="EXPO ${expo.expoid}">
     <div id="mid">
 		<div id="midUpper">
-			<form method="get" action="BrowseServlet">
+			<form method="get" action="AdminBrowseServlet">
 				Velg institutt: <select name="selectedInstitute">
 									
 									<option value="all"> -- Alle --</option>
