@@ -8,7 +8,6 @@
 
 
 	<div id="mid">
-	
 	    <div id="midText">
 	        <form action = "RegistrationServlet" method = "post" enctype = "multipart/form-data" accept-charset="UTF-8">
 	        	<div class="registrationContainer">
