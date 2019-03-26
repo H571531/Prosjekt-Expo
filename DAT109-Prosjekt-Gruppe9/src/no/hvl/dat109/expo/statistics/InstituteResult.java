@@ -39,11 +39,11 @@ public class InstituteResult {
                 .collect(Collectors.toList());
     }
     /**
-     * Henter ut de beste standene i en liste av standresultater basert på total antall poeng.
+     * Henter ut de beste standene i en liste av standresultater basert på totalsummen av poengene .
      * @param Integer limit angir hvor mange du vil ha med i toppresultatene
      * @return
      */
-    public List<StandResult> getTopStandsTotal(Integer limit){
+    public List<StandResult> getTopStandsTotalPoints(Integer limit){
         return standResults.stream()
                 .filter(x -> x.getVotes().size() >= Result.MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getTotalPoints()))

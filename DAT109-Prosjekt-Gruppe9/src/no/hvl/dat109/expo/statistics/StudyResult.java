@@ -26,17 +26,31 @@ public class StudyResult {
     }
 
     /**
-     * Henter ut de beste standene i en liste av standresultater
+     * Henter ut de beste standene basert på snittet i en liste av standresultater
      * @param Integer limit angir hvor mange du vil ha med i toppresultatene
      * @return
      */
-    public List<StandResult> getTopStands(Integer limit){
+    public List<StandResult> getTopStandsMean(Integer limit){
         return standResults.stream()
                 .filter(x -> x.getVotes().size() >= Result.MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getWeightedAverage()))
                 .limit(limit)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Henter ut de beste standene basert på totalsummen av poengene i en liste av standresultater
+     * @param Integer limit angir hvor mange du vil ha med i toppresultatene
+     * @return
+     */
+    public List<StandResult> getTopStandsTotalpoints(Integer limit){
+        return standResults.stream()
+                .filter(x -> x.getVotes().size() >= Result.MINSTE_ANTALL_STEMMER)
+                .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
 
     /**
      * Henter studiet for et studieresultat

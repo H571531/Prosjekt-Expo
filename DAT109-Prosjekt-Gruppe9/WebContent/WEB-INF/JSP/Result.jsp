@@ -61,7 +61,7 @@
 				<%--@elvariable id="institute" type="no.hvl.dat109.expo.statistics.InstituteResult"--%>
 			<c:forEach items="${institutes}" var="institute">
 				<p><strong><c:out value="${institute.institute.institutename}" /></strong></p>
-			<c:forEach items="${institute.getTopStandsTotal(5)}" var="result">
+			<c:forEach items="${institute.getTopStandsTotalPoints(5)}" var="result">
 				<p><c:out value="${result.stand.standName}" /> :
 					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
 				</p>

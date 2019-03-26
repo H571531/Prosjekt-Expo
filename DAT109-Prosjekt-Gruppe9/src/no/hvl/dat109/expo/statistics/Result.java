@@ -86,7 +86,7 @@ public class Result {
     }
 
     /**
-     * Finner de beste standene for hele expoen og returnerer en liste over disse
+     * Finner de beste standene for hele expoen basert på gjennomsnittet og returnerer en liste over disse
      * @param Integer limit angir hvor mange du vil ha med i toppresultatene
      * @return
      */
@@ -98,8 +98,12 @@ public class Result {
                 .limit(limit)
                 .collect(Collectors.toList());
     }
-
-    public List<StandResult> getTopStandsTotal(Integer limit){
+    /**
+     * Finner de beste standene for hele expoen basert på totalsummen av poengene og returnerer en liste over disse
+     * @param Integer limit angir hvor mange du vil ha med i toppresultatene
+     * @return
+     */
+    public List<StandResult> getTopStandsTotalPoints(Integer limit){
         return standResults.stream()
                 .filter(x -> x.getVotes().size() >= MINSTE_ANTALL_STEMMER)
                 .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
