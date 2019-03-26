@@ -9,7 +9,7 @@
 	<p>
 		<font color="red">${loginError}</font>
 	</p>
-	<form method="post" action="LoginServlet" class="loginForm">
+	<form method="post" action="StartServlet" class="loginForm">
 		<fieldset class="loginFieldset">
 				<label for="username">Brukernavn:</label> <input type="text" id="username" name="Username" />
 				<label for="password">Passord:</label> <input type="password"
@@ -17,9 +17,9 @@
 				<button type="submit">Logg inn!</button>
 		</fieldset>
 	</form>
-	<form method="get" action="GetQRCodeServlet" class="">
+	<form method="get" action="StartServlet" class="">
 		<fieldset class="">
-			<label for="StandId">Stand:</label><input type="text" id="standId" name="standId"/>
+			<label for="StandId">Stand:</label><input type="text" id="standid" name="standid"/>
 			<button type="submit">HentQR!</button>
 		</fieldset>
 	</form>
