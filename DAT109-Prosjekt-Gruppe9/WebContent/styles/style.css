@@ -174,14 +174,25 @@ div.voteForm {
   display: inline-block;
 }
 
-#sendVoteButton{
+button[name=notVotedButton] {
 	background-color:#004357;
-	color:white;
-	border:none;
-	padding:15px 32px;
-	text-align:center;
-	display:inline-block;
-	border-radius:5%;
+	appearance:none;
+  	border-radius:3px;
+  	border:0;
+  	color: white;
+  	padding:15px 32px;
+  	font:bold 11px/1.2 arial;
+  	text-transform:uppercase;
+  	letter-spacing:1px;
+  	box-shadow:0 1px 1px rgba(0,0,0,.2);
+  	outline:none;
+  	position:relative;
+  	cursor:pointer;
+  	opacity: 0.9;
+}
+
+button[name=notVotedButton]:hover {
+	opacity: 1;
 }
 
 #midUpper{
@@ -300,4 +311,20 @@ button[name=editStand], button[name=adminUpdate], button[name=standRegistration]
 
 button[name=editStand]:hover, button[name=adminUpdate]:hover, button[name=standRegistration]:hover, button[name=voteRegistration]:hover, button[name=visitorRegistration]:hover, button[name=frontLogin]:hover, button[name=frontQR]:hover {
 	opacity:1;
+}
+
+button[name=votedAlready] {
+	appearance:none;
+  	border-radius:3px;
+  	border:0;
+  	color: white;
+  	background:#c1c0bb;
+  	padding:15px 32px;
+  	font:bold 11px/1.2 arial;
+  	text-transform:uppercase;
+  	letter-spacing:1px;
+  	box-shadow:0 1px 1px rgba(0,0,0,.2);
+  	outline:none;
+  	position:relative;
+  	cursor:pointer;
 }
