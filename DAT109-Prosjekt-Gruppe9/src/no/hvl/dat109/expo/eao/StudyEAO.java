@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * EAO for Study
- * @author
+ * @author Gruppe 9
  *
  */
 @Stateless
@@ -42,7 +42,7 @@ public class StudyEAO {
 	 * @return boolean true hvis finnes, false hvis ikke
 	 */
     public boolean studyExist(String studyId) {
-        return (findStudy(studyId) != null);
+        return findStudy(studyId) != null;
     }
 
     /**
