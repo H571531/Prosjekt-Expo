@@ -1,9 +1,12 @@
 package no.hvl.dat109.expo.utils;
 
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -19,7 +22,9 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
+import no.hvl.dat109.expo.servlet.admin.AdminEditStandServlet;
 
+@MultipartConfig
 public class AdminTasks {
 
 	public static String setupMessageConfirmingStandEdit(HttpServletRequest request) {
@@ -91,21 +96,21 @@ public class AdminTasks {
 					if(selectedStudy != null) {
 						stand.setStudy(studyEAO.findStudy(selectedStudy));
 					}
-					
-
+					//AdminEditStandServlet.addImage(request, standEAO.findStand(standId).getExpo().getExpoid(), standId);
 					try{
-						Part part = request.getPart("registerimage");
+						Part part = request.getPart("standPoster");
 						String year = standEAO.findStand(standId).getExpo().getExpoid();
 						if(part != null) {
 							String path = request.getServletContext().getRealPath("img/standPosters/poster_" + year + "_" + stand.getStandId() + ".png");
 							File file = new File(path);
-							FileUtils.copyInputStreamToFile(part.getInputStream(),file);
+							try (InputStream input = part.getInputStream()){
+						        Files.copy(input, file.toPath());
+						    }
+//							FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 						}
 					}catch (Exception e){
 						e.printStackTrace();
 					}
-
-
 					standEAO.updateStand(stand);
 					return "edited";
 				} else {
@@ -113,10 +118,7 @@ public class AdminTasks {
 					standEAO.deleteStand(stand);
 					return "deleted";
 				}
-				
 			} 
-			
-			
 		}
 		return "";
 		

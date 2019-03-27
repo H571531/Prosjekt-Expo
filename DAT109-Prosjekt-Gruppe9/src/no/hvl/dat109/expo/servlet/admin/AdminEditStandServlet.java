@@ -1,6 +1,9 @@
 package no.hvl.dat109.expo.servlet.admin;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import no.hvl.dat109.expo.eao.InstituteEAO;
 import no.hvl.dat109.expo.eao.StandEAO;
@@ -112,10 +116,7 @@ public class AdminEditStandServlet extends HttpServlet {
 		}
 		
 		response.sendRedirect(redirect);
-		
-		
-		
-		
 	}
+	
 
 }

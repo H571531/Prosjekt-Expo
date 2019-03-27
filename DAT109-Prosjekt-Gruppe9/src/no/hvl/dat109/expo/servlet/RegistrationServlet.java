@@ -2,6 +2,8 @@ package no.hvl.dat109.expo.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -81,9 +83,14 @@ public class RegistrationServlet extends HttpServlet {
     	sEAO.addStand(newStand);
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
-        String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");
-        File file = new File(path);
-        FileUtils.copyInputStreamToFile(part.getInputStream(),file);
+    	String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");
+    	
+    	File file = new File(path);
+    	
+        try (InputStream input = part.getInputStream()){
+        	Files.copy(input, file.toPath());
+        }
+        //FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 
     }
 
