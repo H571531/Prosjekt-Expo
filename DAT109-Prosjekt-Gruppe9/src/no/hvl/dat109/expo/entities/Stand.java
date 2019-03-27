@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import no.hvl.dat109.expo.interfaces.StandInterface;
 
 /**
  * Klasse for entity: Stand
@@ -18,7 +17,7 @@ import no.hvl.dat109.expo.interfaces.StandInterface;
  */
 @Entity
 @Table(schema="exposystem",name="stand")
-public class Stand implements StandInterface{
+public class Stand{
 	
 	@Id
 	private String standId;

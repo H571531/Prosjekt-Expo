@@ -9,6 +9,7 @@
 
 	<div id="mid">
 	    <div id="midText">
+	    	<p class="errorMessage">${errorMessage}</p>
 	        <form action = "RegistrationServlet" method = "post" enctype = "multipart/form-data" accept-charset="UTF-8">
 	        	<div class="registrationContainer">
 	        		<h1>Registrer Stand</h1>

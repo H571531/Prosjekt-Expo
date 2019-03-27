@@ -1,6 +1,7 @@
 package no.hvl.dat109.expo.eao;
 
 import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.entities.Vote;
 
 import javax.ejb.Stateless;
@@ -25,6 +26,8 @@ public class VoteEAO {
 	 * @param Vote vote som skal legges til
 	 */
 	public void voteForStand(Vote vote) {
+		Visitor visitor = vote.getVisitor();
+		visitor.addVote(vote);
 		em.persist(vote);
 	}
 	

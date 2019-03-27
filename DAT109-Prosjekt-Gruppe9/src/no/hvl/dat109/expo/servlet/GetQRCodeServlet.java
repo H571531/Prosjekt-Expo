@@ -18,15 +18,15 @@ public class GetQRCodeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String standId = request.getParameter("standId");
-        if(standId == null){
-            return;
+        String redirect = "";
+        
+        if(standId != null && standEAO.standExists(standId)){
+        	redirect = "QRCodeServlet?stand=" + standId;
+        } else {
+        	redirect = "StartServlet?error=ugyldigstand";
         }
 
-        if(standEAO.standExists(standId)){
-            response.sendRedirect("QRCodeServlet?stand=" + standId);
-        }else{
-            response.sendRedirect("StartServlet?error=ugyldigstand");
-        }
+       response.sendRedirect(redirect);
 
     }
 }

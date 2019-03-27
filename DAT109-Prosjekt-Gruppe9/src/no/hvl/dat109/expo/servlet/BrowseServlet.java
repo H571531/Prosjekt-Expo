@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author
+ * @author Gruppe 9
  * Servlet implementation class BrowseServlet
  */
 @WebServlet("/BrowseServlet")
@@ -50,13 +50,5 @@ public class BrowseServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-	}
 
 }

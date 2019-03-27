@@ -16,7 +16,6 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.entities.Vote;
-import no.hvl.dat109.expo.interfaces.StandInterface;
 import no.hvl.dat109.expo.utils.VerificationUtils;
 import no.hvl.dat109.expo.utils.VoteUtils;
 
@@ -42,7 +41,7 @@ public class VoteServlet extends HttpServlet {
 
 		String standId = request.getParameter("voteCastedFor");
 		if(standId != null) {
-			StandInterface stand = sEAO.findStand(standId);
+			Stand stand = sEAO.findStand(standId);
 			//StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
 			
 			request.setAttribute("stand", stand);

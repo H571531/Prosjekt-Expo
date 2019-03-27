@@ -49,8 +49,5 @@ public class ResultServlet extends HttpServlet {
     		request.setAttribute("errorMessage", "Dessverre er ikke vinneren klar enda! Vennligst kom tilbake på et senere tidspunkt!");
     		request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp").forward(request, response);
     	}
-    	
-    	
-       
     }
 }

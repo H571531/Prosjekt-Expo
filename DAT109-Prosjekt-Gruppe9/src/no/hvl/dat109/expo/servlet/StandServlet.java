@@ -14,7 +14,6 @@ import no.hvl.dat109.expo.eao.StandEAO;
 import no.hvl.dat109.expo.eao.VoteEAO;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Visitor;
-import no.hvl.dat109.expo.interfaces.StandInterface;
 import no.hvl.dat109.expo.utils.VerificationUtils;
 import no.hvl.dat109.expo.utils.VoteUtils;
 

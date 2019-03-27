@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import no.hvl.dat109.expo.interfaces.ExpoInterface;
 
 /**
  * Klasse for entity: Expo

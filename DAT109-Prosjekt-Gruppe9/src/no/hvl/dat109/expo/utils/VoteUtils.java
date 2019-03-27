@@ -11,7 +11,6 @@ import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Visitor;
 import no.hvl.dat109.expo.entities.Vote;
-import no.hvl.dat109.expo.interfaces.StandInterface;
 
 public class VoteUtils {
 
@@ -53,7 +52,5 @@ public class VoteUtils {
 			.map(v -> v.getStand())
 			.anyMatch(v -> v.equals(stand));
 		return alreadyVoted;
-		
-
 	}
 }

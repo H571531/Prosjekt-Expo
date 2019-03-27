@@ -43,27 +43,32 @@ public class RegistrationServlet extends HttpServlet {
     ExpoEAO expoEAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String redirect = "";
+    	
     	if(!LoginUtils.isLoggedIn(request)) {
     		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
-        	
 
             request.setCharacterEncoding("UTF-8");
-    	        Part part = request.getPart("image");
-    	        String id = request.getParameter("standid");
-    	        String name = request.getParameter("name");
-    	        String study = request.getParameter("study");
-    	        String authors = request.getParameter("authors");
-    	        String year = expo.getExpoid();
-    	        if(part == null || id == null || name == null || study == null || authors == null)
-    	            return;
-    	
-    	        registerStand(part, id, name,study, authors,year);
+	        Part part = request.getPart("image");
+	        String id = request.getParameter("standid");
+	        String name = request.getParameter("name");
+	        String study = request.getParameter("study");
+	        String authors = request.getParameter("authors");
+	        String year = expo.getExpoid();
+	        
+	        if(part == null || id == null || name == null || study == null || authors == null) {
+	        	redirect = "RegistrationServlet?invalidInput";
+	        } else {
+	        	registerStand(part, id, name,study, authors,year);
 
-    	        response.sendRedirect("ConfirmNewStandServlet?stand=" + id);
-    	} else {
-    		response.sendRedirect("StartServlet");
+	 	       	redirect = "ConfirmNewStandServlet?stand=" + id;
+	        }
+	
+	       
+    	} else { // Admin ikke logget inn
+    		redirect = "StartServlet";
     	}
-    	
+    	response.sendRedirect(redirect);
     	
     }
 
@@ -83,15 +88,17 @@ public class RegistrationServlet extends HttpServlet {
     	if(!LoginUtils.isLoggedIn(request)) {
 			response.sendRedirect("LoginServlet?loginRequired");
 		} else {
-    	Expo expo = (Expo) request.getServletContext().getAttribute("expo");
-    	
-		Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
-                .stream()
-                .collect(Collectors.groupingBy(Study::getInstitute));
-
-        List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
-        request.setAttribute("institutes", list);
-        request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
+			String invalidInput = request.getParameter("invalidInput");
+			if(invalidInput != null) {
+				request.setAttribute("errorMessage", "Vennligst sjekk at informasjonen er riktig!");
+			}
+			Map<Institute, List<Study>> institutes = studyEAO.findAllStudy()
+	                .stream()
+	                .collect(Collectors.groupingBy(Study::getInstitute));
+	
+	        List<Map.Entry<String,List<Study>>> list = new ArrayList(institutes.entrySet());
+	        request.setAttribute("institutes", list);
+	        request.getRequestDispatcher("WEB-INF/JSP/Registration.jsp").forward(request, response);
 		}
     }
 }

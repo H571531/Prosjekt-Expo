@@ -24,26 +24,12 @@ public class ConfirmNewVisitorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Expo expo = (Expo)getServletContext().getAttribute("expo");
 		String alreadyRegistered = request.getParameter("alreadyRegistered");
 		if(alreadyRegistered != null) {
 			request.setAttribute("alreadyRegistered", true);
 		}
-		if(!expo.isVerificationRequired()) {
-			
-			//request.setAttribute("verificationURL", request.getAttribute("verificationURL"));
-		}
-		
+
 		request.getRequestDispatcher("WEB-INF/JSP/ConfirmNewVisitor.jsp").forward(request, response);
 		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
