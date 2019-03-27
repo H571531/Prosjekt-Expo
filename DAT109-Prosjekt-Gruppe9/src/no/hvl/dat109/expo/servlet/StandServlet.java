@@ -58,6 +58,7 @@ public class StandServlet extends HttpServlet {
 			
 			if(alreadyVoted) {
 				request.setAttribute("alreadyVotedMessage", "Du har allerede stemt på standen!");
+				request.setAttribute("alreadyVotedCheck", true);
 			}
 			
 			request.setAttribute("stand", stand);
