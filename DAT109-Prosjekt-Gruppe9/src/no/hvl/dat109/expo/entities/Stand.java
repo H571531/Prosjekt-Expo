@@ -56,6 +56,7 @@ public class Stand{
 		this.study = study;
 		this.expo = expo;
 		this.authors = authors;
+		this.token = token;
 	}
 	
 	/**
