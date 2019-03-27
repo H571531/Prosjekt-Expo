@@ -32,14 +32,14 @@
 						<legend><b>Stem på standen til publikumsprisen!</b></legend>
 						<br>
 						<c:choose>
-						<c:when test="${alreadyVotedCheck == true}">
-						<input type="hidden" name="standId" value="${stand.standId}">
-						<button id="sendVoteButton" type="submit" name="votedAlready" disabled>STEMT</button>
-						</c:when>
+							<c:when test="${alreadyVotedCheck == true}">
+							<input type="hidden" name="standId" value="${stand.standId}">
+							<button id="sendVoteButton" type="submit" name="votedAlready" disabled>STEMT</button>
+							</c:when>
 						<c:otherwise>
-						<input type="hidden" name="standId" value="${stand.standId}">
-						<button id="sendVoteButton" type="submit" name="notVotedButton">STEM</button>
-						</c:otherwise>
+							<input type="hidden" name="standId" value="${stand.standId}">
+							<button id="sendVoteButton" type="submit" name="notVotedButton">STEM</button>
+							</c:otherwise>
 						</c:choose>
 					</fieldset>
 				</form>

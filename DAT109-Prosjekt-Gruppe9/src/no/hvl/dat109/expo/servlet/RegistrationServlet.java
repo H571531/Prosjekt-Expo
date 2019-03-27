@@ -26,6 +26,7 @@ import no.hvl.dat109.expo.entities.Institute;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Study;
 import no.hvl.dat109.expo.utils.LoginUtils;
+import no.hvl.dat109.expo.utils.VerificationUtils;
 
 /**
  * @author
@@ -45,18 +46,19 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String redirect = "";
     	
-    	if(!LoginUtils.isLoggedIn(request)) {
+    	if(LoginUtils.isLoggedIn(request)) {
     		Expo expo = (Expo) request.getServletContext().getAttribute("expo");
 
             request.setCharacterEncoding("UTF-8");
-	        Part part = request.getPart("image");
-	        String id = request.getParameter("standid");
-	        String name = request.getParameter("name");
-	        String study = request.getParameter("study");
-	        String authors = request.getParameter("authors");
+	        Part part = request.getPart("registerimage");
+	        String id = request.getParameter("registerstandid");
+	        String name = request.getParameter("registerstandname");
+	        String study = request.getParameter("registerstudy");
+	        String authors = request.getParameter("registerauthors");
 	        String year = expo.getExpoid();
 	        
 	        if(part == null || id == null || name == null || study == null || authors == null) {
+
 	        	redirect = "RegistrationServlet?invalidInput";
 	        } else {
 	        	registerStand(part, id, name,study, authors,year);
@@ -75,7 +77,8 @@ public class RegistrationServlet extends HttpServlet {
     // Denne er avhengig av både Servlet og EAO, gir det menig å flytte den til en util?
     private void registerStand(Part part, String id, String name,String study, String authors,String year) throws IOException {
         Expo expo = expoEAO.findExpo(year);
-    	sEAO.addStand(new Stand(name,id,studyEAO.findStudy(study), expo, authors));
+        Stand newStand = new Stand(name, id, studyEAO.findStudy(study), expo, authors, VerificationUtils.generateSafeToken());
+    	sEAO.addStand(newStand);
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
         String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");

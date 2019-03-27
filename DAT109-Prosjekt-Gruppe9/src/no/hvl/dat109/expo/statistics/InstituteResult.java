@@ -60,8 +60,7 @@ public class InstituteResult {
     		results.put(institutes.get(i).getInstitutename(), institutes.get(i).getStudies().stream()
     												.flatMap(x -> x.getStands().stream())
     												.flatMap(x -> x.getVotes().stream())
-    												.mapToLong(x -> x.getVoteValue())
-    												.sum()
+    												.count()
     												
     				);
     		
@@ -85,4 +84,34 @@ public class InstituteResult {
     public List<StandResult> getStandResults() {
         return standResults;
     }
+
+	public static Map<String, Double> getInstitutePointsWeightedByStands(List<Institute> institutes) {
+		HashMap<String, Double> results = new HashMap<String, Double>();
+		
+		for(Institute institute: institutes) {
+			Double result;
+			result = (double) ((double)amountOfVotesForInstitute(institute) / amountOfStandsForInstitute(institute));
+			if(result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY || result == Double.NaN) {
+				result = 0.0;
+			}
+
+			results.put(institute.getInstitutename(), result);
+		}
+		
+		return results;
+		
+	}
+	
+	private static Long amountOfVotesForInstitute(Institute institute) {
+		return institute.getStudies().stream()
+									.flatMap(x -> x.getStands().stream())
+									.flatMap(x -> x.getVotes().stream())
+									.count();
+	}
+	
+	private static Long amountOfStandsForInstitute(Institute institute) {
+		return institute.getStudies().stream()
+									.flatMap(x -> x.getStands().stream())
+									.count();
+	}
 }

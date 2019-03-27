@@ -22,6 +22,7 @@ public class Stand{
 	@Id
 	private String standId;
 	private String standName;
+	private String token;
 	
 	@ManyToOne
 	@JoinColumn(name="expoid")
@@ -46,13 +47,26 @@ public class Stand{
 	 * @param String name navnet til standen
 	 * @param String id id'en til standen
 	 * @param Study study hvilken studie standen er fra
+	 * @param Expo expo Aktiv expo
+	 * @param String authors Forfattere bak standen
 	 */
-	public Stand(String name, String id,Study study, Expo expo, String authors) {
+	public Stand(String name, String id,Study study, Expo expo, String authors, String token) {
 		this.standName = name;
 		this.standId = id;
 		this.study = study;
 		this.expo = expo;
 		this.authors = authors;
+	}
+	
+	/**
+	 * Constructor for når ny stand opprettes av Admin, før resten av registrering gjøres av Stand-medlemmer
+	 * @param id Stand-ID tilhørende ny Stand
+	 * @param expo aktiv Expo
+	 */
+	public Stand(String id, Expo expo, String token) {
+		this.standId = id;
+		this.expo = expo;
+		this.token = token;
 	}
 
 	public String getStandId() {
@@ -100,7 +114,14 @@ public class Stand{
 		this.authors = authors;
 	}
 	
-	
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public List<Vote> getVotes() {
 		return votes;

@@ -16,6 +16,7 @@ import no.hvl.dat109.expo.eao.StudyEAO;
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.utils.AdminTasks;
 import no.hvl.dat109.expo.utils.LoginUtils;
+import no.hvl.dat109.expo.utils.VerificationUtils;
 
 /**
  * Servlet implementation class AdminEditStandServlet
@@ -35,27 +36,49 @@ public class AdminEditStandServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(LoginUtils.isLoggedIn(request)) {
-
-			request.setAttribute("time",System.currentTimeMillis());
-			request.setAttribute("studies",studyEAO.findAllStudy());
-			request.setAttribute("institutes", instituteEAO.findAllInstitute());
+		String editStandId = request.getParameter("editStandId");
+		String editStandToken = request.getParameter("editStandToken");
+		
+		String path = "";
+		
+		if(LoginUtils.isLoggedIn(request)) { //Admin skal redigere stand, og er logget inn
+			
+			request.setAttribute("adminLoggedIn", true);
+			
 			
 			String standId = request.getParameter("standId");
 			if(standId != null) {
-				Stand stand = standEAO.findStand(standId);
-				request.setAttribute("stand", stand);
 				
-				request.getRequestDispatcher("WEB-INF/JSP/admin/AdminEditStand.jsp").forward(request, response);
+				Stand stand = standEAO.findStand(standId);
+				AdminTasks.setupStandEdit(request, stand, studyEAO, instituteEAO);
+				
+				path = "WEB-INF/JSP/admin/AdminEditStand.jsp";
 			} else {
-				request.getRequestDispatcher("WEB-INF/JSP/admin/AdminBrowse.jsp").forward(request, response);
+				path = "WEB-INF/JSP/admin/AdminBrowse.jsp";
 			}
 			
 			
-		} else {
+		} else if(editStandId != null && editStandToken != null) { //Stand-medlem har fått edit-URL av admin
+			boolean tokenOk = VerificationUtils.editLinkIsValid(editStandId, editStandToken, standEAO, request);
+			if(tokenOk) {
+				
+				AdminTasks.setupStandEdit(request, standEAO.findStand(editStandId), studyEAO, instituteEAO);
+				path = "WEB-INF/JSP/admin/AdminEditStand.jsp";
+				
+			} else {
+				
+				request.setAttribute("errorMessage", "Ugyldig lenke! Vennligst be en administrator om en ny!");
+				path = "WEB-INF/JSP/ErrorHandling.jsp";
+				
+			}
 			
-			request.getRequestDispatcher("WEB-INF/JSP/Login.jsp").forward(request, response);
 		}
+		
+		
+		else {
+			path = "WEB-INF/JSP/Frontpage.jsp";
+		}
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
@@ -63,15 +86,32 @@ public class AdminEditStandServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if(!LoginUtils.isLoggedIn(request)) {
-			response.sendRedirect("LoginServlet?loginRequired");
-		} else {
-
+		String editStandId = request.getParameter("standId");
+		String editStandToken = request.getParameter("standToken");
+		
+		String redirect = "";
+		
+		if(LoginUtils.isLoggedIn(request)) {
 			request.setCharacterEncoding("UTF-8");
 
-			String editString = AdminTasks.editStandFromDoPost(request, standEAO);
-			response.sendRedirect("AdminBrowseServlet?edit=" + editString);
+			String editString = AdminTasks.editStandFromDoPost(request, standEAO, studyEAO);
+			redirect = "AdminBrowseServlet?edit=" + editString;
+			
+		} else if(editStandId != null && editStandToken != null) {
+			
+			boolean tokenOk = VerificationUtils.editLinkIsValid(editStandId, editStandToken, standEAO, request);
+			if(tokenOk) {
+				AdminTasks.editStandFromDoPost(request, standEAO, studyEAO);
+				redirect = "AdminEditStandServlet?editStandId=" + editStandId + "&editStandToken=" + editStandToken;
+			}
+			
+		} else {
+
+			
+			redirect = "LoginServlet?loginRequired";
 		}
+		
+		response.sendRedirect(redirect);
 		
 		
 		

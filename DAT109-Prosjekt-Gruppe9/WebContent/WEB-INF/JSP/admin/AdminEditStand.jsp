@@ -8,9 +8,9 @@
     <div id="mid">
 		
         <div id="midText">
-        
+        	
         	<h1><c:out value="${stand.standName}" /></h1>
-		
+				<p>Stand-ID: ${stand.standId}</p>
 				<div id="poster">
 					<img id="posterImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png?v=${time}">
 				</div>
@@ -47,7 +47,8 @@
 					<br>
 					<br>
 					<input type="hidden" name="standId" value="${stand.standId}">
-					<button type="submit" name="editStand" value="edit">Lagre endringer</button> <button type="submit" name="editStand" value="delete">Slett stand</button> 
+					<input type="hidden" name="standToken" value="${stand.token}">
+					<button type="submit" name="editStand" value="edit">Lagre endringer</button> <c:if test="${not empty adminLoggedIn}"><button type="submit" name="editStand" value="delete">Slett stand</button> </c:if>
 				
 				
 				</form>
@@ -55,9 +56,11 @@
 				<br>
 				<p><a href="QRCodeServlet?stand=${stand.standId}" class="adminButtons">Hent QR-Kode</a></p>
 				<br>
-				<p><a href="AdminBrowseServlet" class="adminButtons">Tilbake til oversikt</a></p>
-				<br>
-				<p><a href="AdminServlet" class="adminButtons">Tilbake til administrasjon</a></p>	
+				<c:if test="${not empty adminLoggedIn}">
+					<p><a href="AdminBrowseServlet" class="adminButtons">Tilbake til oversikt</a></p>
+					<br>
+					<p><a href="AdminServlet" class="adminButtons">Tilbake til administrasjon</a></p>	
+				</c:if>
         </div>
     </div>
 

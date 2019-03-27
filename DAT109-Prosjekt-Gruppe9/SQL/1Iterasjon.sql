@@ -29,6 +29,7 @@ CREATE TABLE stand(
 	standName VARCHAR(200),
 	authors VARCHAR(200),
 	studyId VARCHAR(5),
+	token varchar(14),
 	
     CONSTRAINT standPK PRIMARY KEY (standId),
     CONSTRAINT studyFK FOREIGN KEY (studyId) REFERENCES study(studyId),

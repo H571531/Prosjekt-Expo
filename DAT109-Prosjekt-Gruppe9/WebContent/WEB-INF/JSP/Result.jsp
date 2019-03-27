@@ -18,6 +18,8 @@
  			  // Set a callback to run when the Google Visualization API is loaded.
  			  google.charts.setOnLoadCallback(drawTopStandsChart);
  			  google.charts.setOnLoadCallback(drawInstitutesChart);
+ 			  google.charts.setOnLoadCallback(drawInstitutesWeightedChart);
+
 
  			  // Callback that creates and populates a data table,
  			  // instantiates the pie chart, passes in the data and
@@ -71,16 +73,38 @@
  				  var chart = new google.visualization.ColumnChart(document.getElementById('instituteChartDiv'));
  				  chart.draw(data, options);
  			  }
+ 			  
+ 			 function drawInstitutesWeightedChart(){
+				  var data = new google.visualization.DataTable();
+				  
+				  data.addColumn('string', 'Institutt');
+				  data.addColumn('number', 'Stemmer/Stands');
+				  
+				  data.addRows([
+					  <c:forEach items="${institutesPointWeightedByStands}" var="result">
+					  	['${result.key}', ${result.value}],
+					  </c:forEach>
+				  ]);
+				  
+				  var options = {
+						  title:'Stemmer per institutt, fordelt på antall stands',
+						  colors: ['#004357'],
+						  width:600
+				  };
+				  var chart = new google.visualization.ColumnChart(document.getElementById('instituteWeightedChartDiv'));
+				  chart.draw(data, options);
+			  }
  			  </script>
 			  
  		<div id="midUpper">
 	 		<div id="top5StandsChartDiv"></div>
 	 		<div id="instituteChartDiv"></div>
+	 		<div id="instituteWeightedChartDiv"></div>
  		</div>
 		
 	    <div id="midText">
 		
-	   		<h1>Topp 5</h1><br>
+	   		<!--  --><h1>Topp 5</h1><br>
 	        <hr>
 			<p><strong>Total:</strong></p>
 	        <%--@elvariable id="result" type="no.hvl.dat109.expo.statistics.StandResult"--%>

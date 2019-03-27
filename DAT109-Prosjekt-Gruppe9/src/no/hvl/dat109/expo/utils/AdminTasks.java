@@ -67,11 +67,12 @@ public class AdminTasks {
 		
 	}
 
-	public static String editStandFromDoPost(HttpServletRequest request, StandEAO standEAO) {
+	public static String editStandFromDoPost(HttpServletRequest request, StandEAO standEAO, StudyEAO studyEAO) {
 		String standId = request.getParameter("standId");
 		String newStandName = request.getParameter("standName");
 		String standAuthors = request.getParameter("standAuthors");
-		String choice = request.getParameter("editStand");
+		String selectedStudy = request.getParameter("selectedStudy");
+		String choice = request.getParameter("editStand"); //Valgt mellom å redigere eller slette stand
 
 		if(standId != null) {
 			
@@ -87,9 +88,13 @@ public class AdminTasks {
 					if(standAuthors != null) {
 						stand.setAuthors(standAuthors);
 					}
+					if(selectedStudy != null) {
+						stand.setStudy(studyEAO.findStudy(selectedStudy));
+					}
+					
 
 					try{
-						Part part = request.getPart("standPoster");
+						Part part = request.getPart("registerimage");
 						String year = standEAO.findStand(standId).getExpo().getExpoid();
 						if(part != null) {
 							String path = request.getServletContext().getRealPath("img/standPosters/poster_" + year + "_" + stand.getStandId() + ".png");
@@ -200,5 +205,18 @@ public class AdminTasks {
 		
 		return returnString;
 	}
+
+	public static void setupStandEdit(HttpServletRequest request, Stand stand, StudyEAO studyEAO,
+			InstituteEAO instituteEAO) {
+		
+		request.setAttribute("time",System.currentTimeMillis());
+		request.setAttribute("studies",studyEAO.findAllStudy());
+		request.setAttribute("institutes", instituteEAO.findAllInstitute());
+		
+		request.setAttribute("stand", stand);
+		
+	}
+
+
 
 }

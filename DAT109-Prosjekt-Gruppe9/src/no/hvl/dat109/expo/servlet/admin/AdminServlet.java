@@ -37,11 +37,17 @@ public class AdminServlet extends HttpServlet {
 			String confirmChange = AdminTasks.setupConfirmMessageForBaseAdminPage(request);
 			request.setAttribute("confirmChange", confirmChange);
 			
-			request.getRequestDispatcher("WEB-INF/JSP/admin/Admin.jsp").forward(request, response);
+			String registrationURL = request.getParameter("registrationURL");
+			if(registrationURL != null) {
+				response.sendRedirect("AdminRegistrationURLServlet");
+			} else {
+				request.getRequestDispatcher("WEB-INF/JSP/admin/Admin.jsp").forward(request, response);
+			}
+			
 			
 		} else {
 			
-			request.getRequestDispatcher("WEB-INF/JSP/Login.jsp").forward(request, response);
+			response.sendRedirect("StartServlet?loginRequired");
 		}
 	}
 
@@ -50,7 +56,7 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(!LoginUtils.isLoggedIn(request)) {
-			response.sendRedirect("LoginServlet?loginRequired");
+			response.sendRedirect("StartServlet?loginRequired");
 		} else {
 			
 			

@@ -52,7 +52,9 @@
             </form>
             <hr/>
             <br>
-            <p><a href="RegistrationServlet" class="adminButtons">Registrer stands</a></p>
+            <p><a href="RegistrationServlet" class="adminButtons">Registrer stand manuelt</a></p>
+            <br>
+            <p><a href="AdminServlet?registrationURL" class="adminButtons">Opprett link/se alle linker for stand-registrering</a></p>
             <br>
             <p><a href="AdminBrowseServlet" class="adminButtons">Se/endre alle stands</a></p>
             <br>
