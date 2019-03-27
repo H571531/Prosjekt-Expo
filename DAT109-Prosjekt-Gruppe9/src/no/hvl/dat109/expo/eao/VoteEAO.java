@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * EAO for Vote
- * @author
+ * @author Gruppe 9
  *
  */
 @Stateless
