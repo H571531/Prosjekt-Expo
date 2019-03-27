@@ -5,7 +5,8 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author
+ * Klasse for entity: Study
+ * @author Gruppe 9
  *
  */
 @Entity
@@ -23,40 +24,36 @@ public class Study {
 
 	@OneToMany(mappedBy="study", fetch=FetchType.EAGER)
     private List<Stand> stands;
+	
+	public Study() {
+		
+	}
+	
+	public Study(String studyid, String studyname, Institute institute, List<Stand> stands) {
+		this.studyid = studyid;
+		this.studyname = studyname;
+		this.institute = institute;
+		this.stands = stands;
+	}
 
-    /**
-     * Henter id'en til et studie
-     * @return String studyid id'en til et studie
-     */
     public String getStudyid() {
         return studyid;
     }
 
-    /**
-     * Henter navnet til et studie
-     * @return String studyname navnet til et studie
-     */
     public String getStudyname() {
         return studyname;
     }
 
-    /**
-     * Henter alle stands til et study og returnerer et List objekt over disse
-     * @return List<Stand> liste liste over alle stands til studiet
-     */
     public List<Stand> getStands() {
         return stands;
     }
 
-    /**
-     * Henter instituttet til studiet
-     * @return Institute institute instituttet til studiet
-     */
     public Institute getInstitute() {
         return institute;
     }
+    
+    
 
-    // Study sin egen hashCode metode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,7 +62,6 @@ public class Study {
 		return result;
 	}
 
-	// Study sin egen equals metode
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -82,7 +78,4 @@ public class Study {
 			return false;
 		return true;
 	}
-    
-    
-    
 }

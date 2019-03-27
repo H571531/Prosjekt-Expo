@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author 
- *
- * Visitor class
+ * Klasse for entity: Visitor
+ * @author Gruppe 9
  */
 @Entity
 @Table(schema="exposystem",name="visitor")

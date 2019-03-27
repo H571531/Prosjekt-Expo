@@ -9,15 +9,16 @@ import javax.persistence.Transient;
 import no.hvl.dat109.expo.interfaces.ExpoInterface;
 
 /**
- * @author
+ * Klasse for entity: Expo
+ * @author Gruppe 9
  *
  */
 @Entity
 @Table(schema="exposystem", name="expo")
-public class Expo implements ExpoInterface {
+public class Expo  {
 	
 	@Id
-	String expoid;
+	private String expoid;
 	
 	private boolean voteRegistrationOpen;
 	
@@ -47,7 +48,7 @@ public class Expo implements ExpoInterface {
 	}
 	
 	/**
-	 * Henter aaret som et expo ble avholdt
+	 * Henter året som et expo ble avholdt
 	 * @return int year til et expo
 	 */
 	public String getExpoid() {
