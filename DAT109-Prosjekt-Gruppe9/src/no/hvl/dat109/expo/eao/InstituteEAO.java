@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * EAO for Institute
- * @author 
+ * @author Gruppe 9
  *
  */
 @Stateless
@@ -41,7 +41,7 @@ public class InstituteEAO {
      * @return boolean true hvis finnes, false hvis ikke
      */
     public boolean standExists(String instituteId) {
-        return (findInstitute(instituteId) != null);
+        return findInstitute(instituteId) != null;
     }
 
     /**
