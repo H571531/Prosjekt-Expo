@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * EAO for Stand
- * @author
+ * @author Gruppe 9
  *
  */
 @Stateless
@@ -41,7 +41,7 @@ public class StandEAO {
      * @return boolean true hvis finnes, false hvis ikke
      */
 	public boolean standExists(String standId) {
-		return (findStand(standId) != null);
+		return findStand(standId) != null;
 	}
 
 	/**
@@ -52,13 +52,21 @@ public class StandEAO {
 		em.persist(stand);
 	}
 	
+	/**
+	 * Oppdaterer gitt Stand i database
+	 * @param stand Stand som skal oppdateres
+	 * @return oppdatert Stand-objekt
+	 */
 	public Stand updateStand(Stand stand) {
 		return em.merge(stand);
 	}
-
+	
+	
+	/**
+	 * Fjerner gitt Stand fra database
+	 * @param stand Stand som skal fjernes
+	 */
 	public void deleteStand(Stand stand) {
-		// TODO: Cascading for å fjerne tilhørende stemmer?
-		
 		stand = em.merge(stand);
 		stand.getStudy().getStands().remove(stand);
 		
