@@ -11,7 +11,8 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- * @author 
+ * EAO for Visitor
+ * @author Gruppe 9
  *
  */
 @Stateless
@@ -42,7 +43,7 @@ public class VisitorEAO {
 	 * @return boolean true hvis finnes, false hvis ikke
 	 */
 	public boolean visitorExists(String visitorId) {
-		return (findVisitor(visitorId) != null);
+		return findVisitor(visitorId) != null;
 	}
 
 	/**
