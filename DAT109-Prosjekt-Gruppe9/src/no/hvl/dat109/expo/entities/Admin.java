@@ -6,8 +6,8 @@ package no.hvl.dat109.expo.entities;
 import javax.persistence.*;
 
 /**
- * @author 
- *
+ * Objekt for administratorer av Expo-system
+ * @author Gruppe 9
  */
 @Entity
 @Table(schema = "exposystem", name = "admin")
