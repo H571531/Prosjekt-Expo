@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * EAO for Admin
- * @author 
+ * @author Gruppe 9
  *
  */
 @Stateless
@@ -19,8 +19,8 @@ public class AdminEAO {
 	private EntityManager em;
 
 	/**
-	 * Henter alle admins og returnerer et List objekt over disse.
-	 * @return List<Admin>
+	 * Henter alle admins fra database og returnerer et List objekt over disse.
+	 * @return List<Admin> Liste med alle admins
 	 */
 	public List<Admin> findAllAdmin() {
 		return em.createQuery("SELECT i from Admin i", Admin.class).getResultList();
@@ -41,7 +41,7 @@ public class AdminEAO {
 	 * @return boolean true hvis finnes, false hvis ikke
 	 */
 	public boolean adminExists(String username) {
-		return (findAdmin(username) != null);
+		return findAdmin(username) != null;
 	}
 
 	/**
