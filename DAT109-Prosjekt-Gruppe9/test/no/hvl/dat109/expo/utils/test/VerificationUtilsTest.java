@@ -175,7 +175,7 @@ public class VerificationUtilsTest {
 	}
 
 	/**
-	 * standtoken er ikke equals editStandToken -> false
+	 * Standtoken er ikke lik editStandToken -> false
 	 */
 	@Test
 	public void editLinkIsNOTValidTest() {
@@ -188,6 +188,9 @@ public class VerificationUtilsTest {
 		verify(standEAOMock).findStand(editStandId);
 	}
 
+	/**
+	 * Standtoken er lik editStandToken -> true
+	 */
 	@Test
 	public void editLinkIsValidTest() {
 		String editStandToken = "standToken";
