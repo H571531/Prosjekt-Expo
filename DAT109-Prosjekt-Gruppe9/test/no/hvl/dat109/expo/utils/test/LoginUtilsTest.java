@@ -1,8 +1,14 @@
 package no.hvl.dat109.expo.utils.test;
 
+import static no.hvl.dat109.expo.utils.LoginUtils.isLoggedIn;
+import static no.hvl.dat109.expo.utils.LoginUtils.logOut;
+import static no.hvl.dat109.expo.utils.LoginUtils.login;
+import static no.hvl.dat109.expo.utils.LoginUtils.loginHeader;
+import static no.hvl.dat109.expo.utils.LoginUtils.loginOk;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -10,20 +16,29 @@ import static org.mockito.Mockito.when;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
 
 import no.hvl.dat109.expo.eao.AdminEAO;
 import no.hvl.dat109.expo.entities.Admin;
 import no.hvl.dat109.expo.utils.PasswordUtil;
 
-import static no.hvl.dat109.expo.utils.LoginUtils.*;
-
 public class LoginUtilsTest {
 
+	private HttpServletRequest requestMock;
+	private HttpSession sessionMock;
+
+	@Before
+	public void init() {
+		requestMock = mock(HttpServletRequest.class);
+		sessionMock = mock(HttpSession.class);
+	}
+
+	/**
+	 * Request parameter "wrongPassword" -> Return string for feil passord
+	 */
 	@Test
 	public void loginHeaderTestWrongPass() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 
 		when(requestMock.getParameter("wrongPassword")).thenReturn("Wrong");
 
@@ -31,9 +46,12 @@ public class LoginUtilsTest {
 		verify(requestMock).getParameter("wrongPassword");
 	}
 
+	/**
+	 * Request parameter "loginRequired" -> return string om at bruker må være
+	 * innlogget
+	 */
 	@Test
 	public void loginHeaderSessionTimeoutTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 
 		when(requestMock.getParameter("wrongPassword")).thenReturn(null);
 		when(requestMock.getParameter("loginRequired")).thenReturn("Not logged in");
@@ -43,9 +61,12 @@ public class LoginUtilsTest {
 		verify(requestMock).getParameter("loginRequired");
 	}
 
+	/**
+	 * Request parametre "wrongPassword" og "loginRequied" begge lik null -> return
+	 * ""
+	 */
 	@Test
 	public void loginHeaderTestCorrectTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 
 		when(requestMock.getParameter("wrongPassword")).thenReturn(null);
 		when(requestMock.getParameter("loginRequired")).thenReturn(null);
@@ -54,13 +75,12 @@ public class LoginUtilsTest {
 		verify(requestMock).getParameter("wrongPassword");
 		verify(requestMock).getParameter("loginRequired");
 	}
-	
+
 	/**
 	 * request.getParameter("password") == null, -> skal returnere false
 	 */
 	@Test
 	public void loginOkFailureTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 		Admin admin = new Admin("Username", "");
 
 		when(requestMock.getParameter("password")).thenReturn(null);
@@ -68,58 +88,50 @@ public class LoginUtilsTest {
 		assertFalse(loginOk(requestMock, admin));
 		verify(requestMock).getParameter("password");
 	}
-	
+
 	/**
 	 * Admin==null -> skal returnere false
 	 */
 	@Test
 	public void loginOkFailureTest2() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 		Admin admin = new Admin();
+		admin = null;
 
-		when(requestMock.getParameter("password")).thenReturn(null);
-		
 		assertFalse(loginOk(requestMock, admin));
-		verify(requestMock).getParameter("password");
 	}
-	
+
 	/**
-	 * Hvis password i request.getParameter matcher med passordet til Admin-objekt -> Skal returnere true
+	 * Hvis password i request.getParameter matcher med passordet til Admin-objekt
+	 * -> Skal returnere true
 	 */
 	@Test
 	public void loginOkSuccessTest() {
 		String password = PasswordUtil.krypterPassord("passwordString");
 		Admin admin = new Admin("Username", password);
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 
 		when(requestMock.getParameter("password")).thenReturn("passwordString");
 
 		assertTrue(loginOk(requestMock, admin));
 		verify(requestMock).getParameter("password");
 	}
-	
-	
-	 /**
-	  * Hvis session==null -> Skal returnere false
-	  */
+
+	/**
+	 * Hvis session==null -> Skal returnere false
+	 */
 	@Test
 	public void isLoggedInTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
-		HttpSession sessionMock = mock(HttpSession.class);
 
 		when(requestMock.getSession(false)).thenReturn(sessionMock);
 
 		assertFalse(isLoggedIn(requestMock));
 		verify(requestMock).getSession(false);
 	}
-	
+
 	/**
-	 * Hvis session=/=null men username == null -> Skal bli false
+	 * Hvis session != null men username == null -> Skal bli false
 	 */
 	@Test
 	public void isLoggedInTest2() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
-		HttpSession sessionMock = mock(HttpSession.class);
 
 		when(requestMock.getSession(false)).thenReturn(sessionMock);
 		when(sessionMock.getAttribute("Username")).thenReturn(null);
@@ -127,73 +139,69 @@ public class LoginUtilsTest {
 		assertFalse(isLoggedIn(requestMock));
 		verify(requestMock).getSession(false);
 	}
-	
+
 	/**
 	 * Hvis admin==null -> Skal returnerer false
 	 */
 	@Test
 	public void loginFailedTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
-		Admin admin = new Admin();
-		AdminEAO adminEAOMock = mock(AdminEAO.class);
-		String username = "";
-		
-		when(requestMock.getParameter("Username")).thenReturn("");
-		when(adminEAOMock.findAdmin(username)).thenReturn(admin);
-
-		assertFalse(isLoggedIn(requestMock));
-		verify(adminEAOMock).findAdmin("");
-	}
-	
-	/**
-	 * Hvis requestet inneholder et "Username" som sammsvarer med en admin i databasen
-	 * og passordet i requesten samsvarer med passordet til den adminen
-	 * -> Skal lage en session om det ikke eksisterer og returnere true.
-	 */
-//	TODO fiks denna metoden
-	@Test
-	public void loginSucessTest() {
-		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 		AdminEAO adminEAOMock = mock(AdminEAO.class);
 		String password = PasswordUtil.krypterPassord("passwordString");
 		Admin admin = new Admin("Username", password);
-		
-		when(requestMock.getParameter("Username")).thenReturn("Username");
-		when(adminEAOMock.findAdmin("")).thenReturn(admin);
 
-		assertFalse(isLoggedIn(requestMock));
-		verify(adminEAOMock).findAdmin("");
+		when(requestMock.getParameter("Username")).thenReturn("Username");
+		when(adminEAOMock.findAdmin("Username")).thenReturn(admin);
+
+		assertFalse(login(requestMock, 10, adminEAOMock));
+		verify(adminEAOMock).findAdmin("Username");
 	}
-	
+
+	/**
+	 * Hvis requestet inneholder et "Username" som sammsvarer med en admin i
+	 * databasen og passordet i requesten samsvarer med passordet til den adminen ->
+	 * Skal lage en session om det ikke eksisterer og returnere true.
+	 */
+	@Test
+	public void loginSucessTest() {
+//		TODO
+//		Inneholder static
+	}
+
 	/**
 	 * Session != Null -> session.invalidate()
 	 */
-//	@Test
-//	public void sessionStartInvalidateTest() {
-//		String soMockIsntNull = "Not null";
-//		HttpServletRequest requestMock = mock(HttpServletRequest.class, soMockIsntNull);
-//		HttpSession sessionMock = mock(HttpSession.class);
-//		Admin admin = new Admin();
-//		
-//		when(requestMock.getSession(false)).thenReturn(sessionMock);
-//		Mockito.doNothing().when(sessionMock).invalidate();
-//		when(requestMock.getSession(false)).thenReturn(sessionMock);
-//		
-//		sessionStart(requestMock, admin, 10);
-//		
-//		verify(sessionMock).invalidate();
-//	}
-//	
-	/** TODO
-	 * Logger ut ved å fjerne "Username" i Session og ved session.invalidate().
+	@Test
+	public void sessionStartInvalidateTest() {
+//		TODO
+//		Inneholder static
+	}
+
+	/**
+	 * TODO Logger ut ved å fjerne "Username" i Session og ved session.invalidate().
 	 */
-//	@Test
-//	public void logOutTest() {
-//		HttpServletRequest requestMock = mock(HttpServletRequest.class);
-//		HttpSession session = new HttpSession();
-//		
-//		when(requestMock.getSession(false)).thenReturn(sessionMock);
-//		
-//	}
-	
+	@Test
+	public void logOutTest() {
+		when(requestMock.getSession(false)).thenReturn(sessionMock);
+		doNothing().when(sessionMock).removeAttribute("Username");
+		doNothing().when(sessionMock).invalidate();
+
+		logOut(requestMock);
+
+		verify(sessionMock).removeAttribute("Username");
+		verify(sessionMock).invalidate();
+
+	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void logOutNullTest() {
+		sessionMock = null;
+
+		when(requestMock.getSession(false)).thenReturn(sessionMock);
+
+		logOut(requestMock);
+	}
+
 }
