@@ -78,7 +78,7 @@ public class LoginUtilsTest {
 		Admin admin = new Admin();
 
 		when(requestMock.getParameter("password")).thenReturn(null);
-
+		
 		assertFalse(loginOk(requestMock, admin));
 		verify(requestMock).getParameter("password");
 	}
@@ -136,8 +136,10 @@ public class LoginUtilsTest {
 		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 		Admin admin = new Admin();
 		AdminEAO adminEAOMock = mock(AdminEAO.class);
+		String username = "";
 		
-		when(adminEAOMock.findAdmin("")).thenReturn(admin);
+		when(requestMock.getParameter("Username")).thenReturn("");
+		when(adminEAOMock.findAdmin(username)).thenReturn(admin);
 
 		assertFalse(isLoggedIn(requestMock));
 		verify(adminEAOMock).findAdmin("");
@@ -164,15 +166,24 @@ public class LoginUtilsTest {
 	}
 	
 	/**
-	 * 
+	 * Session != Null -> session.invalidate()
 	 */
-	@Test
-	public void sessionStartTest() {
-	
-	//TODO
-	
-	}
-	
+//	@Test
+//	public void sessionStartInvalidateTest() {
+//		String soMockIsntNull = "Not null";
+//		HttpServletRequest requestMock = mock(HttpServletRequest.class, soMockIsntNull);
+//		HttpSession sessionMock = mock(HttpSession.class);
+//		Admin admin = new Admin();
+//		
+//		when(requestMock.getSession(false)).thenReturn(sessionMock);
+//		Mockito.doNothing().when(sessionMock).invalidate();
+//		when(requestMock.getSession(false)).thenReturn(sessionMock);
+//		
+//		sessionStart(requestMock, admin, 10);
+//		
+//		verify(sessionMock).invalidate();
+//	}
+//	
 	/** TODO
 	 * Logger ut ved å fjerne "Username" i Session og ved session.invalidate().
 	 */
