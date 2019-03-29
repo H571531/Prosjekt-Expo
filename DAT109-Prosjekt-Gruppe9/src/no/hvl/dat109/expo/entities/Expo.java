@@ -20,9 +20,7 @@ public class Expo  {
 	private String expoid;
 	
 	private boolean voteRegistrationOpen;
-	
-	@Transient
-	private boolean statisticsOpenToPublic = false;
+	private boolean statisticsOpenToPublic;
 	
 	
 	//Ikke i bruk i nåværende implementasjon
@@ -37,9 +35,10 @@ public class Expo  {
 	 * Oppretter et nytt expo
 	 * @param int year som expo avholdes
 	 */
-	public Expo(String year, boolean voteRegistrationOpen) {
+	public Expo(String year, boolean voteRegistrationOpen, boolean statisticsOpenToPublic) {
 		this.expoid = year;
 		this.voteRegistrationOpen = voteRegistrationOpen;
+		this.statisticsOpenToPublic = statisticsOpenToPublic;
 	}
 	
 	public Expo() {

@@ -110,6 +110,13 @@ public class Result {
                 .limit(limit)
                 .collect(Collectors.toList());
     }
+    
+    public Stand getStandWithMostVotes() {
+    	return standResults.stream()
+    			.map(a -> a.getStand())
+    			.max((a,b) -> a.getVotes().size() - b.getVotes().size())
+    			.get();
+    }
 
 
 }

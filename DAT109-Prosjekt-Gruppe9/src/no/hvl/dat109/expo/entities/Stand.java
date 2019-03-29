@@ -127,6 +127,10 @@ public class Stand{
 	public List<Vote> getVotes() {
 		return votes;
 	}
+	
+	public int getNumberOfVotes() {
+		return votes.size();
+	}
 
 	@Override
 	public int hashCode() {

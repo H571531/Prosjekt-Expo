@@ -48,6 +48,12 @@
 	            		<td><button type="submit" name="visitorRegistration" value="turnOn">Slå på</button></td>
 	            		<td><button type="submit" name="visitorRegistration" value="turnOff">Slå av</button></td>
             		</tr>
+            		<tr>
+            			<td>Statistikk åpen for publikum</td>
+            			<td>${(expo.statisticsOpenToPublic ? "Åpen" : "Lukket")}</td>
+            			<td><button type="submit" name="openStatistics" value="open">Åpne</button></td>
+            			<td><button type="submit" name="openStatistics" value="close">Lukk</button></td>
+            		</tr>
 	            </table>
             </form>
             <hr/>

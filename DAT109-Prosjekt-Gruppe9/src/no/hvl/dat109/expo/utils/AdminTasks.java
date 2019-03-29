@@ -131,6 +131,8 @@ public class AdminTasks {
 	private static final String addedAdmin = "addedAdmin";
 	private static final String turnedVisitorRegistrationOn = "turnedVisitorRegistrationOn";
 	private static final String turnedVisitorRegistrationOff = "turnedVisitorRegistrationOff";
+	private static final String openedStatisticsToPublic = "openedStatistics";
+	private static final String closedStatisticsToPublic = "closedStatistics";
 
 	public static String setupConfirmMessageForBaseAdminPage(HttpServletRequest request) {
 		String change = request.getParameter("change");
@@ -149,6 +151,10 @@ public class AdminTasks {
 				return "Besøkende må nå registrere seg!";
 			} else if(change.equals(turnedVisitorRegistrationOff)) {
 				return "Besøkende må nå IKKE registrere seg!";
+			} else if(change.equals(openedStatisticsToPublic)) {
+				return "Åpnet visning av resultater til publikum!";
+			} else if(change.equals(closedStatisticsToPublic)) {
+				return "Lukket visning av resultater til publikum!";
 			}
 			
 		}
@@ -159,6 +165,7 @@ public class AdminTasks {
 		String standChoice = request.getParameter("standRegistration");
 		String voteChoice = request.getParameter("voteRegistration");
 		String registrationChoice = request.getParameter("visitorRegistration");
+		String statisticsChoice = request.getParameter("openStatistics");
 		
 		String returnString = "";
 		
@@ -194,7 +201,16 @@ public class AdminTasks {
 				expo.setVerificationRequired(false);
 				returnString = turnedVisitorRegistrationOff;
 			}
-			
+		}
+		
+		if(statisticsChoice != null) {
+			if(statisticsChoice.equals("open")) {
+				expo.setStatisticsOpenToPublic(true);
+				returnString = openedStatisticsToPublic;
+			} else if(statisticsChoice.equals("close")) {
+				expo.setStatisticsOpenToPublic(false);
+				returnString = closedStatisticsToPublic;
+			}
 		}
 		
 		String newAdmin = request.getParameter("newAdminName");

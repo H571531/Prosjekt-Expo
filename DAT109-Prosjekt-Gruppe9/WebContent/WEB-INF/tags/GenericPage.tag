@@ -14,7 +14,7 @@
 			${customTitle}
 		</title>
 		<link rel='shortcut icon' type='image/x-icon' href='favicon.png' />
-		<link rel="stylesheet" type="text/css" href="styles/style.css?v=3">
+		<link rel="stylesheet" type="text/css" href="styles/style.css?v=4">
 	</head>
 	<body>
 		<t:Header />

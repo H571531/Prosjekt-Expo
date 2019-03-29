@@ -297,7 +297,7 @@ input[name=registerbtn]:hover {
 	opacity: 1;
 }
 
-button[name=editStand], button[name=adminUpdate], button[name=standRegistration], button[name=voteRegistration], button[name=visitorRegistration], button[name=frontLogin], button[name=frontQR] {
+button[name=editStand], button[name=adminUpdate], button[name=standRegistration], button[name=voteRegistration], button[name=visitorRegistration], button[name=openStatistics], button[name=frontLogin], button[name=frontQR]  {
 	background-color: #004357;
   	color: white;
   	padding: 8px 12px;
@@ -327,4 +327,9 @@ button[name=votedAlready] {
   	outline:none;
   	position:relative;
   	cursor:pointer;
+}
+
+.gCharts{
+	display:inline-block;
+	margin: 0 auto;
 }

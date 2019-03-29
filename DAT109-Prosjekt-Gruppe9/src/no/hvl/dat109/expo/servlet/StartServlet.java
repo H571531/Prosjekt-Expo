@@ -21,7 +21,8 @@ import no.hvl.dat109.expo.utils.LoginUtils;
 @WebServlet("/StartServlet")
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	int timeout;
+	private int timeout;
+	private String activeExpoYear;
 	
 	@EJB
 	private AdminEAO adminEAO;
@@ -37,8 +38,9 @@ public class StartServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		timeout = Integer.parseInt(getServletContext().getInitParameter("TIMEOUT"));
-		// TODO: Fjerne før avslutning
-		getServletContext().setAttribute("expo", expoEAO.findExpo("2019"));
+		activeExpoYear = getServletContext().getInitParameter("ACTIVEEXPO");
+		
+		getServletContext().setAttribute("expo", expoEAO.findExpo(activeExpoYear));
 	}
 
 	

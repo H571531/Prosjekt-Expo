@@ -49,6 +49,8 @@ public class ResultServlet extends HttpServlet {
 	        
 	        request.setAttribute("institutesPointTotal", InstituteResult.getTotalInstituteResult(institutes));
 	        request.setAttribute("institutesPointWeightedByStands", InstituteResult.getInstitutePointsWeightedByStands(institutes));
+	        request.setAttribute("topStand", result.getStandWithMostVotes());
+	        
 	        request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
     	} else {
     		request.setAttribute("errorMessage", "Dessverre er ikke vinneren klar enda! Vennligst kom tilbake på et senere tidspunkt!");
