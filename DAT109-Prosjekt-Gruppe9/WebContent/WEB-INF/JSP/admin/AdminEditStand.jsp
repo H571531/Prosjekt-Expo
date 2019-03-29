@@ -6,7 +6,7 @@
 
 <t:GenericPage customTitle="Stand: ${stand.standName}">
     <div id="mid">
-		
+		<div id="midUpper"><c:if test="${not empty confirmEdit}"><h3>Oppdateringene er lagret!</h3><br><p>(Hvis poster er oppdatert kan det ta noen sekunder før oppdatert bilde vises - prøv å oppdater denne siden hvis ny poster ikke vises)</c:if></div>
         <div id="midText">
         	
         	<h1><c:out value="${stand.standName}" /></h1>

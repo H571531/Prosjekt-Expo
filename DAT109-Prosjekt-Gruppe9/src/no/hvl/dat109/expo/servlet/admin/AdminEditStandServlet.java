@@ -42,6 +42,11 @@ public class AdminEditStandServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String editStandId = request.getParameter("editStandId");
 		String editStandToken = request.getParameter("editStandToken");
+		String confirmEdit = request.getParameter("confirmEdit");
+		
+		if(confirmEdit != null) {
+			request.setAttribute("confirmEdit", true);
+		}
 		
 		String path = "";
 		
@@ -99,14 +104,14 @@ public class AdminEditStandServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 
 			String editString = AdminTasks.editStandFromDoPost(request, standEAO, studyEAO);
-			redirect = "AdminBrowseServlet?edit=" + editString;
+			redirect = "AdminBrowseServlet?edit=" + editString + "&confirmEdit";
 			
 		} else if(editStandId != null && editStandToken != null) {
 			
 			boolean tokenOk = VerificationUtils.editLinkIsValid(editStandId, editStandToken, standEAO, request);
 			if(tokenOk) {
 				AdminTasks.editStandFromDoPost(request, standEAO, studyEAO);
-				redirect = "AdminEditStandServlet?editStandId=" + editStandId + "&editStandToken=" + editStandToken;
+				redirect = "AdminEditStandServlet?editStandId=" + editStandId + "&editStandToken=" + editStandToken + "&confirmEdit";
 			}
 			
 		} else {
