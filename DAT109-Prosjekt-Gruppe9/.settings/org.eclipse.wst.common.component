@@ -2,6 +2,7 @@
     <wb-module deploy-name="DAT109-Prosjekt-Gruppe9">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="DAT109-Prosjekt-Gruppe9"/>
         <property name="java-output-path" value="/DAT109-Prosjekt-Gruppe9/build/classes"/>
     </wb-module>
