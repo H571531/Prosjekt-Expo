@@ -1,11 +1,13 @@
 package no.hvl.dat109.expo.eao;
 
-import no.hvl.dat109.expo.entities.Stand;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
+
+import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Vote;
 
 /**
  * EAO for Stand
@@ -49,6 +51,7 @@ public class StandEAO {
 	 * @param Stand stand som skal legges til
 	 */
 	public void addStand(Stand stand) {
+		stand.getStudy().getStands().add(stand);
 		em.persist(stand);
 	}
 	

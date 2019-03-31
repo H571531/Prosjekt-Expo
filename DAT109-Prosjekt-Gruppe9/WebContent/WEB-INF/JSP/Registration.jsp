@@ -25,7 +25,7 @@
 	            	<textarea rows="3" cols="30" placeholder="Angi forfattere" name="registerauthors" required></textarea>
 	            	
 	            	<label for="registerimage"><b>Bilde av plakat: </b></label>
-	            	<input type = "file" name = "registerimage" required/>
+	            	<input type = "file" name = "registerimage" />
 	            	<br>
 	            	<br>
 	            	<label for="registerstudy"><b>Velg studie: </b></label>

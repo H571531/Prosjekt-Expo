@@ -2,6 +2,7 @@ package no.hvl.dat109.expo.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 
 /**
@@ -34,8 +36,8 @@ public class Stand{
     @JoinColumn(name="studyid")
     private Study study;
 
-    @OneToMany(mappedBy="stand", fetch=FetchType.EAGER)
-    @JoinColumn(name="standid")
+    
+    @OneToMany(mappedBy="stand", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
     private List<Vote> votes;
     
 	public Stand() {
@@ -64,10 +66,11 @@ public class Stand{
 	 * @param id Stand-ID tilhørende ny Stand
 	 * @param expo aktiv Expo
 	 */
-	public Stand(String id, Expo expo, String token) {
+	public Stand(String id, String standName, Expo expo, String token) {
 		this.standId = id;
 		this.expo = expo;
 		this.token = token;
+		this.standName = standName;
 	}
 
 	public String getStandId() {

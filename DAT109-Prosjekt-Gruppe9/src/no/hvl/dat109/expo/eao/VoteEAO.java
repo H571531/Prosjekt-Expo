@@ -26,8 +26,12 @@ public class VoteEAO {
 	 * @param Vote vote som skal legges til
 	 */
 	public void voteForStand(Vote vote) {
-		Visitor visitor = vote.getVisitor();
+		Visitor visitor = em.merge(vote.getVisitor());
 		visitor.addVote(vote);
+		
+		Stand stand = em.merge(vote.getStand());
+		stand.getVotes().add(vote);
+		
 		em.persist(vote);
 	}
 	

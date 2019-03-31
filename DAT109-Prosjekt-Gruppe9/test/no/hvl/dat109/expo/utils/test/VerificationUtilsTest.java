@@ -35,7 +35,7 @@ public class VerificationUtilsTest {
 		expo = new Expo();
 		standEAOMock = mock(StandEAO.class);
 		requestMock = mock(HttpServletRequest.class);
-		stand = new Stand("standId", expo, "standToken");
+		stand = new Stand("standId", "--", expo, "standToken");
 	}
 
 //	TODO

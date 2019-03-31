@@ -73,7 +73,7 @@ public class VerificationUtils {
 
 	public static Stand createStand(HttpServletRequest request, String newStandId, Expo expo, StandEAO standEAO) {
 		String token = generateSafeToken();
-		Stand stand = new Stand(newStandId, expo, token);
+		Stand stand = new Stand(newStandId, "---", expo, token);
 		standEAO.addStand(stand);
 		return stand;
 	}
