@@ -43,7 +43,7 @@
 					 	<br>
 					 	<br>
 					<label for="registerimage"><b>Bilde av plakat: </b></label>
-					<input type = "file" id="registerimage" name = "standPoster" required/>
+					<input type = "file" id="registerimage" name = "standPoster" />
 					<br>
 					<br>
 					<input type="hidden" name="standId" value="${stand.standId}">
