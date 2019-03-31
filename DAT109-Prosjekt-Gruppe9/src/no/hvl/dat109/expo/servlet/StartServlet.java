@@ -39,6 +39,12 @@ public class StartServlet extends HttpServlet {
 		super.init();
 		timeout = Integer.parseInt(getServletContext().getInitParameter("TIMEOUT"));
 		activeExpoYear = getServletContext().getInitParameter("ACTIVEEXPO");
+		Expo expo = expoEAO.findExpo(activeExpoYear);
+
+		if(expo == null) {
+			expo = new Expo(activeExpoYear, false, false);
+			expoEAO.createExpo(expo);
+		}
 		
 		getServletContext().setAttribute("expo", expoEAO.findExpo(activeExpoYear));
 	}

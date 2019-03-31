@@ -37,4 +37,8 @@ public class ExpoEAO {
 		
 	}
 
+	public void createExpo(Expo expo) {
+		em.persist(expo);
+	}
+
 }
