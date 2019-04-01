@@ -39,7 +39,7 @@
 						<c:when test="${i.index % 3 == 0}">
 							<tr class="browseStandsRow">
 								<td class="browseStandsColumn columnLeft">
-									<a href="StandServlet?standId=${stand.standId}">
+									<a href="AdminEditStandServlet?standId=${stand.standId}">
 										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
@@ -47,7 +47,7 @@
 						</c:when>
 						<c:when test="${i.index % 3 == 1}">
 								<td class="browseStandsColumn columnMid">
-									<a href="StandServlet?standId=${stand.standId}">
+									<a href="AdminEditStandServlet?standId=${stand.standId}">
 										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
@@ -55,7 +55,7 @@
 						</c:when>
 						<c:otherwise>
 								<td class="browseStandsColumn columnRight">
-									<a href="StandServlet?standId=${stand.standId}">
+									<a href="AdminEditStandServlet?standId=${stand.standId}">
 										<img class="browseStandsStandImg" src="img/standPosters/poster_${expo.expoid}_${stand.standId}.png" />
 										<c:out value="${stand.standName}" />
 									</a>
