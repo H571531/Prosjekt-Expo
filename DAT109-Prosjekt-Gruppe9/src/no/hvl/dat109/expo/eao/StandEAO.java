@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import no.hvl.dat109.expo.entities.Stand;
+import no.hvl.dat109.expo.entities.Study;
 import no.hvl.dat109.expo.entities.Vote;
 
 /**
@@ -51,7 +52,6 @@ public class StandEAO {
 	 * @param Stand stand som skal legges til
 	 */
 	public void addStand(Stand stand) {
-		stand.getStudy().getStands().add(stand);
 		em.persist(stand);
 	}
 	
@@ -61,6 +61,8 @@ public class StandEAO {
 	 * @return oppdatert Stand-objekt
 	 */
 	public Stand updateStand(Stand stand) {
+		Study study = em.find(Study.class, stand.getStudy());
+		study.getStands().add(stand);
 		return em.merge(stand);
 	}
 	

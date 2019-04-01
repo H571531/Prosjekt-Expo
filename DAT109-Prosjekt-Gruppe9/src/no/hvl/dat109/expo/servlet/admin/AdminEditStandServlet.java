@@ -62,7 +62,11 @@ public class AdminEditStandServlet extends HttpServlet {
 				AdminTasks.setupStandEdit(request, stand, studyEAO, instituteEAO);
 				
 				path = "WEB-INF/JSP/admin/AdminEditStand.jsp";
+			} else if(editStandId != null) {
+				AdminTasks.setupStandEdit(request, standEAO.findStand(editStandId), studyEAO, instituteEAO);
+				path = "WEB-INF/JSP/admin/AdminEditStand.jsp";
 			} else {
+				AdminTasks.makeBrowseSelection(request, standEAO, instituteEAO, studyEAO);
 				path = "WEB-INF/JSP/admin/AdminBrowse.jsp";
 			}
 			

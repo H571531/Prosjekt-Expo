@@ -47,6 +47,11 @@ public class VerificationUtils {
 		message = "Hei! Vennligst klikk linken: " + URL;
         
         if(expo.isVerificationRequired()) {
+        	
+        	/*
+        	 * ANDRE SMS-LØSNINGER MÅ SPESIFISERES HER
+        	 */
+        	
         	sms = new MessageBird(API_KEY);
             sms.sendSMS(Long.parseLong(id),message);
         } else {
