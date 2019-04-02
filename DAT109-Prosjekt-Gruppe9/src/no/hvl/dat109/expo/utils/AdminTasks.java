@@ -96,7 +96,6 @@ public class AdminTasks {
 					if(selectedStudy != null) {
 						stand.setStudy(studyEAO.findStudy(selectedStudy));
 					}
-					//AdminEditStandServlet.addImage(request, standEAO.findStand(standId).getExpo().getExpoid(), standId);
 					try{
 						Part part = request.getPart("standPoster");
 						String year = standEAO.findStand(standId).getExpo().getExpoid();

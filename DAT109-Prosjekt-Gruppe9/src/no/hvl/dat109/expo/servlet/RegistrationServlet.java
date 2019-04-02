@@ -83,7 +83,7 @@ public class RegistrationServlet extends HttpServlet {
     	sEAO.addStand(newStand);
 
         // TODO: Send feilmelding ved feil input og sørg for at alle filformat fungerer.
-    	String path = getServletContext().getRealPath("img/standPosters/poster_2019_" + id + ".png");
+    	String path = getServletContext().getRealPath("img/standPosters/poster_" + year + "_" + id + ".png");
     	
     	File file = new File(path);
     	
