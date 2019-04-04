@@ -39,19 +39,32 @@ public class ResultServlet extends HttpServlet {
     	
     	
     	if(expo.isStatisticsOpenToPublic() || LoginUtils.isLoggedIn(request)) {
-    		 Result result = new Result(voteEAO.findAllVote());
-    		 
-    		 List<Institute> institutes = instituteEAO.findAllInstitute();
+    		
+    		String path = "";
+    		Result result = new Result(voteEAO.findAllVote());
+    		
+    		String fullList = request.getParameter("fulllist");
+    		if(fullList != null) {
+    			request.setAttribute("allResults", result.getAllStandsAndNumberOfVotes());
+    			path = "WEB-INF/JSP/AllResults.jsp";
+    		} else {
+    			
+       		 
+       		 	List<Institute> institutes = instituteEAO.findAllInstitute();
 
-	        request.setAttribute("toplist",result.getTopStandsTotalPoints(5));
-	        request.setAttribute("studies",result.getStudyResults());
-	        request.setAttribute("institutes",result.getInstituteResults());
+	   	        request.setAttribute("toplist",result.getTopStandsTotalPoints(5));
+	   	        request.setAttribute("studies",result.getStudyResults());
+	   	        request.setAttribute("institutes",result.getInstituteResults());
+	   	        
+	   	        request.setAttribute("institutesPointTotal", InstituteResult.getTotalInstituteResult(institutes));
+	   	        request.setAttribute("institutesPointWeightedByStands", InstituteResult.getInstitutePointsWeightedByStands(institutes));
+	   	        request.setAttribute("topStand", result.getStandWithMostVotes());
+	    			
+	   	        path = "WEB-INF/JSP/Result.jsp";
+    		}
+    		 
 	        
-	        request.setAttribute("institutesPointTotal", InstituteResult.getTotalInstituteResult(institutes));
-	        request.setAttribute("institutesPointWeightedByStands", InstituteResult.getInstitutePointsWeightedByStands(institutes));
-	        request.setAttribute("topStand", result.getStandWithMostVotes());
-	        
-	        request.getRequestDispatcher("WEB-INF/JSP/Result.jsp").forward(request, response);
+	        request.getRequestDispatcher(path).forward(request, response);
     	} else {
     		request.setAttribute("errorMessage", "Dessverre er ikke vinneren klar enda! Vennligst kom tilbake på et senere tidspunkt!");
     		request.getRequestDispatcher("WEB-INF/JSP/ErrorHandling.jsp").forward(request, response);

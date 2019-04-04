@@ -7,8 +7,12 @@
 
 
 <t:GenericPage customTitle="Resultatliste">
+	
 
 	<div id="mid">
+		<div id="midUpper">
+		<a href="ResultServlet?fulllist">Se liste over alle stands</a>
+		</div>
  			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  			<script type="text/javascript">
 			
@@ -118,54 +122,7 @@
 		
 	    <div id="midText">
 		
-	   		<!--  --><h1>Topp 5</h1><br>
-	        <hr>
-			<p><strong>Total:</strong></p>
-	        <%--@elvariable id="result" type="no.hvl.dat109.expo.statistics.StandResult"--%>
-	        <c:forEach items="${toplist}" var="result" varStatus="vinnerListCount">
-	        	<c:choose>
-	        		<c:when test="${vinnerListCount.count == 1}">
-	        		<div class="gold">
-	        		<h3>Førsteplass:</h3>
-	        		<p><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</div>
-	        		</c:when>
-	        		<c:when test="${vinnerListCount.count == 2}">
-	        		<div class="silver">
-	        		<h3>Andreplass:</h3>
-	        		<p class="silver"><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</div>
-	        		</c:when>
-	        		<c:when test="${vinnerListCount.count == 3}">
-	        		<div class="bronze">
-	        		<h3>Tredjeplass:</h3>
-	        		<p><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</div>
-	        		</c:when>
-	        		<c:when test="${vinnerListCount.count == 4}">
-	        		<div>
-	        		<h3>Fjerdeplass:</h3>
-	        		<p><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</div>
-	        		</c:when>
-	        		<c:when test="${vinnerListCount.count == 5}">
-	        		<div>
-	        		<h3>Femteplass:</h3>
-	        		<p><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</div>
-	        		</c:when>
-	        		<c:otherwise>
-	        		<p><c:out value="${result.stand.standName}" /> :
-					<fmt:formatNumber type="number" maxFractionDigits="2" value="${result.totalPoints}"/>
-					</p>
-	        		</c:otherwise>
-	        	</c:choose>
-	        </c:forEach>
+	   		
 	         <hr>
 	        <h3>Topp 5 Stands per institutt</h3>
 				<%--@elvariable id="institute" type="no.hvl.dat109.expo.statistics.InstituteResult"--%>

@@ -1,16 +1,20 @@
 package no.hvl.dat109.expo.statistics;
 
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
 // Jeg er usikker på om jeg vil putte denne klassen i entities pakken.
 // Hvis noen vil flytte den står dere fritt til å gjøre det
 
 import no.hvl.dat109.expo.entities.Stand;
 import no.hvl.dat109.expo.entities.Vote;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author
@@ -109,6 +113,18 @@ public class Result {
                 .sorted(Comparator.comparing(x -> -x.getTotalPoints()))
                 .limit(limit)
                 .collect(Collectors.toList());
+    }
+    
+    public Map<Stand, Integer> getAllStandsAndNumberOfVotes(){
+    	Map<Stand, Integer> results = new LinkedHashMap<Stand, Integer>();
+    	for(StandResult result: standResults) {
+    		results.put(result.getStand(), result.getVotes().size());
+    	}
+    	return results.
+    			entrySet().stream()
+    			.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+    			.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    			
     }
     
     public Stand getStandWithMostVotes() {
