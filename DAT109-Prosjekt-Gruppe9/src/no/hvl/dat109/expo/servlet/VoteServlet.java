@@ -1,7 +1,6 @@
 package no.hvl.dat109.expo.servlet;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.VisitorEAO;
 import no.hvl.dat109.expo.eao.VoteEAO;
 import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Stand;
-import no.hvl.dat109.expo.entities.Visitor;
-import no.hvl.dat109.expo.entities.Vote;
-import no.hvl.dat109.expo.utils.VerificationUtils;
 import no.hvl.dat109.expo.utils.VoteUtils;
 
 /**
@@ -28,10 +25,11 @@ public class VoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	VoteEAO vEAO;
+	VoteEAO voteEAO;
 	@EJB
 	StandEAO sEAO;
-	
+	@EJB
+	VisitorEAO visitorEAO;
 	Expo expo;
 
 	/**
@@ -42,7 +40,6 @@ public class VoteServlet extends HttpServlet {
 		String standId = request.getParameter("voteCastedFor");
 		if(standId != null) {
 			Stand stand = sEAO.findStand(standId);
-			//StandInterface stand = ConstructionUtils.setupStand(Integer.parseInt(standId));
 			
 			request.setAttribute("stand", stand);
 			request.getRequestDispatcher("WEB-INF/JSP/VoteCasted.jsp").forward(request, response);
@@ -64,7 +61,7 @@ public class VoteServlet extends HttpServlet {
 			
 			Stand stand = sEAO.findStand(standId);
 			if(stand != null) {
-				String redirect = VoteUtils.handleVote(standId, request, stand, vEAO, expo);
+				String redirect = VoteUtils.handleVote(standId, request, stand, voteEAO, visitorEAO, expo);
 				response.sendRedirect(redirect);
 			} else {
 				//Forsøkt å stemme på stand som ikke finnes

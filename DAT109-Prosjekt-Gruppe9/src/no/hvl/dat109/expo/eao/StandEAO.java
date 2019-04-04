@@ -62,7 +62,10 @@ public class StandEAO {
 	 */
 	public Stand updateStand(Stand stand) {
 		Study study = em.find(Study.class, stand.getStudy());
-		study.getStands().add(stand);
+		if(!study.getStands().contains(stand)) {
+			study.getStands().add(stand);
+		}
+		
 		return em.merge(stand);
 	}
 	

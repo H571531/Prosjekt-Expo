@@ -62,4 +62,6 @@ CREATE TABLE admin(
 	CONSTRAIN adminPK PRIMARY KEY (username)
 );
 
+INSERT INTO admin VALUES('admin','0Zqmkj29iYNmndoylndJebqv0o/3Qkb0F6WUBQKFrAQ3pKNMs6Z6KPTj8Bo/G45KXBqtFrG0i5Ka3pSTHFoiAQ==');
+
 

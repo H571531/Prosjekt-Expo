@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import no.hvl.dat109.expo.eao.StandEAO;
+import no.hvl.dat109.expo.eao.VisitorEAO;
 import no.hvl.dat109.expo.eao.VoteEAO;
 import no.hvl.dat109.expo.entities.Expo;
 import no.hvl.dat109.expo.entities.Stand;
@@ -14,7 +14,7 @@ import no.hvl.dat109.expo.entities.Vote;
 
 public class VoteUtils {
 
-	public static String handleVote(String standId, HttpServletRequest request, Stand stand, VoteEAO vEAO, Expo expo) {
+	public static String handleVote(String standId, HttpServletRequest request, Stand stand, VoteEAO voteEAO, VisitorEAO visitorEAO, Expo expo) {
 		String redirect = "";
 		// Kunde vil ikke ha stemmeverdi - men samtidig ha muligheten for å utvide til verdier ved senere Expoer
 		String voteValue = "1";
@@ -22,10 +22,9 @@ public class VoteUtils {
 		
 		if(expo.isVoteRegistrationOpen()){
 			if(visitor.isPresent()) {
-				
-				if(!visitorHasAlreadyVotedForStand(visitor, stand, vEAO)) {
+				if(!visitorHasAlreadyVotedForStand(visitor, stand, voteEAO)) {
 					Vote vote = new Vote(voteValue,stand,visitor.get());
-					vEAO.voteForStand(vote);
+					voteEAO.voteForStand(vote);
 					
 					redirect = "VoteServlet?voteCastedFor=" + standId;
 				} else {
@@ -45,6 +44,7 @@ public class VoteUtils {
 		
 		return redirect;
 	}
+
 
 	public static boolean visitorHasAlreadyVotedForStand(Optional<Visitor> visitor, Stand stand, VoteEAO voteEAO) {
 		List<Vote> votes = visitor.get().getVotedfor();
