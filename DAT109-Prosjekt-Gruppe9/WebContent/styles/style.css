@@ -333,3 +333,8 @@ button[name=votedAlready] {
 	display:inline-block;
 	margin: 0 auto;
 }
+
+#adminTaskTable{
+	display:inline-block;
+	margin:0 auto;
+}

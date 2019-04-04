@@ -25,7 +25,7 @@
             <hr />
             
             <form id="adminForm" method="post" action="AdminServlet">
-	            <table>
+	            <table id="adminTaskTable">
 	            	<tr>
 	            		<th><strong>STATUS</strong></th>
 	            	</tr>
