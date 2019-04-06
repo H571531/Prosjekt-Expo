@@ -102,10 +102,10 @@ public class AdminTasks {
 						if(part != null) {
 							String path = request.getServletContext().getRealPath("img/standPosters/poster_" + year + "_" + stand.getStandId() + ".png");
 							File file = new File(path);
-							try (InputStream input = part.getInputStream()){
-						        Files.copy(input, file.toPath());
-						    }
-//							FileUtils.copyInputStreamToFile(part.getInputStream(),file);
+//							try (InputStream input = part.getInputStream()){
+//						        Files.copy(input, file.toPath());
+//						    }
+							FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 						}
 					}catch (Exception e){
 						e.printStackTrace();

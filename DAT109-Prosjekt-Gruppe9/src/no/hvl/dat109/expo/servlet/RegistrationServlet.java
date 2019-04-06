@@ -87,10 +87,10 @@ public class RegistrationServlet extends HttpServlet {
     	
     	File file = new File(path);
     	
-        try (InputStream input = part.getInputStream()){
-        	Files.copy(input, file.toPath());
-        }
-        //FileUtils.copyInputStreamToFile(part.getInputStream(),file);
+//        try (InputStream input = part.getInputStream()){
+//        	Files.copy(input, file.toPath());
+//        }
+        FileUtils.copyInputStreamToFile(part.getInputStream(),file);
 
     }
 
